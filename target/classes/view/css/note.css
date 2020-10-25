@@ -1,0 +1,15 @@
+.normal {
+    -fx-background-color: rgb(117, 247, 255);
+}
+
+.long-edges {
+    -fx-background-color: rgb(18, 214, 16);
+}
+
+.long-middle {
+    -fx-background-color: rgba(18, 214, 16, 0.5);
+}
+
+.flick {
+    -fx-background-color: rgb(235, 166, 210);
+}

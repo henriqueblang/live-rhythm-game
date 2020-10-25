@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#keyReleased" prefHeight="720.0" prefWidth="1080.0" stylesheets="@/view/css/button.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SelectMusicController">
+   <children>
+      <Pane fx:id="backgroundPane" prefHeight="720.0" prefWidth="1080.0" />
+      <Pane prefHeight="720.0" prefWidth="1080.0">
+         <children>
+            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" layoutX="141.0" layoutY="52.0" pannable="true" prefHeight="616.0" prefWidth="400.0" styleClass="scroll-pane" stylesheets="@/view/css/scrollpane.css">
+               <content>
+                  <VBox fx:id="musicsVBox" prefHeight="616.0" prefWidth="400.0" spacing="10.0" />
+               </content>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding></ScrollPane>
+            <AnchorPane fx:id="notSelectedPane" layoutX="541.0" layoutY="52.0" prefHeight="616.0" prefWidth="400.0" style="-fx-background-color: rgba(255, 255, 255, 0.75);">
+               <children>
+                  <Text layoutX="53.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No music selected...">
+                     <font>
+                        <Font name="Century Gothic" size="30.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="selectedPane" layoutX="541.0" layoutY="52.0" prefHeight="616.0" prefWidth="400.0" style="-fx-background-color: rgba(255, 255, 255, 0.75);" visible="false">
+               <children>
+                  <Button fx:id="confirmButton" layoutX="150.0" layoutY="545.0" mnemonicParsing="false" onMouseReleased="#confirmMouseReleased" prefHeight="38.0" prefWidth="99.0" styleClass="menu" stylesheets="@/view/css/button.css" text="Confirm" textFill="WHITE">
+      		       <font>
+      		          <Font size="20.0" />
+      		       </font>
+      	      	</Button>
+                  <ImageView fx:id="thumbnailImageView" fitHeight="211.0" fitWidth="234.0" layoutX="83.0" layoutY="66.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@/assets/ui/placeholder.png" />
+                     </image>
+                     <effect>
+                        <DropShadow height="10.0" radius="4.5" width="10.0" />
+                     </effect>
+                  </ImageView>
+                  <Group layoutX="52.0" layoutY="368.0">
+                     <children>
+                        <TextFlow layoutX="28.0" layoutY="6.0" prefHeight="49.0" prefWidth="221.0" textAlignment="CENTER">
+                           <children>
+                              <Text fx:id="scoreText" fill="#d4af37" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                                 <font>
+                                    <Font size="35.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </TextFlow>
+                     </children>
+                  </Group>
+                  <Button fx:id="easyButton" layoutX="90.0" layoutY="455.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#modeMouseReleased" prefHeight="65.0" prefWidth="60.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="65.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/assets/ui/easy.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="normalButton" layoutX="170.0" layoutY="455.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#modeMouseReleased" prefHeight="65.0" prefWidth="60.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="65.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/assets/ui/normal_off.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="hardButton" layoutX="250.0" layoutY="455.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#modeMouseReleased" prefHeight="65.0" prefWidth="60.0" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <ImageView fitHeight="65.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@/assets/ui/hard_off.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fitHeight="37.0" fitWidth="31.0" layoutX="52.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/assets/ui/highscore.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="115.0" layoutY="317.0" text="High Score">
+                     <font>
+                        <Font size="35.0" />
+                     </font>
+                  </Label>
+                  <Line endX="305.0" endY="355.0" layoutX="2.0" layoutY="13.0" startX="90.0" startY="355.0" stroke="#fe3d70" />
+               </children>
+            </AnchorPane>
+            <Line endX="540.0" endY="668.0" startX="540.0" startY="52.0" stroke="#fe3d70" />
+         </children></Pane>
+  	  <Button layoutX="20.0" layoutY="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#backMouseReleased" prefHeight="56.0" prefWidth="50.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="56.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/assets/ui/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

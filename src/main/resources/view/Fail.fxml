@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="failPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#keyReleased" opacity="0.875" prefHeight="262.0" prefWidth="391.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FailController">
+   <children>
+      <Label layoutX="169.0" layoutY="13.0" text="Fail" textFill="#000000">
+         <font>
+            <Font name="Century Gothic" size="30.0" />
+         </font>
+      </Label>
+      <Line endX="350.0" endY="50.0" startX="50.0" startY="50.0" stroke="#fe3d70" />
+      <Button layoutX="151.0" layoutY="204.0" mnemonicParsing="false" onMouseReleased="#okMouseReleased" prefHeight="38.0" prefWidth="99.0" styleClass="menu" stylesheets="@/view/css/button.css" text="OK" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Text layoutX="48.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You couldn't clear this song. Keep practising. If you are uncomfortable, adjust your game settings." wrappingWidth="297.6953125">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

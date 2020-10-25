@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" prefHeight="720.0" prefWidth="1080.0" style="-fx-base: black;" stylesheets="@/view/css/note.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameController">
+   <children>
+      <Line endX="1080.0" fill="WHITE" layoutY="650.0" stroke="#bec8cd2e" strokeWidth="3.0" />
+      <Line endX="270.0" endY="650.0" opacity="0.3" startX="270.0" stroke="WHITE" strokeWidth="2.0" />
+      <Line endX="810.0" endY="650.0" opacity="0.3" startX="810.0" stroke="WHITE" strokeWidth="2.0" />
+      <Line endX="405.0" endY="650.0" opacity="0.3" startX="405.0" stroke="WHITE" />
+      <Line endX="540.0" endY="650.0" opacity="0.3" startX="540.0" stroke="WHITE" />
+      <Line endX="675.0" endY="650.0" opacity="0.3" startX="675.0" stroke="WHITE" />
+      <Label fx:id="comboCountLabel" alignment="CENTER" layoutX="910.0" layoutY="290.0" prefHeight="45.0" prefWidth="90.0" text="0" textAlignment="CENTER" visible="false">
+         <font>
+            <Font size="50.0" />
+         </font>
+      </Label>
+      <Label fx:id="comboLabel" alignment="CENTER" layoutX="910.0" layoutY="335.0" prefHeight="45.0" prefWidth="90.0" text="COMBO" textAlignment="CENTER" visible="false">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="79.0" fitWidth="232.0" layoutX="25.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/assets/game/score.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="scoreBar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="24.0" layoutX="65.0" layoutY="39.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="180.0" />
+      <TextFlow layoutX="27.0" layoutY="60.0" prefHeight="44.0" prefWidth="195.0">
+         <children>
+            <Text fx:id="scorePaddingText" fill="#b9b7b7" strokeType="OUTSIDE" strokeWidth="0.0" text="00000000" wrappingWidth="195.0">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
+            <Text fx:id="scoreText" fill="#f66889" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="195.0">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <ImageView fitHeight="60.0" fitWidth="208.0" layoutX="839.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/assets/game/energy_bar.png" />
+         </image>
+      </ImageView>
+      <ProgressBar fx:id="healthBar" layoutX="869.0" layoutY="36.0" minHeight="10.0" minWidth="10.0" prefHeight="31.0" prefWidth="146.0" progress="1.0" style="-fx-accent: green;" />
+      <TextFlow layoutX="902.5" layoutY="65.0" prefHeight="27.0" prefWidth="100.0">
+         <children>
+            <Text fx:id="healthText" fill="#007e00" strokeType="OUTSIDE" strokeWidth="0.0" text="100" wrappingWidth="100.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="  /  " wrappingWidth="100.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#007e00" strokeType="OUTSIDE" strokeWidth="0.0" text="100" wrappingWidth="100.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <Button layoutX="1024.0" layoutY="33.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#pauseMouseReleased" prefHeight="56.0" prefWidth="50.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="56.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/assets/game/pause.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <TextFlow layoutX="453.0" layoutY="604.0" prefHeight="27.0" prefWidth="173.0" textAlignment="CENTER">
+         <children>
+            <Text fx:id="hitScoreGradeText" fill="ALICEBLUE" strokeType="OUTSIDE" strokeWidth="0.0" visible="false">
+               <font>
+                  <Font name="Verdana Bold" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow layoutX="453.0" layoutY="325.0" prefHeight="49.0" prefWidth="173.0" textAlignment="CENTER">
+         <children>
+            <Text fx:id="countdownText" fill="ALICEBLUE" strokeType="OUTSIDE" strokeWidth="0.0" visible="false">
+               <font>
+                  <Font name="Verdana Bold" size="40.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow layoutX="25.0" layoutY="125.0" prefHeight="24.0" prefWidth="200.0" textAlignment="CENTER">
+         <children>
+            <Text fx:id="gainText" fill="ALICEBLUE" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" x="100.0" y="150.0">
+               <font>
+                  <Font name="Verdana Bold" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+   </children>
+</AnchorPane>

@@ -1,0 +1,4 @@
+.scale:hover {
+    -fx-scale-x: 1.25;
+    -fx-scale-y: 1.25;
+}

@@ -1,0 +1,58 @@
+.menu {
+    -fx-background-color: rgb(255, 71, 131);
+    -fx-background-radius: 5,5,4;
+    -fx-background-insets: 0 0 -1 0,0,1;
+}
+
+.menu:hover {
+    -fx-background-color: rgb(235, 51, 111);
+    -fx-background-radius: 5,5,4;
+    -fx-background-insets: 0 0 -1 0,0,1;
+}
+
+.menu_alternative {
+    -fx-background-color: rgb(67, 191, 255);
+    -fx-background-radius: 5,5,4;
+    -fx-background-insets: 0 0 -1 0,0,1;
+}
+
+.menu_alternative:hover {
+    -fx-background-color: rgb(47, 171, 235);
+    -fx-background-radius: 5,5,4;
+    -fx-background-insets: 0 0 -1 0,0,1;
+}
+
+.normal {
+    -fx-background-color: rgb(190, 190, 190);
+    -fx-background-radius: 5,5,4;
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+.normal:hover {
+    -fx-background-color: rgb(170, 170, 170);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+
+.favorite {
+    -fx-background-color: rgb(255, 240, 85);
+    -fx-background-radius: 5,5,4;
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+.favorite:hover {
+    -fx-background-color: rgb(235, 220, 65);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+
+.selected {
+    -fx-background-color: rgb(255, 71, 131);
+    -fx-background-radius: 5,5,4;
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+.selected:hover {
+    -fx-background-color: rgb(235, 51, 111);
+    -fx-background-radius: 5,5,4;
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}

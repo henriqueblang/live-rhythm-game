@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="inputPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#keyReleased" opacity="0.875" prefHeight="160.0" prefWidth="400.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InputController">
+   <children>
+      <Label layoutX="160.0" layoutY="14.0" text="Input" textFill="#000000">
+         <font>
+            <Font name="Century Gothic" size="30.0" />
+         </font>
+      </Label>
+      <Line endX="350.0" endY="50.0" startX="50.0" startY="50.0" stroke="#fe3d70" />
+      <Button layoutX="202.0" layoutY="107.0" mnemonicParsing="false" onMouseReleased="#okMouseReleased" prefHeight="38.0" prefWidth="99.0" styleClass="menu" stylesheets="@/view/css/button.css" text="OK" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Text fx:id="inputText" layoutX="17.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="360.0">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Text>
+      <Button layoutX="93.0" layoutY="107.0" mnemonicParsing="false" onMouseReleased="#cancelMouseReleased" prefHeight="38.0" prefWidth="99.0" styleClass="menu_alternative" stylesheets="@/view/css/button.css" text="Cancel" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#keyReleased" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddMusicController">
+   <children>
+      <Pane fx:id="backgroundPane" prefHeight="720.0" prefWidth="1080.0" />
+      <AnchorPane layoutX="294.0" layoutY="113.0" prefHeight="495.0" prefWidth="493.0" style="-fx-background-color: rgba(255, 255, 255, 0.75);">
+         <children>
+            <Label layoutX="160.0" layoutY="31.0" text="New music" textFill="#000000">
+               <font>
+                  <Font name="Century Gothic" size="30.0" />
+               </font>
+            </Label>
+            <Line endX="300.0" endY="50.0" layoutX="64.0" layoutY="33.0" startX="50.0" startY="50.0" stroke="#fe3d70" />
+            <Button layoutX="197.0" layoutY="428.0" mnemonicParsing="false" onMouseReleased="#okMouseReleased" prefHeight="38.0" prefWidth="99.0" styleClass="menu" stylesheets="@/view/css/button.css" text="OK" textFill="WHITE">
+		       <font>
+		          <Font size="20.0" />
+		       </font>
+	      	</Button>
+            <Button fx:id="musicButton" layoutY="110.0" mnemonicParsing="false" onMouseEntered="#musicMouseEntered" onMouseExited="#musicMouseExited" onMouseReleased="#musicMouseReleased" prefHeight="104.0" prefWidth="493.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <Pane prefHeight="112.0" prefWidth="460.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="33.0" prefHeight="50.0" prefWidth="421.0">
+                           <children>
+                              <Label text="Music" textFill="#000000">
+                                 <font>
+                                    <Font name="Century Gothic" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Pane>
+                              <ImageView fx:id="musicIcon" fitHeight="32.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@/assets/ui/file_2.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <Label fx:id="musicLabel" alignment="CENTER" contentDisplay="TOP" layoutY="52.0" prefHeight="32.0" prefWidth="453.0" textFill="#000000">
+                           <font>
+                              <Font name="Century Gothic" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </graphic>
+            </Button>
+            <Button fx:id="thumbnailButton" layoutY="214.0" mnemonicParsing="false" onMouseEntered="#thumbnailMouseEntered" onMouseExited="#thumbnailMouseExited" onMouseReleased="#thumbnailMouseReleased" prefHeight="104.0" prefWidth="493.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <Pane prefHeight="112.0" prefWidth="460.0">
+                     <children>
+                        <HBox alignment="CENTER" layoutX="33.0" prefHeight="50.0" prefWidth="421.0">
+                           <children>
+                              <Label text="Thumbnail" textFill="#000000">
+                                 <font>
+                                    <Font name="Century Gothic" size="25.0" />
+                                 </font>
+                              </Label>
+                              <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Pane>
+                              <ImageView fx:id="thumbnailIcon" fitHeight="32.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@/assets/ui/file_2.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <Label fx:id="thumbnailLabel" alignment="CENTER" contentDisplay="TOP" layoutY="52.0" prefHeight="32.0" prefWidth="453.0" textFill="#000000">
+                           <font>
+                              <Font name="Century Gothic" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </graphic>
+            </Button>
+            <Label layoutX="40.5" layoutY="328.0" text="Menu Preview" textFill="#000000">
+               <font>
+                  <Font name="Century Gothic" size="25.0" />
+               </font>
+            </Label>
+            <Button layoutX="430.0" layoutY="378.5" minHeight="32.0" minWidth="33.0" mnemonicParsing="false" onMouseReleased="#previewMouseReleased" prefHeight="32.0" prefWidth="33.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fx:id="previewIcon" fitHeight="32.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@/assets/ui/play_2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <HBox fx:id="previewHBox" alignment="CENTER" layoutX="135.0" layoutY="376.0" prefHeight="37.0" prefWidth="280.0" />
+         </children>
+      </AnchorPane>
+  	  <Button fx:id="backButton" layoutX="20.0" layoutY="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#backMouseReleased" prefHeight="56.0" prefWidth="50.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="56.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/assets/ui/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

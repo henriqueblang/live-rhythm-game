@@ -1,0 +1,7 @@
+.slider {
+    -fx-pref-width: 280;
+}
+
+.slider .range-bar {
+    -fx-background-color: rgb(255, 71, 131);
+}

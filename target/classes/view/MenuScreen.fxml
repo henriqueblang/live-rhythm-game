@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#keyReleased" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuScreenController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="105.0" opacity="0.53" stroke="BLACK" strokeType="INSIDE" width="1080.0" />
+      <Group fx:id="playGroup" layoutX="220.0" layoutY="322.0" styleClass="scale" stylesheets="@/view/css/hoverscale.css">
+         <children>
+            <Button mnemonicParsing="false" onMouseReleased="#playMouseReleased" prefHeight="90.0" prefWidth="255.0" styleClass="menu" stylesheets="@/view/css/button.css" text="Play" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="32.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="75.0" fitWidth="60.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/assets/ui/play.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="notificationsImage" fitHeight="44.0" fitWidth="42.0" layoutX="-21.0" layoutY="-21.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@/assets/ui/notification_circle.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="notificationsText" fill="WHITE" layoutX="-11.0" layoutY="7.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" visible="false" wrappingWidth="23.0">
+               <font>
+                  <Font name="Consolas" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Group>
+      <Group fx:id="addGroup" layoutX="605.0" layoutY="322.0" styleClass="scale" stylesheets="@/view/css/hoverscale.css">
+         <children>
+            <Button fx:id="addButton" mnemonicParsing="false" onMouseReleased="#addMouseReleased" prefHeight="90.0" prefWidth="255.0" styleClass="menu" stylesheets="@/view/css/button.css" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="32.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="addImage" fitHeight="60.0" fitWidth="42.0" layoutX="195.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/assets/ui/file.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
+      <Group fx:id="quitGroup" layoutX="605.0" layoutY="436.0" styleClass="scale" stylesheets="@/view/css/hoverscale.css">
+         <children>
+            <Button fx:id="quitButton" mnemonicParsing="false" onMouseReleased="#quitMouseReleased" prefHeight="90.0" prefWidth="255.0" styleClass="menu" stylesheets="@/view/css/button.css" text="Quit" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="32.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="quitImage" fitHeight="67.0" fitWidth="36.0" layoutX="198.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/assets/ui/quit.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
+      <Group fx:id="optionsGroup" layoutX="220.0" layoutY="436.0" styleClass="scale" stylesheets="@/view/css/hoverscale.css">
+         <children>
+            <Button fx:id="optionsButton" mnemonicParsing="false" onMouseReleased="#optionsMouseReleased" prefHeight="90.0" prefWidth="255.0" styleClass="menu" stylesheets="@/view/css/button.css" text="Options" textFill="WHITE">
+               <font>
+                  <Font name="Century Gothic" size="25.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="optionsImage" fitHeight="53.0" fitWidth="54.0" layoutX="15.0" layoutY="22.5" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/assets/ui/settings.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Group>
+      <ImageView fitHeight="299.0" fitWidth="418.0" layoutX="393.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/assets/ui/circle_filled.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="465.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/assets/ui/dance.gif" />
+         </image>
+      </ImageView>
+      <TextFlow layoutX="41.0" layoutY="15.0" prefHeight="30.0" prefWidth="1036.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Library:  ">
+               <font>
+                  <Font name="Consolas" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="libraryText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="31.78125">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=" song(s)">
+               <font>
+                  <Font name="Consolas" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow layoutX="41.0" layoutY="38.0" prefHeight="30.0" prefWidth="1036.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Accuracy: ">
+               <font>
+                  <Font name="Consolas" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="accuracyText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="31.78125">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="\%">
+               <font>
+                  <Font name="Consolas" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow layoutX="41.0" layoutY="61.0" prefHeight="30.0" prefWidth="1036.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Score:    ">
+               <font>
+                  <Font name="Consolas" size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="highscoreText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="31.78125">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=" point(s)">
+               <font>
+                  <Font name="Consolas" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <ImageView fitHeight="30.0" fitWidth="17.0" layoutX="14.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/assets/ui/file.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="17.0" layoutX="14.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/assets/ui/note.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="24.0" fitWidth="17.0" layoutX="15.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/assets/ui/highscore.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

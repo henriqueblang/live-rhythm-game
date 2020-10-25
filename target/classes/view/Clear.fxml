@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="successPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#keyReleased" opacity="0.875" prefHeight="402.0" prefWidth="391.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ClearController">
+   <children>
+      <Label layoutX="156.0" layoutY="14.0" text="Clear" textFill="#000000">
+         <font>
+            <Font name="Century Gothic" size="30.0" />
+         </font>
+      </Label>
+      <Line endX="350.0" endY="50.0" startX="50.0" startY="50.0" stroke="#fe3d70" />
+      <Button layoutX="146.0" layoutY="344.0" mnemonicParsing="false" onMouseReleased="#okMouseReleased" prefHeight="38.0" prefWidth="99.0" styleClass="menu" stylesheets="@/view/css/button.css" text="OK" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="gradeImageView" fitHeight="75.0" fitWidth="55.0" layoutX="50.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/assets/ui/grade_A.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="209.0" layoutY="67.0" text="Score" textFill="#000000">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="44.0" fitWidth="31.0" layoutX="220.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/assets/ui/highscore.png" />
+         </image>
+      </ImageView>
+      <Line endX="350.0" endY="50.0" layoutY="106.0" startX="50.0" startY="50.0" stroke="#fe3d70" />
+      <TextFlow layoutX="272.0" layoutY="66.0" prefHeight="27.0" prefWidth="99.0">
+         <children>
+            <Text fx:id="scorePaddingText" fill="#b9b7b7" strokeType="OUTSIDE" strokeWidth="0.0" text="00000000" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="scoreText" fill="#f66889" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow layoutX="272.0" layoutY="109.0" prefHeight="27.0" prefWidth="99.0">
+         <children>
+            <Text fx:id="highscorePaddingText" fill="#b9b7b7" strokeType="OUTSIDE" strokeWidth="0.0" text="00000000" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="highscoreText" fill="#d4af37" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <Label layoutX="35.0" layoutY="190.0" text="Perfect" textFill="#000000">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="215.0" text="Great" textFill="#000000">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="290.0" text="Miss" textFill="#000000">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="240.0" text="Good" textFill="#000000">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="265.0" text="Bad" textFill="#000000">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Label>
+      <TextFlow layoutX="133.0" layoutY="189.0" prefHeight="27.0" prefWidth="70.0">
+         <children>
+            <Text fx:id="perfectPaddingText" fill="#b9b7b7" strokeType="OUTSIDE" strokeWidth="0.0" text="00000" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="perfectText" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow layoutX="133.0" layoutY="214.0" prefHeight="27.0" prefWidth="70.0">
+         <children>
+            <Text fx:id="greatPaddingText" fill="#b9b7b7" strokeType="OUTSIDE" strokeWidth="0.0" text="00000" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="greatText" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow layoutX="133.0" layoutY="239.0" prefHeight="27.0" prefWidth="70.0">
+         <children>
+            <Text fx:id="goodPaddingText" fill="#b9b7b7" strokeType="OUTSIDE" strokeWidth="0.0" text="00000" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="goodText" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow layoutX="133.0" layoutY="264.0" prefHeight="27.0" prefWidth="70.0">
+         <children>
+            <Text fx:id="badPaddingText" fill="#b9b7b7" strokeType="OUTSIDE" strokeWidth="0.0" text="00000" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="badText" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <TextFlow layoutX="133.0" layoutY="289.0" prefHeight="27.0" prefWidth="70.0">
+         <children>
+            <Text fx:id="missPaddingText" fill="#b9b7b7" strokeType="OUTSIDE" strokeWidth="0.0" text="00000" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="missText" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="195.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <Pane layoutX="234.0" layoutY="197.0" prefHeight="112.0" prefWidth="122.0" style="-fx-border-color: black;">
+         <children>
+            <Text layoutX="18.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max combo" textAlignment="CENTER" wrappingWidth="86.25">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="67.0" layoutY="-1.0" opacity="0.53" stroke="BLACK" strokeType="INSIDE" width="122.0" />
+            <TextFlow layoutX="26.0" layoutY="78.0" prefHeight="27.0" prefWidth="70.0">
+               <children>
+                  <Text fx:id="maxComboPaddingText" fill="#b9b7b7" strokeType="OUTSIDE" strokeWidth="0.0" text="00000" wrappingWidth="195.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="maxComboText" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="195.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </TextFlow>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
