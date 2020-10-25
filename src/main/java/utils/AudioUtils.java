@@ -182,11 +182,12 @@ public class AudioUtils {
 
 		FFT fft = new FFT(1024, sampleRate);
 		fft.window(FFT.HAMMING);
+		
 		float[] samples = new float[1024];
 		float[] spectrum = new float[1024 / 2 + 1];
 		float[] lastSpectrum = new float[1024 / 2 + 1];
+		
 		List<Float> spectralFlux = new ArrayList<Float>();
-		List<float[]> thresholds = new ArrayList<float[]>();
 		
 		while (decoder.readSamples(samples) > 0) {
 			fft.forward(samples);
@@ -201,6 +202,8 @@ public class AudioUtils {
 			spectralFlux.add(flux);
 		}
 
+		List<float[]> thresholds = new ArrayList<float[]>();
+		
 		for (int i = 0; i < spectralFlux.size(); i++) {
 			int start = Math.max(0, i - THRESHOLD_WINDOW_SIZE);
 			int end = Math.min(spectralFlux.size() - 1, i + THRESHOLD_WINDOW_SIZE);
@@ -219,6 +222,7 @@ public class AudioUtils {
 		}
 
 		List<float[]> prunnedSpectralFluxes = new ArrayList<float[]>();
+		
 		for (int i = 0; i < thresholds.size(); i++) {
 			float[] threshold = thresholds.get(i);
 			float[] localPrunnedSpectralFluxes = new float[threshold.length];
