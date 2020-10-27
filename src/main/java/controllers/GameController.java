@@ -287,7 +287,7 @@ public class GameController implements Controller {
 		}
 	}
     
-    void animateNote(Note note) {
+    private void animateNote(Note note) {
 		SequentialTransition animation = new SequentialTransition();
 
 		double upToPixel = note.getEndY() - GameStates.userOptions.getNoteHeight();
@@ -321,7 +321,7 @@ public class GameController implements Controller {
 		noteAnimations.put(note, animation);
 	}
     
-    public void removeNote(Note note) {
+    private void removeNote(Note note) {
 		int track = note.getTrack();
 		Scores gainScoreType = scorePerTrack[track];
 
@@ -374,7 +374,7 @@ public class GameController implements Controller {
 		scorePerTrack[track] = Scores.MISS;
 	}
     
-    public void hitNote(Note note, boolean endAnimation) {
+    private void hitNote(Note note, boolean endAnimation) {
 		Scores hitScoreType = getNodeHitScore(note);
 		
 		if(hitScoreType == null)
@@ -465,7 +465,7 @@ public class GameController implements Controller {
 		UIUtils.setPaddedText(scoreText, scorePaddingText, paddingInitialAmount, newScore);
 	}
 	
-	public void updateScoreBar(int score, int total) {
+	private void updateScoreBar(int score, int total) {
 		if(score <= total * 0.30) {
 			if(scoreGrade != Grades.C) {
 				scoreBar.setFill(Color.rgb(159, 197, 248));
@@ -505,7 +505,7 @@ public class GameController implements Controller {
 		scoreBar.setWidth(scoreBarTotalWidth * (((double) score) / total));	
 	}
 	
-	public void updateCombo(int combo) {
+	private void updateCombo(int combo) {
 		if(combo <= 0) {
 			comboLabel.setVisible(false);
 			comboCountLabel.setVisible(false);
@@ -523,7 +523,7 @@ public class GameController implements Controller {
 		new Pulse(comboCountLabel).play();
 	}
 	
-	public void updateHealthBar(double value) {
+	private void updateHealthBar(double value) {
 		double health = healthBar.getProgress();
 		
 		health += value;
