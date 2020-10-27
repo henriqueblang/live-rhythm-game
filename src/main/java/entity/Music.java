@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.sound.sampled.Clip;
 
-import dao.MusicDAO;
 import entity.collection.Beatmap;
 import javafx.scene.image.Image;
 
@@ -26,29 +25,28 @@ public class Music {
 
 	public Music(String title, Clip audio, int previewStart, int previewEnd, Image thumbnail,
 			List<Beatmap> beatmaps) {
-		this(-1, title, false, audio, previewStart, previewEnd, thumbnail, beatmaps, new ArrayList<>());
+		this(-1, title, false, audio, previewStart, previewEnd, thumbnail, beatmaps);
+	}
+	
+	public Music(int id, String title, boolean favorite, Clip audio, int previewStart, int previewEnd, Image thumbnail) {
+		this(id, title, favorite, audio, previewStart, previewEnd, thumbnail, new ArrayList<>());
 	}
 
 	public Music(int id, String title, boolean favorite, Clip audio, int previewStart, int previewEnd, Image thumbnail,
-			List<Beatmap> beatmaps, List<Integer> highscores) {
+			List<Beatmap> beatmaps) {
 		this.id = id;
 		this.title = title;
+		this.favorite = favorite;
 		this.audio = audio;
 		this.previewStart = previewStart;
 		this.previewEnd = previewEnd;
 		this.thumbnail = thumbnail;
 		this.beatmaps = beatmaps;
-		this.favorite = favorite;
-		this.highscores = highscores;
-
-		if (this.beatmaps.isEmpty()) {
-			for (int i = 0; i < MusicDAO.tableModeSuffixes.length; i++)
-				this.beatmaps.add(null);
-		}
 		
-		if (this.highscores.isEmpty()) {
-			for (int i = 0; i < MusicDAO.tableModeSuffixes.length; i++)
-				this.highscores.add(0);
+		this.highscores = new ArrayList<>();
+		
+		for (int i = 0; i < beatmaps.size(); i++) {
+			this.highscores.add(0);
 		}
 	}
 
@@ -66,6 +64,10 @@ public class Music {
 
 	public int getHighscore(int index) {
 		return highscores.get(index);
+	}
+	
+	public void addHighscore(int highscore) {
+		this.highscores.add(highscore);
 	}
 
 	public void setHighscore(int index, int highscore) {
@@ -96,8 +98,8 @@ public class Music {
 		return beatmaps;
 	}
 	
-	public void setBeatmap(int index, Beatmap beatmap) {
-		this.beatmaps.set(index, beatmap);
+	public void addBeatmap(Beatmap beatmap) {
+		this.beatmaps.add(beatmap);
 	}
 
 	public boolean isPlaying() {

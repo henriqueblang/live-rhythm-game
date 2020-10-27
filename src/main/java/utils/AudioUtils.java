@@ -101,9 +101,9 @@ public class AudioUtils {
 					MusicDAO dao = new MusicDAO();
 					int musicId = dao.insertMusic(cleanTitle, previewStart, previewEnd, audioRawStream, thumbnailStream);
 					
-					for(int i = 0; i < MusicDAO.tableModeSuffixes.length; i++) {
-						dao.insertBeatmap(musicId, MusicDAO.tableModeSuffixes[i], beatmaps.get(i));
-						dao.insertHighscore(musicId, MusicDAO.tableModeSuffixes[i]);
+					for(int mode = 0; mode < beatmaps.size(); mode++) {
+						dao.insertBeatmap(musicId, mode, beatmaps.get(mode));
+						dao.insertHighscore(musicId, mode);
 					}
 					
 					music.setId(musicId);

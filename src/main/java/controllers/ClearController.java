@@ -115,7 +115,7 @@ public class ClearController implements Controller {
 				public void run() {
 					MusicDAO dao = new MusicDAO();
 					try {
-						dao.updateHighscore(music.getId(), MusicDAO.tableModeSuffixes[mode], score);
+						dao.updateHighscore(music.getId(), mode, score);
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}

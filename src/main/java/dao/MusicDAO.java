@@ -25,7 +25,7 @@ import utils.EnumUtils.Types;
 
 public class MusicDAO extends DAO {
 
-	final static public String[] tableModeSuffixes = { "easy", "normal", "hard" };
+	final private String[] tableModeSuffixes = { "easy", "normal", "hard" };
 
 	public int insertMusic(String title, int previewStart, int previewEnd, InputStream audioStream,
 			InputStream thumbnailStream) throws SQLException {
@@ -63,11 +63,11 @@ public class MusicDAO extends DAO {
 		return musicId;
 	}
 
-	public void insertHighscore(int musicId, String suffix) throws SQLException {
+	public void insertHighscore(int musicId, int mode) throws SQLException {
 		if (!connectToDatabase())
 			return;
 
-		String query = "INSERT INTO highscore_" + suffix + "(id_music, score) VALUES (?, ?);";
+		String query = "INSERT INTO highscore_" + tableModeSuffixes[mode] + "(id_music, score) VALUES (?, ?);";
 
 		pst = con.prepareStatement(query);
 
@@ -96,11 +96,11 @@ public class MusicDAO extends DAO {
 		con.close();
 	}
 
-	public void updateHighscore(int musicId, String suffix, int score) throws SQLException {
+	public void updateHighscore(int musicId, int mode, int score) throws SQLException {
 		if (!connectToDatabase())
 			return;
 
-		String query = "UPDATE highscore_" + suffix + " SET score = " + score + " WHERE id_music = " + musicId + ";";
+		String query = "UPDATE highscore_" + tableModeSuffixes[mode] + " SET score = " + score + " WHERE id_music = " + musicId + ";";
 
 		pst = con.prepareStatement(query);
 		pst.executeUpdate();
@@ -109,13 +109,13 @@ public class MusicDAO extends DAO {
 		con.close();
 	}
 
-	public void insertBeatmap(int musicId, String suffix, Beatmap beatmap) throws SQLException {
+	public void insertBeatmap(int musicId, int mode, Beatmap beatmap) throws SQLException {
 		if (!connectToDatabase())
 			return;
 
 		List<List<Pair<Integer, Types>>> beatmapData = beatmap.getData();
 
-		String query = "INSERT INTO beatmap_" + suffix
+		String query = "INSERT INTO beatmap_" + tableModeSuffixes[mode]
 				+ "(id_music, note_index, note_track, note_type) VALUES (?, ?, ?, ?);";
 
 		con.setAutoCommit(false);
@@ -192,8 +192,7 @@ public class MusicDAO extends DAO {
 			Clip clip = AudioSystem.getClip();
 			clip.open(stream);
 
-			library.add(new Music(id, title, favorite, clip, previewStart, previewEnd, new Image(thumbnail),
-					new ArrayList<>(), new ArrayList<>()));
+			library.add(new Music(id, title, favorite, clip, previewStart, previewEnd, new Image(thumbnail)));
 		}
 
 		st.close();
@@ -203,7 +202,7 @@ public class MusicDAO extends DAO {
 			String beatmapQuery = "SELECT * FROM beatmap_%s WHERE id_music = " + music.getId()
 					+ " ORDER BY note_index;";
 			String highscoreQuery = "SELECT * FROM highscore_%s WHERE id_music = " + music.getId() + ";";
-
+			
 			for (int i = 0; i < tableModeSuffixes.length; i++) {
 				Beatmap beatmap = new Beatmap();
 
@@ -233,12 +232,13 @@ public class MusicDAO extends DAO {
 				if (rs.next())
 					highscore = rs.getInt("score");
 
-				music.setBeatmap(i, beatmap);
-				music.setHighscore(i, highscore);
-
+				music.addBeatmap(beatmap);
+				music.addHighscore(highscore);
+				
 				pst.close();
 				rs.close();
 			}
+			
 		}
 
 		con.close();

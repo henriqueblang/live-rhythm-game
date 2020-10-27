@@ -23,8 +23,8 @@ public class OptionsWrapper {
 			shortcuts.put("Back", KeyCode.ESCAPE);
 			shortcuts.put("Confirm", KeyCode.ENTER);
 			
-			shortcuts.put("Next", KeyCode.UP);
-			shortcuts.put("Previous", KeyCode.DOWN);
+			shortcuts.put("Next", KeyCode.DOWN);
+			shortcuts.put("Previous", KeyCode.UP);
 			shortcuts.put("Change mode", KeyCode.TAB);
 			
 			shortcuts.put("Track 1", KeyCode.D);
