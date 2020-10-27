@@ -83,13 +83,13 @@ public class OptionsController implements Controller {
     	
     	double newNoteSpeed = optionsWrapper.getNoteSpeed();
     			
-    	newNoteSpeed += NOTE_SPEED_INCREMENT;
+    	newNoteSpeed -= NOTE_SPEED_INCREMENT;
     	
-    	if(newNoteSpeed > GameUtils.MAX_NOTE_SPEED)
-    		newNoteSpeed = GameUtils.MAX_NOTE_SPEED;
-    	
+    	if(newNoteSpeed < GameUtils.MIN_NOTE_SPEED)
+    		newNoteSpeed = GameUtils.MIN_NOTE_SPEED;
+    	  	
     	animateNewNote(optionsWrapper.getNoteHeight(), newNoteSpeed);
-    	noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(newNoteSpeed)));
+    	noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - newNoteSpeed)));
     	
     	optionsWrapper.setNoteSpeed(newNoteSpeed);
     }
@@ -100,14 +100,14 @@ public class OptionsController implements Controller {
 			return;
 		
     	double newNoteSpeed = optionsWrapper.getNoteSpeed();
-		    
-    	newNoteSpeed -= NOTE_SPEED_INCREMENT;
+		
+    	newNoteSpeed += NOTE_SPEED_INCREMENT;
     	
-    	if(newNoteSpeed < GameUtils.MIN_NOTE_SPEED)
-    		newNoteSpeed = GameUtils.MIN_NOTE_SPEED;
+    	if(newNoteSpeed > GameUtils.MAX_NOTE_SPEED)
+    		newNoteSpeed = GameUtils.MAX_NOTE_SPEED;
     	
     	animateNewNote(optionsWrapper.getNoteHeight(), newNoteSpeed);
-    	noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(newNoteSpeed)));
+    	noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - newNoteSpeed)));
     	
     	optionsWrapper.setNoteSpeed(newNoteSpeed);
     }
@@ -119,13 +119,13 @@ public class OptionsController implements Controller {
 
     	double newNoteSpeed = optionsWrapper.getNoteSpeed();
     	
-    	newNoteSpeed += NOTE_SPEED_INCREASE;
+    	newNoteSpeed -= NOTE_SPEED_INCREASE;
     	
-    	if(newNoteSpeed > GameUtils.MAX_NOTE_SPEED)
-    		newNoteSpeed = GameUtils.MAX_NOTE_SPEED;
+    	if(newNoteSpeed < GameUtils.MIN_NOTE_SPEED)
+    		newNoteSpeed = GameUtils.MIN_NOTE_SPEED;
     	
     	animateNewNote(optionsWrapper.getNoteHeight(), newNoteSpeed);
-    	noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(newNoteSpeed)));
+    	noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - newNoteSpeed)));
     	
     	optionsWrapper.setNoteSpeed(newNoteSpeed);
     }
@@ -137,13 +137,13 @@ public class OptionsController implements Controller {
     	
     	double newNoteSpeed = optionsWrapper.getNoteSpeed();
         
-    	newNoteSpeed -= NOTE_SPEED_INCREASE;
+    	newNoteSpeed += NOTE_SPEED_INCREASE;
     	
-    	if(newNoteSpeed < GameUtils.MIN_NOTE_SPEED)
-    		newNoteSpeed = GameUtils.MIN_NOTE_SPEED;
+    	if(newNoteSpeed > GameUtils.MAX_NOTE_SPEED)
+    		newNoteSpeed = GameUtils.MAX_NOTE_SPEED;
     	
     	animateNewNote(optionsWrapper.getNoteHeight(), newNoteSpeed);
-    	noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(newNoteSpeed)));
+    	noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - newNoteSpeed)));
     	
     	optionsWrapper.setNoteSpeed(newNoteSpeed);
     }
@@ -177,7 +177,7 @@ public class OptionsController implements Controller {
     	
     	if(newNoteHeight < GameUtils.MIN_NOTE_HEIGHT)
     		newNoteHeight = GameUtils.MIN_NOTE_HEIGHT;
-		
+    	
     	animateNewNote(newNoteHeight, optionsWrapper.getNoteSpeed());
     	noteSizeText.setText(Integer.toString(getFormattedNoteSize(newNoteHeight)));
     	
@@ -195,7 +195,7 @@ public class OptionsController implements Controller {
     	
     	if(newNoteHeight > GameUtils.MAX_NOTE_HEIGHT)
     		newNoteHeight = GameUtils.MAX_NOTE_HEIGHT;
-		
+    	
     	animateNewNote(newNoteHeight, optionsWrapper.getNoteSpeed());
     	noteSizeText.setText(Integer.toString(getFormattedNoteSize(newNoteHeight)));
     	
@@ -361,11 +361,11 @@ public class OptionsController implements Controller {
 	}
     
     private int getFormattedNoteSpeed(double noteSpeed) {
-    	return (int) (noteSpeed / 100);
+    	return (int) Math.round(noteSpeed / 100);
     }
 
     private int getFormattedNoteSize(double noteSize) {
-    	return (int) ((noteSize * 100) / GameUtils.DEFAULT_NOTE_HEIGHT);
+    	return (int) Math.round((noteSize * 100) / GameUtils.DEFAULT_NOTE_HEIGHT);	
     }
     
     private double getProportionalNoteWidth(double noteWidth) {
@@ -409,7 +409,7 @@ public class OptionsController implements Controller {
     	animateNewNote(optionsWrapper.getNoteHeight(), optionsWrapper.getNoteSpeed());
     	
     	noteSizeText.setText(Integer.toString(getFormattedNoteSize(optionsWrapper.getNoteHeight())));
-		noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(optionsWrapper.getNoteSpeed())));
+		noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - optionsWrapper.getNoteSpeed())));
 		
 		List<Node> children = shortcutsGridPane.getChildrenUnmodifiable();
 		for(Node child : children) {
