@@ -5,24 +5,24 @@ import java.util.List;
 
 import javax.sound.sampled.Clip;
 
+import dao.MusicDAO;
 import entity.collection.Beatmap;
 import javafx.scene.image.Image;
 
 public class Music {
+	
 	private int id;
 	private int previewStart;
 	private int previewEnd;
 	private boolean favorite;
 
-	private List<Integer> highscores;
-
 	private String title;
-
+	
 	private Clip audio;
-
 	private Image thumbnail;
 
-	List<Beatmap> beatmaps;
+	private List<Beatmap> beatmaps;
+	private List<Integer> highscores;
 
 	public Music(String title, Clip audio, int previewStart, int previewEnd, Image thumbnail,
 			List<Beatmap> beatmaps) {
@@ -42,12 +42,12 @@ public class Music {
 		this.highscores = highscores;
 
 		if (this.beatmaps.isEmpty()) {
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < MusicDAO.tableModeSuffixes.length; i++)
 				this.beatmaps.add(null);
 		}
 		
 		if (this.highscores.isEmpty()) {
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < MusicDAO.tableModeSuffixes.length; i++)
 				this.highscores.add(0);
 		}
 	}
