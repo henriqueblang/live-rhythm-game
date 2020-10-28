@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="successPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#keyReleased" opacity="0.875" prefHeight="402.0" prefWidth="391.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ClearController">
+<AnchorPane fx:id="successPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#keyReleased" opacity="0.875" prefHeight="400.0" prefWidth="390.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ClearController">
    <children>
-      <Label layoutX="156.0" layoutY="14.0" text="Clear" textFill="#000000">
+      <Label layoutX="155.0" layoutY="14.0" text="Clear" textFill="#000000">
          <font>
             <Font name="Century Gothic" size="30.0" />
          </font>

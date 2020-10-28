@@ -22,8 +22,8 @@ import utils.GameUtils;
 
 public class ClearController implements Controller {
 	
-	final private double PANE_WIDTH = 391;
-	final private double PANE_HEIGHT = 402;
+	final private double PANE_WIDTH = 390;
+	final private double PANE_HEIGHT = 400;
 	
 	private int scorePaddingInitialAmount;
 	private int hitCountPaddingInitialAmount;
@@ -168,6 +168,7 @@ public class ClearController implements Controller {
 		scorePaddingInitialAmount = scorePaddingText.getText().length();
 		hitCountPaddingInitialAmount = maxComboPaddingText.getText().length();
 		
+		UIUtils.makeDraggable(successPane);
 		UIStates.root.getScene().setOnKeyReleased(e -> keyReleased(e));
 	}
 }

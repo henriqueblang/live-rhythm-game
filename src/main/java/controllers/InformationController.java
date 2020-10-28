@@ -67,7 +67,7 @@ public class InformationController implements Controller {
 		informationPane.setLayoutX((UIStates.root.getWidth() / 2) - (PANE_WIDTH / 2));
 		informationPane.setLayoutY((UIStates.root.getHeight() / 2) - (PANE_HEIGHT / 2));
 		
-		UIStates.root.getScene().setOnKeyReleased(e -> keyReleased(e));
+		UIUtils.makeDraggable(informationPane);
+		UIStates.root.getScene().setOnKeyReleased(e -> keyReleased(e));	
 	}
-
 }

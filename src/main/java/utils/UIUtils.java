@@ -16,6 +16,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -249,4 +250,22 @@ public class UIUtils {
 		removeRipple.play();
 	}
 
+    public static void makeDraggable(Node node) {
+        final Delta dragDelta = new Delta();
+
+        node.setOnMousePressed(me -> {
+            dragDelta.x = me.getX();
+            dragDelta.y = me.getY();
+        });
+        
+        node.setOnMouseDragged(me -> {
+            node.setLayoutX(node.getLayoutX() + me.getX() - dragDelta.x);
+            node.setLayoutY(node.getLayoutY() + me.getY() - dragDelta.y);
+        });
+    }
+    
+    private static class Delta {
+        public double x;
+        public double y;
+    }
 }
