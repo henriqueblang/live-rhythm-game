@@ -276,6 +276,8 @@ public class OptionsController implements Controller {
     void keyReleased(KeyEvent event) {
     	if(UIStates.extraPanes > 0)
 			return;
+    	
+    	event.consume();
 		
     	KeyCode code = event.getCode();
 		KeyCode saveCode = GameStates.userOptions.getShortcuts().get("Confirm");

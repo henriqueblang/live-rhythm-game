@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="informationPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#keyReleased" opacity="0.875" prefHeight="260.0" prefWidth="390.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InformationController">
+   <children>
+      <TextFlow layoutX="76.0" layoutY="14.0" prefHeight="38.0" prefWidth="242.0" textAlignment="CENTER">
+         <children>
+            <Text fx:id="titleText" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="Century Gothic" size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </TextFlow>
+      <Line endX="350.0" endY="50.0" layoutX="-4.0" layoutY="2.0" startX="50.0" startY="50.0" stroke="#fe3d70" />
+      <Button layoutX="146.0" layoutY="202.0" mnemonicParsing="false" onMouseReleased="#okMouseReleased" prefHeight="38.0" prefWidth="99.0" styleClass="menu" stylesheets="@/view/css/button.css" text="OK" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Text fx:id="informationText" layoutX="46.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="297.6953125">
+         <font>
+            <Font name="Century Gothic" size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

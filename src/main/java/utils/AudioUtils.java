@@ -35,6 +35,14 @@ public class AudioUtils {
 	private static final int THRESHOLD_WINDOW_SIZE = 10;
 	private static final float[] MULTIPLIERS = {2.5f, 2.0f, 1.5f};
 	
+	public static void playAudio(Clip audio) {
+		if(audio.isRunning())
+			audio.stop();
+		
+		audio.setMicrosecondPosition(0);
+		audio.start();
+	}
+	
 	public static double getAudioDuration(Clip audio) {
 		return audio.getFrameLength() / audio.getFormat().getFrameRate();
 	}

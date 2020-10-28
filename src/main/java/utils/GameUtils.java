@@ -14,8 +14,6 @@ import javax.sound.sampled.FloatControl;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import controllers.ClearController;
-
 import entity.Music;
 import entity.OptionsWrapper;
 import javafx.animation.KeyFrame;
@@ -117,44 +115,15 @@ public class GameUtils {
 	}
 
 	public static void playHitSound() {
-		Thread thread = new Thread() {
-			public void run() {
-				hitSound.stop();
-
-				hitSound.setMicrosecondPosition(0);
-				hitSound.start();
-			}
-		};
-
-		thread.start();
+		new Thread(() -> AudioUtils.playAudio(hitSound)).start();
 	}
 
 	public static void playFlickSound() {
-		Thread thread = new Thread() {
-			public void run() {
-				flickSound.stop();
-
-				flickSound.setMicrosecondPosition(0);
-				flickSound.start();
-			}
-		};
-
-		thread.start();
+		new Thread(() -> AudioUtils.playAudio(flickSound)).start();
 	}
 
 	public static void playHighscoreSound() {
-		highscoreSound.setMicrosecondPosition(0);
-		highscoreSound.start();
-	}
-
-	public static void playSuccessSound() {
-		successSound.setMicrosecondPosition(0);
-		successSound.start();
-	}
-
-	public static void playFailSound() {
-		failSound.setMicrosecondPosition(0);
-		failSound.start();
+		AudioUtils.playAudio(highscoreSound);
 	}
 
 	public static void startGame(Music music, int mode) {
@@ -166,22 +135,23 @@ public class GameUtils {
 
 	public static void showResultView(boolean clear, Grades grade, int score, int maxCombo,
 			Map<Scores, Integer> hitGradeCountMap) {
-		if (!clear) {
-			playFailSound();
-
-			double audioDuration = 1000 * AudioUtils.getAudioDuration(failSound);
-			Timeline audioFinishTimeline = new Timeline(
-					new KeyFrame(Duration.millis(audioDuration), e -> UIUtils.addView("Fail.fxml")));
-			audioFinishTimeline.play();
-		} else {
-			playSuccessSound();
-
-			double audioDuration = 1000 * AudioUtils.getAudioDuration(failSound);
-			Timeline audioFinishTimeline = new Timeline(new KeyFrame(Duration.millis(audioDuration), e -> {
-				ClearController controller = (ClearController) UIUtils.addView("Clear.fxml");
-				controller.fillResults(grade, score, maxCombo, hitGradeCountMap);
-			}));
-			audioFinishTimeline.play();
-		}
+		Clip audio = clear ? successSound : failSound;
+		
+		AudioUtils.playAudio(audio);
+		
+		double audioDuration = 1000 * AudioUtils.getAudioDuration(audio);
+		Timeline audioFinishTimeline = new Timeline(
+			new KeyFrame(
+				Duration.millis(audioDuration), 
+				e -> {
+					if(clear)
+						UIUtils.showClear(grade, score, maxCombo, hitGradeCountMap);
+					else
+						UIUtils.showFail();
+				}
+			)
+		);
+		
+		audioFinishTimeline.play();
 	}
 }

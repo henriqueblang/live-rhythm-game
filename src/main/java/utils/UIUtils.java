@@ -1,13 +1,14 @@
 package utils;
 
 import java.io.IOException;
+import java.util.Map;
 import java.util.Random;
 
 import javax.sound.sampled.Clip;
 
+import controllers.ClearController;
 import controllers.Controller;
-import controllers.ErrorController;
-import controllers.FYIController;
+import controllers.InformationController;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.ScaleTransition;
@@ -21,6 +22,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import states.UIStates;
+import utils.EnumUtils.Grades;
+import utils.EnumUtils.Scores;
 
 public class UIUtils {
 	private static Clip backSound;
@@ -53,13 +56,11 @@ public class UIUtils {
 	}
 
 	public static void playBackSound() {
-		backSound.setMicrosecondPosition(0);
-		backSound.start();
+		AudioUtils.playAudio(backSound);
 	}
 
 	public static void playEnterSound() {
-		enterSound.setMicrosecondPosition(0);
-		enterSound.start();
+		AudioUtils.playAudio(enterSound);
 	}
 
 	public static void playBackgroundMusic() {
@@ -113,17 +114,39 @@ public class UIUtils {
 		
 		return controller;
 	}
+	
+	public static void showClear(Grades grade, int score, int maxCombo, 
+			Map<Scores, Integer> hitGradeCountMap) {
+		ClearController controller = (ClearController) UIUtils.addView("Clear.fxml");
+		
+		controller.fillResults(
+			grade, 
+			score, 
+			maxCombo, 
+			hitGradeCountMap
+		);
+	}
 
+	public static void showFail() {
+		InformationController ic = (InformationController) UIUtils.addView("Information.fxml");
+		
+		ic.setWindowInformation(
+			"Fail",
+			"You couldn't clear this song. Keep practising. If you are uncomfortable, adjust your game settings.",
+			true
+		);
+	}
+	
 	public static void showError(String message) {
-		ErrorController ec = (ErrorController) UIUtils.addView("Error.fxml");
-
-		ec.setErrorMessage(message);
+		InformationController ic = (InformationController) UIUtils.addView("Information.fxml");
+		
+		ic.setWindowInformation("Error", message);
 	}
 	
 	public static void showInformation(String message) {
-		FYIController ic = (FYIController) UIUtils.addView("FYI.fxml");
-
-		ic.setInformationMessage(message);
+		InformationController ic = (InformationController) UIUtils.addView("Information.fxml");
+		
+		ic.setWindowInformation("Information", message);
 	}
 
 	public static void addStylesheet(String css) {
