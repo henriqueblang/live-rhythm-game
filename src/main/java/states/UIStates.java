@@ -3,7 +3,7 @@ package states;
 import java.io.File;
 
 import controllers.Controller;
-import javafx.beans.property.SimpleIntegerProperty;
+import entity.Notification;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -45,7 +45,7 @@ public class UIStates {
 	private Image gradeS;
 	private Image gradeSS;
 	
-	private SimpleIntegerProperty newMusicNotifications = new SimpleIntegerProperty(0);
+	private Notification notification = new Notification();
 	
 	private UIStates() {}
 	
@@ -256,11 +256,12 @@ public class UIStates {
 		this.gradeSS = gradeSS;
 	}
 
-	public SimpleIntegerProperty getNewMusicNotifications() {
-		return newMusicNotifications;
+	public Notification getNotification() {
+		return notification;
 	}
 
-	public void setNewMusicNotifications(SimpleIntegerProperty newMusicNotifications) {
-		this.newMusicNotifications = newMusicNotifications;
+	public void setNotification(Notification notification) {
+		this.notification = notification;
 	}
+
 }

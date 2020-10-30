@@ -3,6 +3,9 @@ package controllers;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import entity.LibraryObserver;
+import entity.Notification;
+import entity.NotificationsObserver;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -53,7 +56,7 @@ public class MenuScreenController implements Controller {
     	UIUtils.stopBackgroundMusic();
     	
     	UIUtils.changeView("SelectMusic.fxml");
-    	UIStates.getInstance().getNewMusicNotifications().set(0);
+    	UIStates.getInstance().getNotification().resetNotifications();
     }
 
     @FXML
@@ -98,24 +101,15 @@ public class MenuScreenController implements Controller {
     	
     	UIUtils.playBackgroundMusic();
     	
-    	libraryText.setText(Integer.toString(GameStates.getInstance().getLibrary().size()));
     	accuracyText.setText(String.format("%.2f", GameStates.getInstance().getMeanAccuracy() * 100));
     	highscoreText.setText(NumberFormat.getNumberInstance(Locale.US).format(GameStates.getInstance().getHighscoreSum()));
     	
-    	notificationsText.textProperty().bind(UIStates.getInstance().getNewMusicNotifications().asString());
-    	if(UIStates.getInstance().getNewMusicNotifications().get() > 0) {
-    		notificationsText.setVisible(true);
-    		notificationsImage.setVisible(true);
-    	}
+    	Notification notification = UIStates.getInstance().getNotification();
     	
-    	notificationsText.textProperty().addListener((observable, oldValue, newValue) -> {
-    		libraryText.setText(Integer.toString(GameStates.getInstance().getLibrary().size()));
-    		
-			if(newValue != "0" && !notificationsText.isVisible()) {
-				notificationsText.setVisible(true);
-				notificationsImage.setVisible(true);
-			}
-    	});
-	} 
+    	new LibraryObserver(notification, libraryText);
+    	new NotificationsObserver(notification, notificationsText, notificationsImage);
+    	
+    	notification.inform();
+    } 
 	
 }
