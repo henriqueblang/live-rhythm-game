@@ -21,16 +21,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.Effect;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -385,24 +379,8 @@ public class OptionsController implements Controller {
     }
     
 	@Override
-	public void init() {
-		String randomBackground = UIUtils.getRandomBackground();
-	    
-	    BackgroundImage background = new BackgroundImage(
-			new Image(
-					randomBackground, 
-					UIStates.getInstance().getPrimaryStage().getWidth(), 
-					UIStates.getInstance().getPrimaryStage().getHeight(), 
-					false, 
-					true
-			), 
-			BackgroundRepeat.NO_REPEAT, 
-			BackgroundRepeat.NO_REPEAT,
-			BackgroundPosition.CENTER, 
-			BackgroundSize.DEFAULT
-		);
-	    
-	    backgroundPane.setBackground(new Background(background));
+	public void init() {	    
+	    backgroundPane.setBackground(UIUtils.getRandomBackground());
     	backgroundPane.setEffect(blurEffect);
     	
     	optionsWrapper.setShortcuts(GameStates.getInstance().getUserOptions().getShortcuts());

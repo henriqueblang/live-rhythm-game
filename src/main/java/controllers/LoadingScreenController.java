@@ -15,11 +15,6 @@ import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import states.GameStates;
@@ -38,14 +33,7 @@ public class LoadingScreenController implements Controller {
 
 	@Override
 	public void init() {
-		String randomBackground = UIUtils.getRandomBackground();
-
-		BackgroundImage background = new BackgroundImage(
-				new Image(randomBackground, UIStates.getInstance().getPrimaryStage().getWidth(), UIStates.getInstance().getPrimaryStage().getHeight(), false,
-						true),
-				BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-				BackgroundSize.DEFAULT);
-		UIStates.getInstance().getRoot().setBackground(new Background(background));
+		UIStates.getInstance().getRoot().setBackground(UIUtils.getRandomBackground());
 		
 		Timeline ellipsisAnimation = new Timeline(new KeyFrame(Duration.millis(500), e -> {
 			String ellipsisTextString = ellipsisText.getText();

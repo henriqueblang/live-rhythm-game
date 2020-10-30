@@ -18,6 +18,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -36,8 +42,24 @@ public class UIUtils {
 
 	private static final String[] CHIBIS = { "chibi_1.png", "chibi_2.png", "chibi_3.png" };
 
-	public static String getRandomBackground() {
-		return "/assets/backgrounds/" + BACKGROUNDS[new Random().nextInt(BACKGROUNDS.length)];
+	public static Background getRandomBackground() {
+		String randomBackground = "/assets/backgrounds/" + BACKGROUNDS[new Random().nextInt(BACKGROUNDS.length)];;
+	    
+	    BackgroundImage background = new BackgroundImage(
+			new Image(
+				randomBackground, 
+				UIStates.getInstance().getPrimaryStage().getWidth(), 
+				UIStates.getInstance().getPrimaryStage().getHeight(), 
+				false, 
+				true
+			), 
+			BackgroundRepeat.NO_REPEAT, 
+			BackgroundRepeat.NO_REPEAT,
+			BackgroundPosition.CENTER, 
+			BackgroundSize.DEFAULT
+		);
+	    
+	    return new Background(background);
 	}
 
 	public static String getRandomChibi() {

@@ -23,11 +23,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -497,16 +492,7 @@ public class SelectMusicController implements Controller {
 	
 	@Override
 	public void init() {
-		// TODO put whole background code in a method
-		String randomBackground = UIUtils.getRandomBackground();
-
-		BackgroundImage background = new BackgroundImage(
-				new Image(randomBackground, UIStates.getInstance().getPrimaryStage().getWidth(), UIStates.getInstance().getPrimaryStage().getHeight(), false,
-						true),
-				BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
-				BackgroundSize.DEFAULT);
-
-		backgroundPane.setBackground(new Background(background));
+		backgroundPane.setBackground(UIUtils.getRandomBackground());
 		backgroundPane.setEffect(blurEffect);
 
 		scrollPane.setFitToWidth(true);
