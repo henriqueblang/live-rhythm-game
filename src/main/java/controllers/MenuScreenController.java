@@ -20,6 +20,8 @@ import utils.UIUtils;
 
 public class MenuScreenController implements Controller {
 	
+	private Notification notification;
+	
 	@FXML
     private Group playGroup;
 	
@@ -52,10 +54,12 @@ public class MenuScreenController implements Controller {
     	if(UIStates.getInstance().getExtraPanes() > 0)
     		return;
     	
+    	notification.clear();
+    	
     	UIUtils.playEnterSound();
     	UIUtils.stopBackgroundMusic();
-    	
     	UIUtils.changeView("SelectMusic.fxml");
+    	
     	UIStates.getInstance().getNotification().resetNotifications();
     }
 
@@ -63,6 +67,8 @@ public class MenuScreenController implements Controller {
     void addMouseReleased(MouseEvent event) {
     	if(UIStates.getInstance().getExtraPanes() > 0)
     		return;
+    	
+    	notification.clear();
     	
     	UIUtils.playEnterSound();
     	UIUtils.stopBackgroundMusic();
@@ -73,6 +79,8 @@ public class MenuScreenController implements Controller {
     void optionsMouseReleased(MouseEvent event) {
     	if(UIStates.getInstance().getExtraPanes() > 0)
     		return;
+    	
+    	notification.clear();
     	
     	UIUtils.playEnterSound();
     	UIUtils.changeView("Options.fxml");
@@ -104,7 +112,7 @@ public class MenuScreenController implements Controller {
     	accuracyText.setText(String.format("%.2f", GameStates.getInstance().getMeanAccuracy() * 100));
     	highscoreText.setText(NumberFormat.getNumberInstance(Locale.US).format(GameStates.getInstance().getHighscoreSum()));
     	
-    	Notification notification = UIStates.getInstance().getNotification();
+    	notification = UIStates.getInstance().getNotification();
     	
     	new LibraryObserver(notification, libraryText);
     	new NotificationsObserver(notification, notificationsText, notificationsImage);
