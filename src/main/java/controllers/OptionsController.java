@@ -309,8 +309,8 @@ public class OptionsController implements Controller {
     	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
     	
-    	// TODO set button transparent
     	Button shortcutButton = (Button) event.getSource();
+    	shortcutButton.setStyle("-fx-background-color: transparent;");
     	
     	InputController inputController = (InputController) UIUtils.addView("Input.fxml");
     	inputController.setOptionsController(this);
