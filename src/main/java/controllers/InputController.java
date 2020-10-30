@@ -10,66 +10,70 @@ import javafx.scene.text.Text;
 import states.UIStates;
 
 public class InputController implements Controller {
-	
+
 	private final double PANE_WIDTH = 400;
 	private final double PANE_HEIGHT = 160;
-	
+
 	private KeyCode inputKeyCode;
-	
+
 	private Button optionsInputButton;
 	private OptionsController optionsController;
-	
+
 	@FXML
-    private AnchorPane inputPane;
-	
+	private AnchorPane inputPane;
+
 	@FXML
-    private Text inputText;
-	
+	private Text inputText;
+
 	public void setInputMessage(KeyCode code) {
 		inputText.setText(code == null ? "<not set>" : code.getName());
 	}
 
-    @FXML
-    void okMouseReleased(MouseEvent event) {
-    	UIStates.getInstance().getRoot().getScene().setOnKeyReleased(null);
-    	
-    	UIStates.getInstance().decrementExtraPanes();
-    	UIStates.getInstance().getRoot().getChildren().remove(inputPane);
-    	
-    	optionsController.setShortchutInput(optionsInputButton, inputKeyCode);
-    }
-    
-    @FXML
-    void cancelMouseReleased(MouseEvent event) {
-    	UIStates.getInstance().getRoot().getScene().setOnKeyReleased(null);
-    	
-    	UIStates.getInstance().decrementExtraPanes();
-    	UIStates.getInstance().getRoot().getChildren().remove(inputPane);
-    }
-    
-    @FXML
-    void keyReleased(KeyEvent event) {
-    	KeyCode code = event.getCode();
-		
-    	inputKeyCode = code;
-    	setInputMessage(inputKeyCode);
-    }
-    
-    public void setOptionsInputButton(Button optionsInputButton) {
+	@FXML
+	void okMouseReleased(MouseEvent event) {
+		if (inputKeyCode == null)
+			cancelMouseReleased(event);
+		else {
+			UIStates.getInstance().getRoot().getScene().setOnKeyReleased(null);
+
+			UIStates.getInstance().decrementExtraPanes();
+			UIStates.getInstance().getRoot().getChildren().remove(inputPane);
+
+			optionsController.setShortchutInput(optionsInputButton, inputKeyCode);
+		}
+	}
+
+	@FXML
+	void cancelMouseReleased(MouseEvent event) {
+		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(null);
+
+		UIStates.getInstance().decrementExtraPanes();
+		UIStates.getInstance().getRoot().getChildren().remove(inputPane);
+	}
+
+	@FXML
+	void keyReleased(KeyEvent event) {
+		KeyCode code = event.getCode();
+
+		inputKeyCode = code;
+		setInputMessage(inputKeyCode);
+	}
+
+	public void setOptionsInputButton(Button optionsInputButton) {
 		this.optionsInputButton = optionsInputButton;
 	}
-	
-    public void setOptionsController(OptionsController optionsController) {
+
+	public void setOptionsController(OptionsController optionsController) {
 		this.optionsController = optionsController;
 	}
-    
+
 	@Override
 	public void init() {
 		UIStates.getInstance().incrementExtraPanes();
-		
+
 		inputPane.setLayoutX((UIStates.getInstance().getRoot().getWidth() / 2) - (PANE_WIDTH / 2));
 		inputPane.setLayoutY((UIStates.getInstance().getRoot().getHeight() / 2) - (PANE_HEIGHT / 2));
-		
+
 		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(e -> keyReleased(e));
 	}
 }

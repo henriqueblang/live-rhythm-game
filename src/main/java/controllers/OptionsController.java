@@ -333,7 +333,6 @@ public class OptionsController implements Controller {
     		optionsWrapper.getShortcuts().put(shortcutInformation.getL(), null);
         }
     	
-    	// FIXME if a new shortput is not selected, will cause nullpointexception
     	inputButton.setText(shortcut.getName());
     	
     	Pair<String, KeyCode> shortcutInformation = shortcuts.get(inputButton);
