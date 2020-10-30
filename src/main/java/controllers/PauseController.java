@@ -13,8 +13,6 @@ public class PauseController implements Controller {
 	final private double PANE_WIDTH = 350;
 	final private double PANE_HEIGHT = 128;
 	
-	private GameController gameController;
-	
 	@FXML
 	private AnchorPane pausePane;
 
@@ -25,7 +23,7 @@ public class PauseController implements Controller {
 		UIStates.getInstance().decrementExtraPanes();
 		UIStates.getInstance().getRoot().getChildren().remove(pausePane);
 		
-		gameController.finishGame(false);
+		((GameController) UIStates.getInstance().getMainController()).finishGame(false);
 	}
 
 	@FXML
@@ -35,7 +33,7 @@ public class PauseController implements Controller {
 		UIStates.getInstance().decrementExtraPanes();
 		UIStates.getInstance().getRoot().getChildren().remove(pausePane);
 		
-		gameController.resumeGame();
+		((GameController) UIStates.getInstance().getMainController()).resumeGame();
 	}
 	
     void keyReleased(KeyEvent event) {
@@ -48,10 +46,6 @@ public class PauseController implements Controller {
 		else if(backCode != null && code == backCode)
 			quitAction(null);
     }
-	
-	public void setGameController(GameController gameController) {
-		this.gameController = gameController;
-	}
 
 	@Override
 	public void init() {

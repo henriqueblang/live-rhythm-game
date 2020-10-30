@@ -146,8 +146,7 @@ public class GameController implements Controller {
         	autoHit.pause();
         }
         
-        PauseController pauseController = (PauseController) UIUtils.addView("Pause.fxml");
-        pauseController.setGameController(this);
+        UIUtils.addView("Pause.fxml");
     }
     
     @FXML

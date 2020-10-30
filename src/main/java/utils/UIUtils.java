@@ -116,8 +116,8 @@ public class UIUtils {
 			UIStates.getInstance().getPrimaryStage().show();
 		}
 
-		Controller controller = (Controller) fxmlLoader.getController();
-		controller.init();
+		UIStates.getInstance().setMainController((Controller) fxmlLoader.getController());
+		UIStates.getInstance().getMainController().init();
 	}
 
 	public static Controller addView(String viewPath) {

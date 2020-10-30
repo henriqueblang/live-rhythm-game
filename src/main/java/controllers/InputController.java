@@ -15,15 +15,17 @@ public class InputController implements Controller {
 	private final double PANE_HEIGHT = 160;
 
 	private KeyCode inputKeyCode;
-
 	private Button optionsInputButton;
-	private OptionsController optionsController;
 
 	@FXML
 	private AnchorPane inputPane;
 
 	@FXML
 	private Text inputText;
+
+	public void setOptionsInputButton(Button optionsInputButton) {
+		this.optionsInputButton = optionsInputButton;
+	}
 
 	public void setInputMessage(KeyCode code) {
 		inputText.setText(code == null ? "<not set>" : code.getName());
@@ -39,7 +41,7 @@ public class InputController implements Controller {
 			UIStates.getInstance().decrementExtraPanes();
 			UIStates.getInstance().getRoot().getChildren().remove(inputPane);
 
-			optionsController.setShortchutInput(optionsInputButton, inputKeyCode);
+			((OptionsController) UIStates.getInstance().getMainController()).setShortchutInput(optionsInputButton, inputKeyCode);
 		}
 	}
 
@@ -57,14 +59,6 @@ public class InputController implements Controller {
 
 		inputKeyCode = code;
 		setInputMessage(inputKeyCode);
-	}
-
-	public void setOptionsInputButton(Button optionsInputButton) {
-		this.optionsInputButton = optionsInputButton;
-	}
-
-	public void setOptionsController(OptionsController optionsController) {
-		this.optionsController = optionsController;
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package states;
 
 import java.io.File;
 
+import controllers.Controller;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
@@ -12,6 +13,8 @@ public class UIStates {
 	private static UIStates instance;
 	
 	private int extraPanes;
+	
+	private Controller mainController;
 	
 	private Pane root;
 	private Stage primaryStage;
@@ -67,6 +70,14 @@ public class UIStates {
 	
 	public void decrementExtraPanes() {
 		extraPanes--;
+	}
+
+	public Controller getMainController() {
+		return mainController;
+	}
+
+	public void setMainController(Controller mainController) {
+		this.mainController = mainController;
 	}
 
 	public Pane getRoot() {

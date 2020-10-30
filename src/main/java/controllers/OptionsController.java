@@ -307,7 +307,6 @@ public class OptionsController implements Controller {
     	shortcutButton.setStyle("-fx-background-color: transparent;");
     	
     	InputController inputController = (InputController) UIUtils.addView("Input.fxml");
-    	inputController.setOptionsController(this);
     	
     	inputController.setOptionsInputButton(shortcutButton);
     	inputController.setInputMessage(shortcuts.get(shortcutButton).getR());
