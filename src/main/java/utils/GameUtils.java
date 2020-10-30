@@ -127,8 +127,8 @@ public class GameUtils {
 	}
 
 	public static void startGame(Music music, int mode) {
-		GameStates.gameMode = mode;
-		GameStates.gameMusic = music;
+		GameStates.getInstance().setGameMode(mode);
+		GameStates.getInstance().setGameMusic(music);
 
 		UIUtils.changeView("Game.fxml");
 	}

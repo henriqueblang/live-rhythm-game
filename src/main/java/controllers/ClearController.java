@@ -84,7 +84,7 @@ public class ClearController implements Controller {
 
     @FXML
     void okMouseReleased(MouseEvent event) {
-    	UIStates.extraPanes--;
+    	UIStates.getInstance().decrementExtraPanes();
 		
     	UIUtils.playEnterSound();
     	UIUtils.changeView("MenuScreen.fxml");
@@ -93,22 +93,22 @@ public class ClearController implements Controller {
     @FXML
     void keyReleased(KeyEvent event) {
     	KeyCode code = event.getCode();
-		KeyCode okCode = GameStates.userOptions.getShortcuts().get("Confirm");
+		KeyCode okCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Confirm");
 		
 		if(okCode != null && code == okCode)
 			okMouseReleased(null);
     }
 
 	public void fillResults(Grades grade, int score, int maxCombo, Map<Scores, Integer> hitGradeCountMap) {
-		int mode = GameStates.gameMode;
-		Music music = GameStates.gameMusic;
+		int mode = GameStates.getInstance().getGameMode();
+		Music music = GameStates.getInstance().getGameMusic();
 		
 		int highscore = music.getHighscore(mode);
 		if(score > highscore) {
 			highscore = score;
 			
 			GameUtils.playHighscoreSound();
-			GameStates.gameMusic.setHighscore(mode, highscore);
+			music.setHighscore(mode, highscore);
 			
 			Thread thread = new Thread() {
 				@Override
@@ -128,19 +128,19 @@ public class ClearController implements Controller {
 		Image gradeImage = null;
 		switch(grade) {
 		case C:
-			gradeImage = UIStates.gradeC;
+			gradeImage = UIStates.getInstance().getGradeC();
 			break;
 		case B:
-			gradeImage = UIStates.gradeB;
+			gradeImage = UIStates.getInstance().getGradeB();
 			break;
 		case A:
-			gradeImage = UIStates.gradeA;
+			gradeImage = UIStates.getInstance().getGradeA();
 			break;
 		case S:
-			gradeImage = UIStates.gradeS;
+			gradeImage = UIStates.getInstance().getGradeS();
 			break;
 		case SS:
-			gradeImage = UIStates.gradeSS;
+			gradeImage = UIStates.getInstance().getGradeSS();
 			break;
 		}
 		
@@ -160,15 +160,15 @@ public class ClearController implements Controller {
 	
 	@Override
 	public void init() {
-		UIStates.extraPanes++;
+		UIStates.getInstance().incrementExtraPanes();
 		
-		successPane.setLayoutX((UIStates.root.getWidth() / 2) - (PANE_WIDTH / 2));
-		successPane.setLayoutY((UIStates.root.getHeight() / 2) - (PANE_HEIGHT / 2));
+		successPane.setLayoutX((UIStates.getInstance().getRoot().getWidth() / 2) - (PANE_WIDTH / 2));
+		successPane.setLayoutY((UIStates.getInstance().getRoot().getHeight() / 2) - (PANE_HEIGHT / 2));
 		
 		scorePaddingInitialAmount = scorePaddingText.getText().length();
 		hitCountPaddingInitialAmount = maxComboPaddingText.getText().length();
 		
 		UIUtils.makeDraggable(successPane);
-		UIStates.root.getScene().setOnKeyReleased(e -> keyReleased(e));
+		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(e -> keyReleased(e));
 	}
 }

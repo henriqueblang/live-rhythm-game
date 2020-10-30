@@ -88,7 +88,7 @@ public class SelectMusicController implements Controller {
 	void modeMouseReleased(MouseEvent event) {
 		Button button = (Button) event.getSource();
 		
-		if(button == selectedModeButton || UIStates.extraPanes > 0)
+		if(button == selectedModeButton || UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		changeMode(button);
@@ -96,7 +96,7 @@ public class SelectMusicController implements Controller {
 	
 	@FXML
 	void confirmMouseReleased(MouseEvent event) {
-		if(selectedMusicButton == null || UIStates.extraPanes > 0)
+		if(selectedMusicButton == null || UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		Music music = selectedMusicButton.getMusic();
@@ -117,7 +117,7 @@ public class SelectMusicController implements Controller {
 
 	@FXML
 	void backMouseReleased(MouseEvent event) {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		if(selectedMusicButton != null) {
@@ -132,19 +132,19 @@ public class SelectMusicController implements Controller {
 	
 	@FXML
     void keyReleased(KeyEvent event) {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		event.consume();
 		
 		KeyCode code = event.getCode();
 		
-		KeyCode okCode = GameStates.userOptions.getShortcuts().get("Confirm");
-		KeyCode backCode = GameStates.userOptions.getShortcuts().get("Back");
+		KeyCode okCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Confirm");
+		KeyCode backCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Back");
 		
-		KeyCode modeCode = GameStates.userOptions.getShortcuts().get("Change mode");
-		KeyCode nextUpCode = GameStates.userOptions.getShortcuts().get("Previous");
-		KeyCode nextDownCode = GameStates.userOptions.getShortcuts().get("Next");
+		KeyCode modeCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Change mode");
+		KeyCode nextUpCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Previous");
+		KeyCode nextDownCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Next");
 		
 		if(okCode != null && code == okCode)
 			confirmMouseReleased(null);
@@ -189,7 +189,7 @@ public class SelectMusicController implements Controller {
 	}
 
 	private void favoriteMouseReleased(MouseEvent event) {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		Button favoriteButton = (Button) event.getSource();
@@ -208,13 +208,13 @@ public class SelectMusicController implements Controller {
 		}
 		
 		ImageView favoriteStatusImageView = (ImageView) favoriteButton.getGraphic();
-		favoriteStatusImageView.setImage(music.isFavorite() ? UIStates.unfavoriteImage : UIStates.favoriteImage);
+		favoriteStatusImageView.setImage(music.isFavorite() ? UIStates.getInstance().getUnfavoriteImage() : UIStates.getInstance().getFavoriteImage());
 		
 		music.setFavorite(!music.isFavorite());
 		
-		GameStates.sortLibrary();
+		GameStates.getInstance().sortLibrary();
 		
-		int musicNewIndex = GameStates.library.indexOf(music);
+		int musicNewIndex = GameStates.getInstance().getLibrary().indexOf(music);
 		musicsVBox.getChildren().remove(button);
 		musicsVBox.getChildren().add(musicNewIndex, button);
 		
@@ -234,7 +234,7 @@ public class SelectMusicController implements Controller {
 	}
 
 	private void removeMouseReleased(MouseEvent event) {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		Button removeButton = (Button) event.getSource();
@@ -253,8 +253,8 @@ public class SelectMusicController implements Controller {
 			UIUtils.playBackSound();
 		}
 
-		GameStates.library.remove(music);
 		musicsVBox.getChildren().remove(button);
+		GameStates.getInstance().getLibrary().remove(music);
 		
 		Thread processing = new Thread() {
 			@Override
@@ -290,7 +290,7 @@ public class SelectMusicController implements Controller {
 	}
 	
 	private void changeMode(Button modeButton) {
-		if(selectedMusicButton == null || modeButton == null || UIStates.extraPanes > 0)
+		if(selectedMusicButton == null || modeButton == null || UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		Music music = selectedMusicButton.getMusic();
@@ -299,15 +299,15 @@ public class SelectMusicController implements Controller {
 		Image newModeOnImage = null;
 		if(modeButton == easyButton) {
 			modeIndex = 0;
-			newModeOnImage = UIStates.easySelectedImage;
+			newModeOnImage = UIStates.getInstance().getEasySelectedImage();
 		}
 		else if(modeButton == normalButton) {
 			modeIndex = 1;
-			newModeOnImage = UIStates.normalSelectedImage;
+			newModeOnImage = UIStates.getInstance().getNormalSelectedImage();
 		}
 		else if(modeButton == hardButton) {
 			modeIndex = 2;
-			newModeOnImage = UIStates.hardSelectedImage;
+			newModeOnImage = UIStates.getInstance().getHardSelectedImage();
 		}
 		
 		if(newModeOnImage == null)
@@ -315,11 +315,11 @@ public class SelectMusicController implements Controller {
 		
 		Image oldModeOffImage = null;
 		if(selectedModeButton == easyButton)
-			oldModeOffImage = UIStates.easyNotSelectedImage;
+			oldModeOffImage = UIStates.getInstance().getEasyNotSelectedImage();
 		else if(selectedModeButton == normalButton)
-			oldModeOffImage = UIStates.normalNotSelectedImage;
+			oldModeOffImage = UIStates.getInstance().getNormalNotSelectedImage();
 		else if(selectedModeButton == hardButton)
-			oldModeOffImage = UIStates.hardNotSelectedImage;
+			oldModeOffImage = UIStates.getInstance().getHardNotSelectedImage();
 		
 		ImageView newModeImageView = (ImageView) modeButton.getGraphic();
 		ImageView oldModeImageView = (ImageView) selectedModeButton.getGraphic();
@@ -332,7 +332,7 @@ public class SelectMusicController implements Controller {
 	}
 	
 	private void selectMusic(MusicButton musicButton) {
-		if(musicButton == null || UIStates.extraPanes > 0)
+		if(musicButton == null || UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		Music music = musicButton.getMusic();
@@ -428,16 +428,16 @@ public class SelectMusicController implements Controller {
 		ImageView favoriteImageView = null;
 		ImageView removeImageView = null;
 
-		GameStates.sortLibrary();
+		GameStates.getInstance().sortLibrary();
 
-		for (Music music : GameStates.library) {
+		for (Music music : GameStates.getInstance().getLibrary()) {
 			titlePane = new StackPane();
 			musicHBox = new HBox();
 			musicTitle = new Marquee(music.getTitle());
 			favoriteButton = new Button();
 			removeButton = new Button();
-			favoriteImageView = new ImageView(music.isFavorite() ? UIStates.favoriteImage : UIStates.unfavoriteImage);
-			removeImageView = new ImageView(UIStates.removeImage);
+			favoriteImageView = new ImageView(music.isFavorite() ? UIStates.getInstance().getFavoriteImage() : UIStates.getInstance().getUnfavoriteImage());
+			removeImageView = new ImageView(UIStates.getInstance().getRemoveImage());
 
 			musicButton = new MusicButton(music, musicTitle);
 
@@ -466,18 +466,18 @@ public class SelectMusicController implements Controller {
 			titlePane.setClip(new Rectangle(titleWidth, 100));
 
 			favoriteButton.setStyle("-fx-background-color: transparent");
-			favoriteButton.setMinWidth(UIStates.favoriteImage.getWidth());
-			favoriteButton.setMinHeight(UIStates.favoriteImage.getHeight());
-			favoriteButton.setPrefWidth(UIStates.favoriteImage.getWidth());
-			favoriteButton.setPrefHeight(UIStates.favoriteImage.getHeight());
+			favoriteButton.setMinWidth(UIStates.getInstance().getFavoriteImage().getWidth());
+			favoriteButton.setMinHeight(UIStates.getInstance().getFavoriteImage().getHeight());
+			favoriteButton.setPrefWidth(UIStates.getInstance().getFavoriteImage().getWidth());
+			favoriteButton.setPrefHeight(UIStates.getInstance().getFavoriteImage().getHeight());
 			favoriteButton.setGraphic(favoriteImageView);
 			favoriteButton.setOnMouseReleased(e -> favoriteMouseReleased(e));
 
 			removeButton.setStyle("-fx-background-color: transparent");
-			removeButton.setMinWidth(UIStates.removeImage.getWidth());
-			removeButton.setMinHeight(UIStates.removeImage.getHeight());
-			removeButton.setPrefWidth(UIStates.removeImage.getWidth());
-			removeButton.setPrefHeight(UIStates.removeImage.getHeight());
+			removeButton.setMinWidth(UIStates.getInstance().getRemoveImage().getWidth());
+			removeButton.setMinHeight(UIStates.getInstance().getRemoveImage().getHeight());
+			removeButton.setPrefWidth(UIStates.getInstance().getRemoveImage().getWidth());
+			removeButton.setPrefHeight(UIStates.getInstance().getRemoveImage().getHeight());
 			removeButton.setGraphic(removeImageView);
 			removeButton.setOnMouseReleased(e -> removeMouseReleased(e));
 
@@ -497,10 +497,11 @@ public class SelectMusicController implements Controller {
 	
 	@Override
 	public void init() {
+		// TODO put whole background code in a method
 		String randomBackground = UIUtils.getRandomBackground();
 
 		BackgroundImage background = new BackgroundImage(
-				new Image(randomBackground, UIStates.primaryStage.getWidth(), UIStates.primaryStage.getHeight(), false,
+				new Image(randomBackground, UIStates.getInstance().getPrimaryStage().getWidth(), UIStates.getInstance().getPrimaryStage().getHeight(), false,
 						true),
 				BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
 				BackgroundSize.DEFAULT);

@@ -78,7 +78,7 @@ public class OptionsController implements Controller {
 
     @FXML
     void noteSpeedIncrementMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
     	
     	double newNoteSpeed = optionsWrapper.getNoteSpeed();
@@ -96,7 +96,7 @@ public class OptionsController implements Controller {
 
     @FXML
     void noteSpeedDecrementMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
     	double newNoteSpeed = optionsWrapper.getNoteSpeed();
@@ -114,7 +114,7 @@ public class OptionsController implements Controller {
     
     @FXML
     void noteSpeedIncreaseMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 
     	double newNoteSpeed = optionsWrapper.getNoteSpeed();
@@ -132,7 +132,7 @@ public class OptionsController implements Controller {
 
     @FXML
     void noteSpeedDecreaseMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
     	
     	double newNoteSpeed = optionsWrapper.getNoteSpeed();
@@ -150,7 +150,7 @@ public class OptionsController implements Controller {
     
     @FXML
     void noteSizeIncrementMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
     	
     	double newNoteHeight = optionsWrapper.getNoteHeight();
@@ -168,7 +168,7 @@ public class OptionsController implements Controller {
 
     @FXML
     void noteSizeDecrementMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
     	double newNoteHeight = optionsWrapper.getNoteHeight();
@@ -186,7 +186,7 @@ public class OptionsController implements Controller {
     
     @FXML
     void noteSizeIncreaseMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
     	double newNoteHeight = optionsWrapper.getNoteHeight();
@@ -204,7 +204,7 @@ public class OptionsController implements Controller {
 
     @FXML
     void noteSizeDecreaseMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
     	double newNoteHeight = optionsWrapper.getNoteHeight();
@@ -222,7 +222,7 @@ public class OptionsController implements Controller {
     
     @FXML
     void defaultMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
     	optionsWrapper = new OptionsWrapper(true);
@@ -248,14 +248,14 @@ public class OptionsController implements Controller {
 
     @FXML
     void saveMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
-    	GameStates.userOptions = optionsWrapper;
+    	GameStates.getInstance().setUserOptions(optionsWrapper);
     	
     	UIUtils.playEnterSound();
     	try {
-			GameUtils.saveUserSettings(GameStates.userOptions);
+			GameUtils.saveUserSettings(GameStates.getInstance().getUserOptions());
 			
 			UIUtils.showInformation("Your preferences were updated.");
 		} catch (IOException e) {
@@ -265,7 +265,7 @@ public class OptionsController implements Controller {
 
     @FXML
     void backMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
     	UIUtils.playBackSound();
@@ -274,14 +274,14 @@ public class OptionsController implements Controller {
     
     @FXML
     void keyReleased(KeyEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
     	
     	event.consume();
 		
     	KeyCode code = event.getCode();
-		KeyCode saveCode = GameStates.userOptions.getShortcuts().get("Confirm");
-		KeyCode backCode = GameStates.userOptions.getShortcuts().get("Back");
+		KeyCode saveCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Confirm");
+		KeyCode backCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Back");
 		
 		if(saveCode != null && code == saveCode)
 			saveMouseReleased(null);
@@ -290,7 +290,7 @@ public class OptionsController implements Controller {
     }
     
     void shortcutMouseExited(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
     	Button shortcutButton = (Button) event.getSource();
@@ -298,7 +298,7 @@ public class OptionsController implements Controller {
     }
     
     void shortcutMouseEntered(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
     	
     	Button shortcutButton = (Button) event.getSource();
@@ -306,9 +306,10 @@ public class OptionsController implements Controller {
     }
     
     void shortcutMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
     	
+    	// TODO set button transparent
     	Button shortcutButton = (Button) event.getSource();
     	
     	InputController inputController = (InputController) UIUtils.addView("Input.fxml");
@@ -332,6 +333,7 @@ public class OptionsController implements Controller {
     		optionsWrapper.getShortcuts().put(shortcutInformation.getL(), null);
         }
     	
+    	// FIXME if a new shortput is not selected, will cause nullpointexception
     	inputButton.setText(shortcut.getName());
     	
     	Pair<String, KeyCode> shortcutInformation = shortcuts.get(inputButton);
@@ -390,8 +392,8 @@ public class OptionsController implements Controller {
 	    BackgroundImage background = new BackgroundImage(
 			new Image(
 					randomBackground, 
-					UIStates.primaryStage.getWidth(), 
-					UIStates.primaryStage.getHeight(), 
+					UIStates.getInstance().getPrimaryStage().getWidth(), 
+					UIStates.getInstance().getPrimaryStage().getHeight(), 
 					false, 
 					true
 			), 
@@ -404,9 +406,9 @@ public class OptionsController implements Controller {
 	    backgroundPane.setBackground(new Background(background));
     	backgroundPane.setEffect(blurEffect);
     	
-    	optionsWrapper.setShortcuts(GameStates.userOptions.getShortcuts());
-    	optionsWrapper.setNoteSpeed(GameStates.userOptions.getNoteSpeed());
-    	optionsWrapper.setNoteHeight(GameStates.userOptions.getNoteHeight());
+    	optionsWrapper.setShortcuts(GameStates.getInstance().getUserOptions().getShortcuts());
+    	optionsWrapper.setNoteSpeed(GameStates.getInstance().getUserOptions().getNoteSpeed());
+    	optionsWrapper.setNoteHeight(GameStates.getInstance().getUserOptions().getNoteHeight());
     	
     	animateNewNote(optionsWrapper.getNoteHeight(), optionsWrapper.getNoteSpeed());
     	

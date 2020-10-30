@@ -39,22 +39,22 @@ public class InformationController implements Controller {
     
     @FXML
     void okMouseReleased(MouseEvent event) {
-    	UIStates.extraPanes--;
+    	UIStates.getInstance().decrementExtraPanes();
     	
     	UIUtils.playEnterSound();
     	
     	if(resetWhenClosed)
         	UIUtils.changeView("MenuScreen.fxml");
     	else {
-        	UIStates.root.getScene().setOnKeyReleased(null);
-        	UIStates.root.getChildren().remove(informationPane);
+    		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(null);
+    		UIStates.getInstance().getRoot().getChildren().remove(informationPane);
     	}
     }
     
     @FXML
     void keyReleased(KeyEvent event) {
     	KeyCode code = event.getCode();
-    	KeyCode okCode = GameStates.userOptions.getShortcuts().get("Confirm");
+    	KeyCode okCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Confirm");
     	
 		if(okCode != null && code == okCode)
 			okMouseReleased(null);
@@ -62,12 +62,12 @@ public class InformationController implements Controller {
 
 	@Override
 	public void init() {
-		UIStates.extraPanes++;
+		UIStates.getInstance().incrementExtraPanes();
 		
-		informationPane.setLayoutX((UIStates.root.getWidth() / 2) - (PANE_WIDTH / 2));
-		informationPane.setLayoutY((UIStates.root.getHeight() / 2) - (PANE_HEIGHT / 2));
+		informationPane.setLayoutX((UIStates.getInstance().getRoot().getWidth() / 2) - (PANE_WIDTH / 2));
+		informationPane.setLayoutY((UIStates.getInstance().getRoot().getHeight() / 2) - (PANE_HEIGHT / 2));
 		
 		UIUtils.makeDraggable(informationPane);
-		UIStates.root.getScene().setOnKeyReleased(e -> keyReleased(e));	
+		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(e -> keyReleased(e));	
 	}
 }

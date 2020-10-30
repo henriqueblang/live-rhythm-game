@@ -44,7 +44,7 @@ public class GameController implements Controller {
 	
 	final private boolean AUTO_HIT = true;
 	final private double AUTO_HIT_CHANCE = 100;
-    final double AUTO_HIT_DELAY = ((650 - (GameStates.userOptions.getNoteHeight() / 2)) * GameStates.userOptions.getNoteSpeed()) / 650;
+    final double AUTO_HIT_DELAY = ((650 - (GameStates.getInstance().getUserOptions().getNoteHeight() / 2)) * GameStates.getInstance().getUserOptions().getNoteSpeed()) / 650;
 	
 	private double scoreBarTotalWidth;
 	private int paddingInitialAmount;
@@ -128,7 +128,7 @@ public class GameController implements Controller {
     
     @FXML
     void pauseMouseReleased(MouseEvent event) {
-    	if(!music.isPlaying() || UIStates.extraPanes > 0)
+    	if(!music.isPlaying() || UIStates.getInstance().getExtraPanes() > 0)
     		return;
     	
     	pauseTime = music.getAudio().getMicrosecondPosition();
@@ -290,8 +290,8 @@ public class GameController implements Controller {
     private void animateNote(Note note) {
 		SequentialTransition animation = new SequentialTransition();
 
-		double upToPixel = note.getEndY() - GameStates.userOptions.getNoteHeight();
-		double upToTime = (upToPixel * GameStates.userOptions.getNoteSpeed()) / note.getEndY();
+		double upToPixel = note.getEndY() - GameStates.getInstance().getUserOptions().getNoteHeight();
+		double upToTime = (upToPixel * GameStates.getInstance().getUserOptions().getNoteSpeed()) / note.getEndY();
 
 		final Duration SEC_1 = Duration.millis(upToTime);
 		Timeline timeline = new Timeline();
@@ -300,7 +300,7 @@ public class GameController implements Controller {
 		timeline.getKeyFrames().add(end);
 		timeline.setOnFinished(e -> hitTracks[note.getTrack()] = note);
 
-		final Duration SEC_2 = Duration.millis(GameStates.userOptions.getNoteSpeed() - upToTime);
+		final Duration SEC_2 = Duration.millis(GameStates.getInstance().getUserOptions().getNoteSpeed() - upToTime);
 		Timeline timeline_2 = new Timeline();
 
 		KeyFrame end_2 = new KeyFrame(SEC_2, new KeyValue(note.yProperty(), note.getEndY()));
@@ -325,7 +325,7 @@ public class GameController implements Controller {
 		int track = note.getTrack();
 		Scores gainScoreType = scorePerTrack[track];
 
-		UIStates.root.getChildren().remove(note);
+		UIStates.getInstance().getRoot().getChildren().remove(note);
 
 		if (gainScoreType == Scores.MISS || gainScoreType == Scores.BAD) {
 			double baseHealthLost = 0;
@@ -440,8 +440,8 @@ public class GameController implements Controller {
 	private Scores getNodeHitScore(Note note) {
 		Scores score = null;
 
-		double distancePerGrade = GameStates.userOptions.getNoteHeight() / 8;
-		double noteMiddle = note.getY() + (GameStates.userOptions.getNoteHeight() / 2);
+		double distancePerGrade = GameStates.getInstance().getUserOptions().getNoteHeight() / 8;
+		double noteMiddle = note.getY() + (GameStates.getInstance().getUserOptions().getNoteHeight() / 2);
 
 		double hitDistance = Math.abs(note.getEndY() - noteMiddle);
 		if (hitDistance <= distancePerGrade)
@@ -575,7 +575,7 @@ public class GameController implements Controller {
 		        }
 			}
 			else {
-				double delay = ((650 - (GameStates.userOptions.getNoteHeight() / 2)) * GameStates.userOptions.getNoteSpeed()) / 650;
+				double delay = ((650 - (GameStates.getInstance().getUserOptions().getNoteHeight() / 2)) * GameStates.getInstance().getUserOptions().getNoteSpeed()) / 650;
 				
 				noteCreationTimeline = new Timeline(
 					new KeyFrame(Duration.ZERO, e -> makeNotes()),
@@ -615,7 +615,7 @@ public class GameController implements Controller {
         for(Map.Entry<Note, SequentialTransition> entry : noteAnimations.entrySet())
         	entry.getValue().stop();
     	
-        GameStates.addAccuracy((double) totalHits / removedNotes);
+        GameStates.getInstance().addAccuracy((double) totalHits / removedNotes);
     	GameUtils.showResultView(clear, scoreGrade, score, maxCombo, hitGradeCountMap);
     }
 
@@ -623,21 +623,21 @@ public class GameController implements Controller {
 	public void init() {
 		resumeGame();
 		
-		music = GameStates.gameMusic;
-		beatmap = music.getBeatmaps().get(GameStates.gameMode);
+		music = GameStates.getInstance().getGameMusic();
+		beatmap = music.getBeatmaps().get(GameStates.getInstance().getGameMode());
 		interval = 1024 / music.getAudio().getFormat().getSampleRate();
 		
-		track_1Code = GameStates.userOptions.getShortcuts().get("Track 1");
-		track_2Code = GameStates.userOptions.getShortcuts().get("Track 2");
-		track_3Code = GameStates.userOptions.getShortcuts().get("Track 3");
-		track_4Code = GameStates.userOptions.getShortcuts().get("Track 4");
+		track_1Code = GameStates.getInstance().getUserOptions().getShortcuts().get("Track 1");
+		track_2Code = GameStates.getInstance().getUserOptions().getShortcuts().get("Track 2");
+		track_3Code = GameStates.getInstance().getUserOptions().getShortcuts().get("Track 3");
+		track_4Code = GameStates.getInstance().getUserOptions().getShortcuts().get("Track 4");
 		
-		flick_1Code = GameStates.userOptions.getShortcuts().get("Flick 1");
-		flick_2Code = GameStates.userOptions.getShortcuts().get("Flick 2");
-		flick_3Code = GameStates.userOptions.getShortcuts().get("Flick 3");
-		flick_4Code = GameStates.userOptions.getShortcuts().get("Flick 4");
+		flick_1Code = GameStates.getInstance().getUserOptions().getShortcuts().get("Flick 1");
+		flick_2Code = GameStates.getInstance().getUserOptions().getShortcuts().get("Flick 2");
+		flick_3Code = GameStates.getInstance().getUserOptions().getShortcuts().get("Flick 3");
+		flick_4Code = GameStates.getInstance().getUserOptions().getShortcuts().get("Flick 4");
 		
-		pauseCode = GameStates.userOptions.getShortcuts().get("Back");
+		pauseCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Back");
 		
 		scoreBar.setFill(Color.TRANSPARENT);
 		scoreBarTotalWidth = scoreBar.getWidth();

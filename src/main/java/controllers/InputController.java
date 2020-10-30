@@ -31,20 +31,20 @@ public class InputController implements Controller {
 
     @FXML
     void okMouseReleased(MouseEvent event) {
-    	UIStates.root.getScene().setOnKeyReleased(null);
+    	UIStates.getInstance().getRoot().getScene().setOnKeyReleased(null);
     	
-    	UIStates.extraPanes--;
-    	UIStates.root.getChildren().remove(inputPane);
+    	UIStates.getInstance().decrementExtraPanes();
+    	UIStates.getInstance().getRoot().getChildren().remove(inputPane);
     	
     	optionsController.setShortchutInput(optionsInputButton, inputKeyCode);
     }
     
     @FXML
     void cancelMouseReleased(MouseEvent event) {
-    	UIStates.root.getScene().setOnKeyReleased(null);
+    	UIStates.getInstance().getRoot().getScene().setOnKeyReleased(null);
     	
-    	UIStates.extraPanes--;
-    	UIStates.root.getChildren().remove(inputPane);
+    	UIStates.getInstance().decrementExtraPanes();
+    	UIStates.getInstance().getRoot().getChildren().remove(inputPane);
     }
     
     @FXML
@@ -65,11 +65,11 @@ public class InputController implements Controller {
     
 	@Override
 	public void init() {
-		UIStates.extraPanes++;
+		UIStates.getInstance().incrementExtraPanes();
 		
-		inputPane.setLayoutX((UIStates.root.getWidth() / 2) - (PANE_WIDTH / 2));
-		inputPane.setLayoutY((UIStates.root.getHeight() / 2) - (PANE_HEIGHT / 2));
+		inputPane.setLayoutX((UIStates.getInstance().getRoot().getWidth() / 2) - (PANE_WIDTH / 2));
+		inputPane.setLayoutY((UIStates.getInstance().getRoot().getHeight() / 2) - (PANE_HEIGHT / 2));
 		
-		UIStates.root.getScene().setOnKeyReleased(e -> keyReleased(e));
+		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(e -> keyReleased(e));
 	}
 }

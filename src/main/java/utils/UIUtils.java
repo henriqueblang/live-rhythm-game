@@ -80,20 +80,18 @@ public class UIUtils {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 
 		try {
-			UIStates.root = fxmlLoader.load(UIUtils.class.getResource("/view/" + viewPath).openStream());
+			UIStates.getInstance().setRoot(fxmlLoader.load(UIUtils.class.getResource("/view/" + viewPath).openStream()));
 		} catch (IOException e) {
 			UIUtils.showError(e.getMessage());
 		}
 
-		UIStates.parent = UIStates.root;
+		Scene scene = new Scene(UIStates.getInstance().getRoot());
+		UIStates.getInstance().getPrimaryStage().setScene(scene);
 
-		Scene scene = new Scene(UIStates.root);
-		UIStates.primaryStage.setScene(scene);
-
-		if (!UIStates.primaryStage.isShowing()) {
-			UIStates.primaryStage.sizeToScene();
-			UIStates.primaryStage.setResizable(false);
-			UIStates.primaryStage.show();
+		if (!UIStates.getInstance().getPrimaryStage().isShowing()) {
+			UIStates.getInstance().getPrimaryStage().sizeToScene();
+			UIStates.getInstance().getPrimaryStage().setResizable(false);
+			UIStates.getInstance().getPrimaryStage().show();
 		}
 
 		Controller controller = (Controller) fxmlLoader.getController();
@@ -104,7 +102,7 @@ public class UIUtils {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 
 		try {
-			UIStates.root.getChildren()
+			UIStates.getInstance().getRoot().getChildren()
 					.add(fxmlLoader.load(UIUtils.class.getResource("/view/" + viewPath).openStream()));
 		} catch (IOException e) {
 			UIUtils.showError(e.getMessage());
@@ -151,7 +149,7 @@ public class UIUtils {
 	}
 
 	public static void addStylesheet(String css) {
-		UIStates.root.getScene().getStylesheets().add(UIUtils.class.getResource("/view/css/" + css).toExternalForm());
+		UIStates.getInstance().getRoot().getScene().getStylesheets().add(UIUtils.class.getResource("/view/css/" + css).toExternalForm());
 	}
 	
 	public static void setPaddedText(Text text, Text paddingText, int initialPadding, int value) {
@@ -222,8 +220,8 @@ public class UIUtils {
 		ripple_1.setStroke(color);
 		ripple_2.setStroke(color);
 
-		UIStates.root.getChildren().add(ripple_1);
-		UIStates.root.getChildren().add(ripple_2);
+		UIStates.getInstance().getRoot().getChildren().add(ripple_1);
+		UIStates.getInstance().getRoot().getChildren().add(ripple_2);
 
 		Timeline animationRipple_1 = new Timeline(
 				new KeyFrame(Duration.ZERO, new KeyValue(ripple_1.radiusProperty(), 0)),
@@ -240,10 +238,10 @@ public class UIUtils {
 		Timeline removeRipple = new Timeline(new KeyFrame(Duration.seconds(0.3), new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				UIStates.root.getChildren().remove(ripple_1);
+				UIStates.getInstance().getRoot().getChildren().remove(ripple_1);
 				animationRipple_1.stop();
 
-				UIStates.root.getChildren().remove(ripple_2);
+				UIStates.getInstance().getRoot().getChildren().remove(ripple_2);
 				animationRipple_2.stop();
 			}
 		}));

@@ -52,19 +52,19 @@ public class MenuScreenController implements Controller {
     
     @FXML
     void playMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
     		return;
     	
     	UIUtils.playEnterSound();
     	UIUtils.stopBackgroundMusic();
     	
     	UIUtils.changeView("SelectMusic.fxml");
-    	UIStates.newMusicNotifications.set(0);
+    	UIStates.getInstance().getNewMusicNotifications().set(0);
     }
 
     @FXML
     void addMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
     		return;
     	
     	UIUtils.playEnterSound();
@@ -74,7 +74,7 @@ public class MenuScreenController implements Controller {
 
     @FXML
     void optionsMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
     		return;
     	
     	UIUtils.playEnterSound();
@@ -83,7 +83,7 @@ public class MenuScreenController implements Controller {
 
     @FXML
     void quitMouseReleased(MouseEvent event) {
-    	if(UIStates.extraPanes > 0)
+    	if(UIStates.getInstance().getExtraPanes() > 0)
     		return;
     	
     	Platform.exit();
@@ -92,7 +92,7 @@ public class MenuScreenController implements Controller {
     @FXML
     void keyReleased(KeyEvent event) {
     	KeyCode code = event.getCode();
-		KeyCode quitCode = GameStates.userOptions.getShortcuts().get("Back");
+		KeyCode quitCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Back");
 		
 		if(quitCode != null && code == quitCode)
 			quitMouseReleased(null);
@@ -105,8 +105,8 @@ public class MenuScreenController implements Controller {
 	    BackgroundImage background = new BackgroundImage(
 			new Image(
 					randomBackground, 
-					UIStates.primaryStage.getWidth(), 
-					UIStates.primaryStage.getHeight(), 
+					UIStates.getInstance().getPrimaryStage().getWidth(), 
+					UIStates.getInstance().getPrimaryStage().getHeight(), 
 					false, 
 					true
 			), 
@@ -116,22 +116,22 @@ public class MenuScreenController implements Controller {
 			BackgroundSize.DEFAULT
 		);
 	    
-    	UIStates.root.setBackground(new Background(background));
+	    UIStates.getInstance().getRoot().setBackground(new Background(background));
     	
     	UIUtils.playBackgroundMusic();
     	
-    	libraryText.setText(Integer.toString(GameStates.library.size()));
-    	accuracyText.setText(String.format("%.2f", GameStates.getMeanAccuracy() * 100));
-    	highscoreText.setText(NumberFormat.getNumberInstance(Locale.US).format(GameStates.getHighscoreSum()));
+    	libraryText.setText(Integer.toString(GameStates.getInstance().getLibrary().size()));
+    	accuracyText.setText(String.format("%.2f", GameStates.getInstance().getMeanAccuracy() * 100));
+    	highscoreText.setText(NumberFormat.getNumberInstance(Locale.US).format(GameStates.getInstance().getHighscoreSum()));
     	
-    	notificationsText.textProperty().bind(UIStates.newMusicNotifications.asString());
-    	if(UIStates.newMusicNotifications.get() > 0) {
+    	notificationsText.textProperty().bind(UIStates.getInstance().getNewMusicNotifications().asString());
+    	if(UIStates.getInstance().getNewMusicNotifications().get() > 0) {
     		notificationsText.setVisible(true);
     		notificationsImage.setVisible(true);
     	}
     	
     	notificationsText.textProperty().addListener((observable, oldValue, newValue) -> {
-    		libraryText.setText(Integer.toString(GameStates.library.size()));
+    		libraryText.setText(Integer.toString(GameStates.getInstance().getLibrary().size()));
     		
 			if(newValue != "0" && !notificationsText.isVisible()) {
 				notificationsText.setVisible(true);

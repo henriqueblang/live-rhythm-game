@@ -98,9 +98,9 @@ public class AudioUtils {
 				List<Beatmap> beatmaps = getAudioBeatmaps(beats);
 
 				Music music = new Music(cleanTitle, clip, previewStart, previewEnd, new Image(thumbnailStream), beatmaps);
-				GameStates.library.add(music);
+				GameStates.getInstance().getLibrary().add(music);
 				
-				UIStates.newMusicNotifications.set(UIStates.newMusicNotifications.get() + 1);
+				UIStates.getInstance().getNewMusicNotifications().set(UIStates.getInstance().getNewMusicNotifications().get() + 1);
 				
 				try {
 					audioRawStream.reset();

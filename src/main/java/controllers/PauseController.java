@@ -20,28 +20,28 @@ public class PauseController implements Controller {
 
 	@FXML
 	void quitAction(MouseEvent event) {
-		UIStates.root.getScene().setOnKeyReleased(null);
+		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(null);
 		
-		UIStates.extraPanes--;
-		UIStates.root.getChildren().remove(pausePane);
+		UIStates.getInstance().decrementExtraPanes();
+		UIStates.getInstance().getRoot().getChildren().remove(pausePane);
 		
 		gameController.finishGame(false);
 	}
 
 	@FXML
 	void resumeAction(MouseEvent event) {
-		UIStates.root.getScene().setOnKeyReleased(null);
+		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(null);
 		
-		UIStates.extraPanes--;
-		UIStates.root.getChildren().remove(pausePane);
+		UIStates.getInstance().decrementExtraPanes();
+		UIStates.getInstance().getRoot().getChildren().remove(pausePane);
 		
 		gameController.resumeGame();
 	}
 	
     void keyReleased(KeyEvent event) {
     	KeyCode code = event.getCode();
-		KeyCode okCode = GameStates.userOptions.getShortcuts().get("Confirm");
-		KeyCode backCode = GameStates.userOptions.getShortcuts().get("Back");
+		KeyCode okCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Confirm");
+		KeyCode backCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Back");
 		
 		if(okCode != null && code == okCode)
 			resumeAction(null);
@@ -55,11 +55,11 @@ public class PauseController implements Controller {
 
 	@Override
 	public void init() {
-		UIStates.extraPanes++;
+		UIStates.getInstance().incrementExtraPanes();
 		
-		pausePane.setLayoutX((UIStates.root.getWidth() / 2) - (PANE_WIDTH / 2));
-		pausePane.setLayoutY((UIStates.root.getHeight() / 2) - (PANE_HEIGHT / 2));
+		pausePane.setLayoutX((UIStates.getInstance().getRoot().getWidth() / 2) - (PANE_WIDTH / 2));
+		pausePane.setLayoutY((UIStates.getInstance().getRoot().getHeight() / 2) - (PANE_HEIGHT / 2));
 		
-		UIStates.root.getScene().setOnKeyReleased(e -> keyReleased(e));
+		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(e -> keyReleased(e));
 	}
 }

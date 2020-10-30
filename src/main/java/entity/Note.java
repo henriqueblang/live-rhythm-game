@@ -15,7 +15,7 @@ public class Note extends Rectangle {
 	private Types type;
 	
 	public Note(int track, Types type) {
-		this(track, type, (1080 - (GameUtils.NOTE_WIDTH * GameUtils.TRACK_AMOUNT)) / 2, GameUtils.NOTE_WIDTH, GameStates.userOptions.getNoteHeight(), 650, UIStates.root);
+		this(track, type, (1080 - (GameUtils.NOTE_WIDTH * GameUtils.TRACK_AMOUNT)) / 2, GameUtils.NOTE_WIDTH, GameStates.getInstance().getUserOptions().getNoteHeight(), 650, UIStates.getInstance().getRoot());
 	}
 	
 	public Note(int track, Types type, double firstTrackStartX, double width, double height, double endY, Pane root) {

@@ -13,21 +13,71 @@ import utils.GameUtils;
 
 public class GameStates {
 	
-	public static List<Music> library;
+	private static GameStates instance;
+
+	private int gameMode;
+	private Music gameMusic;
 	
-	public static int gameMode;
-	public static Music gameMusic;
+	private OptionsWrapper userOptions;
 	
-	public static OptionsWrapper userOptions;
+	private List<Music> library;
+	private List<Double> accuracy;
 	
-	public static List<Double> accuracy;
+	private GameStates() {}
 	
-	public static void sortLibrary() {
+	public static GameStates getInstance() {
+		if(instance == null)
+			instance = new GameStates();
+		
+		return instance;
+	}
+	
+	public int getGameMode() {
+		return gameMode;
+	}
+
+	public void setGameMode(int gameMode) {
+		this.gameMode = gameMode;
+	}
+
+	public Music getGameMusic() {
+		return gameMusic;
+	}
+
+	public void setGameMusic(Music gameMusic) {
+		this.gameMusic = gameMusic;
+	}
+
+	public OptionsWrapper getUserOptions() {
+		return userOptions;
+	}
+
+	public void setUserOptions(OptionsWrapper userOptions) {
+		this.userOptions = userOptions;
+	}
+
+	public List<Music> getLibrary() {
+		return library;
+	}
+
+	public void setLibrary(List<Music> library) {
+		this.library = library;
+	}
+
+	public List<Double> getAccuracy() {
+		return accuracy;
+	}
+
+	public void setAccuracy(List<Double> accuracy) {
+		this.accuracy = accuracy;
+	}
+
+	public void sortLibrary() {
 		library.sort(Comparator.comparing(Music::getTitle));
 		library.sort(Comparator.comparing(Music::isFavorite).reversed());
 	}
 	
-	public static int getHighscoreSum() {
+	public int getHighscoreSum() {
 		int highscoreSum = 0;
 		
     	for(Music music : library)
@@ -36,11 +86,11 @@ public class GameStates {
     	return highscoreSum;
 	}
 	
-	public static double getMeanAccuracy() {
+	public double getMeanAccuracy() {
 		return accuracy.stream().mapToDouble(i -> i).average().orElse(0);
 	}
 	
-	public static void addAccuracy(double beatmapAccuracy) {
+	public void addAccuracy(double beatmapAccuracy) {
 		final BooleanWrapper clearOldestEntry = new BooleanWrapper();
 		
 		if(accuracy.size() == GameUtils.ACCURACY_GAME_AMOUNT) {

@@ -127,7 +127,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void backMouseReleased(MouseEvent event) {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		else if(audioClip != null)
 			audioClip.close();
@@ -138,7 +138,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void musicMouseEntered(MouseEvent event) {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		musicIcon.setVisible(true);
@@ -147,7 +147,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void musicMouseExited(MouseEvent event) {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		musicIcon.setVisible(false);
@@ -156,13 +156,13 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void musicMouseReleased(MouseEvent event) throws UnsupportedAudioFileException {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
-		File selectedMusic = musicFileChooser.showOpenDialog(UIStates.primaryStage);
+		File selectedMusic = musicFileChooser.showOpenDialog(UIStates.getInstance().getPrimaryStage());
 		
 		if(audioClip != null && audioClip.isRunning()) {
-			previewIcon.setImage(UIStates.playImage);
+			previewIcon.setImage(UIStates.getInstance().getPlayImage());
 			
 			audioClip.stop();
 		}
@@ -269,7 +269,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void thumbnailMouseEntered(MouseEvent event) {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		thumbnailIcon.setVisible(true);
@@ -278,7 +278,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void thumbnailMouseExited(MouseEvent event) {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		thumbnailIcon.setVisible(false);
@@ -287,10 +287,10 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void thumbnailMouseReleased(MouseEvent event) {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
-		File selectedThumbnail = imageFileChooser.showOpenDialog(UIStates.primaryStage);
+		File selectedThumbnail = imageFileChooser.showOpenDialog(UIStates.getInstance().getPrimaryStage());
 
 		if (selectedThumbnail == null)
 			return;
@@ -315,16 +315,16 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void previewMouseReleased(MouseEvent event) {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		if(audioClip != null && audioClip.isRunning()) {
-			previewIcon.setImage(UIStates.playImage);
+			previewIcon.setImage(UIStates.getInstance().getPlayImage());
 			
 			audioClip.stop();
 		}
 		else {
-			previewIcon.setImage(UIStates.stopImage);
+			previewIcon.setImage(UIStates.getInstance().getStopImage());
 			
 			double lowValue = slider.getLowValue();
 			double highValue = slider.getHighValue();
@@ -340,7 +340,7 @@ public class AddMusicController implements Controller {
 	
 	@FXML
 	void okMouseReleased(MouseEvent event) {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		if(audioStream == null) {
@@ -372,14 +372,14 @@ public class AddMusicController implements Controller {
 	
 	@FXML
     void keyReleased(KeyEvent event) {
-		if(UIStates.extraPanes > 0)
+		if(UIStates.getInstance().getExtraPanes() > 0)
 			return;
 		
 		event.consume();
 		
     	KeyCode code = event.getCode();
-    	KeyCode okCode = GameStates.userOptions.getShortcuts().get("Confirm");
-    	KeyCode backCode = GameStates.userOptions.getShortcuts().get("Back");
+    	KeyCode okCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Confirm");
+    	KeyCode backCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Back");
 		
 		if(okCode != null && code == okCode)
 			okMouseReleased(null);
@@ -394,8 +394,8 @@ public class AddMusicController implements Controller {
 		BackgroundImage background = new BackgroundImage(
 			new Image(
 				randomBackground, 
-				UIStates.primaryStage.getWidth(), 
-				UIStates.primaryStage.getHeight(), 
+				UIStates.getInstance().getPrimaryStage().getWidth(), 
+				UIStates.getInstance().getPrimaryStage().getHeight(), 
 				false,
 				true
 			),
@@ -416,7 +416,7 @@ public class AddMusicController implements Controller {
 		imageFileChooser.getExtensionFilters().add(imgFilter);
 		
 		try {
-			thumbnailStream = new FileInputStream(UIStates.thumbnailDefaultFile);
+			thumbnailStream = new FileInputStream(UIStates.getInstance().getThumbnailDefaultFile());
 		} catch (FileNotFoundException e) {
 			UIUtils.showError(e.getMessage());
 		}
