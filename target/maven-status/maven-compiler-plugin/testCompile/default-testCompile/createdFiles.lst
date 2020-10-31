@@ -1,4 +1,3 @@
 entity\MusicTest.class
 observer\ObserverTest.class
-utils\AudioUtilsTest.class
 states\GameStatesTest.class
