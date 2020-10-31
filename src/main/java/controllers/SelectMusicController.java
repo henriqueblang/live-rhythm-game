@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Locale;
 
 import dao.MusicDAO;
-import entity.Marquee;
 import entity.Music;
-import entity.MusicButton;
+import entity.ui.Marquee;
+import entity.ui.MusicButton;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;

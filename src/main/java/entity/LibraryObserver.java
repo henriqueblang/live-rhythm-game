@@ -8,6 +8,8 @@ public class LibraryObserver extends Observer {
 
 	private Text text;
 	
+	public LibraryObserver() {}
+	
 	public LibraryObserver(Notification notification, Text text) {
 		super(notification);
 		

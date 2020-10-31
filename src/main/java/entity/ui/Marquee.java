@@ -1,4 +1,4 @@
-package entity;
+package entity.ui;
 
 import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;

@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Map;
 
 import javax.sound.sampled.Clip;
@@ -14,8 +15,9 @@ import javax.sound.sampled.FloatControl;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import dao.AccuracyDAO;
 import entity.Music;
-import entity.OptionsWrapper;
+import entity.wrapper.OptionsWrapper;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
@@ -131,6 +133,24 @@ public class GameUtils {
 		GameStates.getInstance().setGameMusic(music);
 
 		UIUtils.changeView("Game.fxml");
+	}
+	
+	public static void registerNewAccuracy(double accuracy) {
+		final boolean clearOldestEntry = GameStates.getInstance().addAccuracy(accuracy);
+		
+		Thread thread = new Thread() {
+			@Override
+			public void run() {
+				AccuracyDAO dao = new AccuracyDAO();
+				try {
+					dao.insertAccuracy(accuracy, clearOldestEntry);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		
+		thread.start();
 	}
 
 	public static void showResultView(boolean clear, Grades grade, int score, int maxCombo,

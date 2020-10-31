@@ -1,4 +1,4 @@
-package entity;
+package entity.ui;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;

@@ -1,5 +1,6 @@
-package entity;
+package entity.ui;
 
+import entity.Music;
 import javafx.scene.control.Button;
 
 public class MusicButton extends Button {

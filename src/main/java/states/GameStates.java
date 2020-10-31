@@ -1,14 +1,11 @@
 package states;
 
-import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import dao.AccuracyDAO;
-import entity.BooleanWrapper;
 import entity.Music;
-import entity.OptionsWrapper;
+import entity.wrapper.OptionsWrapper;
 import utils.GameUtils;
 
 public class GameStates {
@@ -90,29 +87,17 @@ public class GameStates {
 		return accuracy.stream().mapToDouble(i -> i).average().orElse(0);
 	}
 	
-	public void addAccuracy(double beatmapAccuracy) {
-		final BooleanWrapper clearOldestEntry = new BooleanWrapper();
+	public boolean addAccuracy(double accuracy) {
+		boolean clearOldestEntry = false;
 		
-		if(accuracy.size() == GameUtils.ACCURACY_GAME_AMOUNT) {
-			clearOldestEntry.setWrappedBoolean(true);
+		if(this.accuracy.size() == GameUtils.ACCURACY_GAME_AMOUNT) {
+			clearOldestEntry= true;
 			
-			accuracy.remove(0);
+			this.accuracy.remove(0);
 		}
 			
-		accuracy.add(beatmapAccuracy);
+		this.accuracy.add(accuracy);
 		
-		Thread thread = new Thread() {
-			@Override
-			public void run() {
-				AccuracyDAO dao = new AccuracyDAO();
-				try {
-					dao.insertAccuracy(beatmapAccuracy, clearOldestEntry);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		};
-		
-		thread.start();
+		return clearOldestEntry;
 	}
 }

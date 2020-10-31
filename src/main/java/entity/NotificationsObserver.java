@@ -9,6 +9,8 @@ public class NotificationsObserver extends Observer {
 	private Text text;
 	private ImageView image;
 	
+	public NotificationsObserver() {}
+	
 	public NotificationsObserver(Notification notification, Text text, ImageView image) {
 		super(notification);
 		

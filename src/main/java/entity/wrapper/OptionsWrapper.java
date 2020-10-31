@@ -1,4 +1,4 @@
-package entity;
+package entity.wrapper;
 
 import java.util.HashMap;
 import java.util.Map;

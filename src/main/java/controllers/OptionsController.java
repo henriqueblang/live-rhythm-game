@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import entity.Note;
-import entity.OptionsWrapper;
 import entity.collection.Pair;
+import entity.ui.Note;
+import entity.wrapper.OptionsWrapper;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

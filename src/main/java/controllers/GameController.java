@@ -10,9 +10,9 @@ import java.util.Random;
 
 import animatefx.animation.Pulse;
 import entity.Music;
-import entity.Note;
 import entity.collection.Beatmap;
 import entity.collection.Pair;
+import entity.ui.Note;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.SequentialTransition;
