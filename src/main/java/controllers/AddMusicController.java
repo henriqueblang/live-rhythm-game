@@ -47,15 +47,15 @@ public class AddMusicController implements Controller {
 
 	private static final double BLUR_AMOUNT = 10;
 	private static final Effect blurEffect = new BoxBlur(BLUR_AMOUNT, BLUR_AMOUNT, 5);
-	
+
 	private float audioFPS;
-	
+
 	private Clip audioClip;
 	private String audioTitle;
-	
+
 	private InputStream audioRawStream;
 	private AudioInputStream audioStream;
-	
+
 	private InputStream thumbnailStream;
 
 	private FileChooser musicFileChooser;
@@ -74,10 +74,10 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	private Pane backgroundPane;
-	
+
 	@FXML
-    private Button musicButton;
-	
+	private Button musicButton;
+
 	@FXML
 	private Button thumbnailButton;
 
@@ -92,91 +92,86 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	private Label thumbnailLabel;
-	
-	private void generateMusicData(File file) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+
+	private void generateMusicData(File file)
+			throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		audioRawStream = new FileInputStream(file);
-		
+
 		AudioInputStream ais = AudioUtils.getSoundAudioInputStream(file);
-		
+
 		AudioFormat baseFormat = ais.getFormat();
-		AudioFormat decodedFormat = new AudioFormat(
-			AudioFormat.Encoding.PCM_SIGNED,
-			baseFormat.getSampleRate(), 
-			16, 
-			baseFormat.getChannels(), 
-			baseFormat.getChannels() * 2,
-			baseFormat.getSampleRate(), 
-			false
-		);
-			
+		AudioFormat decodedFormat = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, baseFormat.getSampleRate(), 16,
+				baseFormat.getChannels(), baseFormat.getChannels() * 2, baseFormat.getSampleRate(), false);
+
 		byte[] audioArray = IOUtils.toByteArray(ais);
-		
+
 		ByteArrayInputStream baisClip = new ByteArrayInputStream(audioArray);
 		audioClip = AudioSystem.getClip();
 		audioClip.open(new AudioInputStream(baisClip, decodedFormat, audioArray.length / decodedFormat.getFrameSize()));
-		
+
 		ByteArrayInputStream baisAudioStream = new ByteArrayInputStream(audioArray);
-		audioStream = new AudioInputStream(baisAudioStream, decodedFormat, audioArray.length / decodedFormat.getFrameSize());
+		audioStream = new AudioInputStream(baisAudioStream, decodedFormat,
+				audioArray.length / decodedFormat.getFrameSize());
 	}
 
 	@FXML
 	void backMouseReleased(MouseEvent event) {
-		if(UIStates.getInstance().getExtraPanes() > 0)
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		else if(audioClip != null)
+		else if (audioClip != null)
 			audioClip.close();
-		
+
 		UIUtils.playBackSound();
 		UIUtils.changeView("MenuScreen.fxml");
 	}
 
 	@FXML
 	void musicMouseEntered(MouseEvent event) {
-		if(UIStates.getInstance().getExtraPanes() > 0)
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
+
 		musicIcon.setVisible(true);
 		musicButton.setStyle("-fx-background-color: rgba(255, 71, 131, 0.15);");
 	}
 
 	@FXML
 	void musicMouseExited(MouseEvent event) {
-		if(UIStates.getInstance().getExtraPanes() > 0)
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
+
 		musicIcon.setVisible(false);
 		musicButton.setStyle("-fx-background-color: transparent;");
 	}
 
 	@FXML
 	void musicMouseReleased(MouseEvent event) throws UnsupportedAudioFileException {
-		if(UIStates.getInstance().getExtraPanes() > 0)
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
+
 		File selectedMusic = musicFileChooser.showOpenDialog(UIStates.getInstance().getPrimaryStage());
-		
-		if(audioClip != null && audioClip.isRunning()) {
+
+		if (audioClip != null && audioClip.isRunning()) {
 			previewIcon.setImage(UIStates.getInstance().getPlayImage());
-			
+
 			audioClip.stop();
 		}
 
 		if (selectedMusic == null)
 			return;
-		
+
 		audioTitle = selectedMusic.getName();
-		
+
 		try {
 			generateMusicData(selectedMusic);
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 			UIUtils.showError(e.getMessage());
 		}
-		
+
 		audioFPS = audioClip.getFormat().getFrameRate();
 
 		musicLabel.setText(audioTitle);
-		
-		if(!previewIcon.isVisible())
+
+		if (!previewIcon.isVisible())
 			previewIcon.setVisible(true);
 
 		// TODO check if method AudioUtils::getAudioDuration is usable here
@@ -193,7 +188,7 @@ public class AddMusicController implements Controller {
 		} else {
 			Text textLowValue = new Text();
 			Text textHighValue = new Text();
-			
+
 			textLowValue.setFont(Font.font("Century Gothic"));
 			textHighValue.setFont(Font.font("Century Gothic"));
 
@@ -251,12 +246,10 @@ public class AddMusicController implements Controller {
 			textLowValue.setText(stringConverter.toString(0));
 			textHighValue.setText(stringConverter.toString(duration));
 
-			slider.lowValueProperty().addListener((observable, oldValue, newValue) ->
-				textLowValue.setText(stringConverter.toString(newValue.doubleValue()))
-			);
-			slider.highValueProperty().addListener((observable, oldValue, newValue) -> 
-				textHighValue.setText(stringConverter.toString(newValue.doubleValue()))
-			);
+			slider.lowValueProperty().addListener((observable, oldValue, newValue) -> textLowValue
+					.setText(stringConverter.toString(newValue.doubleValue())));
+			slider.highValueProperty().addListener((observable, oldValue, newValue) -> textHighValue
+					.setText(stringConverter.toString(newValue.doubleValue())));
 
 			previewHBox.getChildren().addAll(slider, textLowValue, textHighValue);
 		}
@@ -264,39 +257,39 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void thumbnailMouseEntered(MouseEvent event) {
-		if(UIStates.getInstance().getExtraPanes() > 0)
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
+
 		thumbnailIcon.setVisible(true);
 		thumbnailButton.setStyle("-fx-background-color: rgba(255, 71, 131, 0.15);");
 	}
 
 	@FXML
 	void thumbnailMouseExited(MouseEvent event) {
-		if(UIStates.getInstance().getExtraPanes() > 0)
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
+
 		thumbnailIcon.setVisible(false);
 		thumbnailButton.setStyle("-fx-background-color: transparent;");
 	}
 
 	@FXML
 	void thumbnailMouseReleased(MouseEvent event) {
-		if(UIStates.getInstance().getExtraPanes() > 0)
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
+
 		File selectedThumbnail = imageFileChooser.showOpenDialog(UIStates.getInstance().getPrimaryStage());
 
 		if (selectedThumbnail == null)
 			return;
-		
+
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(selectedThumbnail);
 		} catch (IOException e) {
 			UIUtils.showError(e.getMessage());
 		}
-		
+
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		try {
 			ImageIO.write(image, FilenameUtils.getExtension(selectedThumbnail.getName()), os);
@@ -310,83 +303,83 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void previewMouseReleased(MouseEvent event) {
-		if(UIStates.getInstance().getExtraPanes() > 0)
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
-		if(audioClip != null && audioClip.isRunning()) {
+
+		if (audioClip != null && audioClip.isRunning()) {
 			previewIcon.setImage(UIStates.getInstance().getPlayImage());
-			
+
 			audioClip.stop();
-		}
-		else {
+		} else {
 			previewIcon.setImage(UIStates.getInstance().getStopImage());
-			
+
 			double lowValue = slider.getLowValue();
 			double highValue = slider.getHighValue();
 
-			int previewStart = (int) (lowValue * audioFPS); 
+			int previewStart = (int) (lowValue * audioFPS);
 			int previewEnd = (int) (highValue * audioFPS);
-			
+
 			audioClip.setFramePosition(previewStart);
 			audioClip.setLoopPoints(previewStart, previewEnd);
 			audioClip.loop(Clip.LOOP_CONTINUOUSLY);
-		}	
+		}
 	}
-	
+
 	@FXML
 	void okMouseReleased(MouseEvent event) {
-		if(UIStates.getInstance().getExtraPanes() > 0)
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
-		if(audioStream == null) {
+
+		if (audioStream == null) {
 			UIUtils.showError("Select a music file.");
-			
+
 			return;
 		}
-		
+
 		double lowValue = slider.getLowValue();
 		double highValue = slider.getHighValue();
 
-		int previewStart = (int) (lowValue * audioFPS); 
+		int previewStart = (int) (lowValue * audioFPS);
 		int previewEnd = (int) (highValue * audioFPS);
-		
-		if(audioClip.isRunning())
+
+		if (audioClip.isRunning())
 			audioClip.stop();
-		
+
 		thumbnailStream = new BufferedInputStream(thumbnailStream);
 		thumbnailStream.mark(Integer.MAX_VALUE);
-		
+
 		audioRawStream = new BufferedInputStream(audioRawStream);
 		audioRawStream.mark(Integer.MAX_VALUE);
-		
-		AudioUtils.saveMusic(audioTitle, audioClip, previewStart, previewEnd, audioRawStream, audioStream, thumbnailStream);
-		
+
+		AudioUtils.saveMusic(audioTitle, audioClip, previewStart, previewEnd, audioRawStream, audioStream,
+				thumbnailStream);
+
 		UIUtils.playEnterSound();
 		UIUtils.changeView("MenuScreen.fxml");
 	}
-	
+
 	@FXML
-    void keyReleased(KeyEvent event) {
-		if(UIStates.getInstance().getExtraPanes() > 0)
+	void keyReleased(KeyEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
+
 		event.consume();
-		
-    	KeyCode code = event.getCode();
-    	KeyCode okCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Confirm");
-    	KeyCode backCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Back");
-		
-		if(okCode != null && code == okCode)
+
+		KeyCode code = event.getCode();
+		KeyCode okCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Confirm");
+		KeyCode backCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Back");
+
+		if (okCode != null && code == okCode)
 			okMouseReleased(null);
-		else if(backCode != null && code == backCode)
+		else if (backCode != null && code == backCode)
 			backMouseReleased(null);
-    }
+	}
 
 	@Override
 	public void init() {
 		backgroundPane.setBackground(UIUtils.getRandomBackground());
 		backgroundPane.setEffect(blurEffect);
-		
+
 		musicFileChooser = new FileChooser();
 		FileChooser.ExtensionFilter mp3Filter = new FileChooser.ExtensionFilter("MP3 files (*.mp3)", "*.mp3");
 		musicFileChooser.getExtensionFilters().add(mp3Filter);
@@ -395,7 +388,7 @@ public class AddMusicController implements Controller {
 		FileChooser.ExtensionFilter imgFilter = new FileChooser.ExtensionFilter("Image files (*.png, *.jpg)", "*.png",
 				"*.jpg");
 		imageFileChooser.getExtensionFilters().add(imgFilter);
-		
+
 		try {
 			thumbnailStream = new FileInputStream(UIStates.getInstance().getThumbnailDefaultFile());
 		} catch (FileNotFoundException e) {

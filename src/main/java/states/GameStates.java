@@ -9,26 +9,27 @@ import entity.wrapper.OptionsWrapper;
 import utils.GameUtils;
 
 public class GameStates {
-	
+
 	private static GameStates instance;
 
 	private int gameMode;
 	private Music gameMusic;
-	
+
 	private OptionsWrapper userOptions;
-	
+
 	private List<Music> library;
 	private List<Double> accuracy;
-	
-	private GameStates() {}
-	
+
+	private GameStates() {
+	}
+
 	public static GameStates getInstance() {
-		if(instance == null)
+		if (instance == null)
 			instance = new GameStates();
-		
+
 		return instance;
 	}
-	
+
 	public int getGameMode() {
 		return gameMode;
 	}
@@ -73,31 +74,31 @@ public class GameStates {
 		library.sort(Comparator.comparing(Music::getTitle));
 		library.sort(Comparator.comparing(Music::isFavorite).reversed());
 	}
-	
+
 	public int getHighscoreSum() {
 		int highscoreSum = 0;
-		
-    	for(Music music : library)
-    		highscoreSum += Collections.max(music.getHighscores());
-    	
-    	return highscoreSum;
+
+		for (Music music : library)
+			highscoreSum += Collections.max(music.getHighscores());
+
+		return highscoreSum;
 	}
-	
+
 	public double getMeanAccuracy() {
 		return accuracy.stream().mapToDouble(i -> i).average().orElse(0);
 	}
-	
+
 	public boolean addAccuracy(double accuracy) {
 		boolean clearOldestEntry = false;
-		
-		if(this.accuracy.size() == GameUtils.ACCURACY_GAME_AMOUNT) {
-			clearOldestEntry= true;
-			
+
+		if (this.accuracy.size() == GameUtils.ACCURACY_GAME_AMOUNT) {
+			clearOldestEntry = true;
+
 			this.accuracy.remove(0);
 		}
-			
+
 		this.accuracy.add(accuracy);
-		
+
 		return clearOldestEntry;
 	}
 }

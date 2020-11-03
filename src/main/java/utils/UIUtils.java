@@ -43,23 +43,16 @@ public class UIUtils {
 	private static final String[] CHIBIS = { "chibi_1.png", "chibi_2.png", "chibi_3.png" };
 
 	public static Background getRandomBackground() {
-		String randomBackground = "/assets/backgrounds/" + BACKGROUNDS[new Random().nextInt(BACKGROUNDS.length)];;
-	    
-	    BackgroundImage background = new BackgroundImage(
-			new Image(
-				randomBackground, 
-				UIStates.getInstance().getPrimaryStage().getWidth(), 
-				UIStates.getInstance().getPrimaryStage().getHeight(), 
-				false, 
-				true
-			), 
-			BackgroundRepeat.NO_REPEAT, 
-			BackgroundRepeat.NO_REPEAT,
-			BackgroundPosition.CENTER, 
-			BackgroundSize.DEFAULT
-		);
-	    
-	    return new Background(background);
+		String randomBackground = "/assets/backgrounds/" + BACKGROUNDS[new Random().nextInt(BACKGROUNDS.length)];
+		;
+
+		BackgroundImage background = new BackgroundImage(
+				new Image(randomBackground, UIStates.getInstance().getPrimaryStage().getWidth(),
+						UIStates.getInstance().getPrimaryStage().getHeight(), false, true),
+				BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+				BackgroundSize.DEFAULT);
+
+		return new Background(background);
 	}
 
 	public static String getRandomChibi() {
@@ -87,9 +80,9 @@ public class UIUtils {
 	}
 
 	public static void playBackgroundMusic() {
-		if(backgroundMusic.isRunning())
+		if (backgroundMusic.isRunning())
 			return;
-		
+
 		backgroundMusic.setMicrosecondPosition(0);
 		backgroundMusic.loop(Clip.LOOP_CONTINUOUSLY);
 	}
@@ -102,7 +95,8 @@ public class UIUtils {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 
 		try {
-			UIStates.getInstance().setRoot(fxmlLoader.load(UIUtils.class.getResource("/view/" + viewPath).openStream()));
+			UIStates.getInstance()
+					.setRoot(fxmlLoader.load(UIUtils.class.getResource("/view/" + viewPath).openStream()));
 		} catch (IOException e) {
 			UIUtils.showError(e.getMessage());
 		}
@@ -132,81 +126,74 @@ public class UIUtils {
 
 		Controller controller = (Controller) fxmlLoader.getController();
 		controller.init();
-		
+
 		return controller;
 	}
-	
-	public static void showClear(Grades grade, int score, int maxCombo, 
-			Map<Scores, Integer> hitGradeCountMap) {
+
+	public static void showClear(Grades grade, int score, int maxCombo, Map<Scores, Integer> hitGradeCountMap) {
 		ClearController controller = (ClearController) UIUtils.addView("Clear.fxml");
-		
-		controller.fillResults(
-			grade, 
-			score, 
-			maxCombo, 
-			hitGradeCountMap
-		);
+
+		controller.fillResults(grade, score, maxCombo, hitGradeCountMap);
 	}
 
 	public static void showFail() {
 		InformationController ic = (InformationController) UIUtils.addView("Information.fxml");
-		
-		ic.setWindowInformation(
-			"Fail",
-			"You couldn't clear this song. Keep practising. If you are uncomfortable, adjust your game settings.",
-			true
-		);
+
+		ic.setWindowInformation("Fail",
+				"You couldn't clear this song. Keep practising. If you are uncomfortable, adjust your game settings.",
+				true);
 	}
-	
+
 	public static void showError(String message) {
 		InformationController ic = (InformationController) UIUtils.addView("Information.fxml");
-		
+
 		ic.setWindowInformation("Error", message);
 	}
-	
+
 	public static void showInformation(String message) {
 		InformationController ic = (InformationController) UIUtils.addView("Information.fxml");
-		
+
 		ic.setWindowInformation("Information", message);
 	}
 
 	public static void addStylesheet(String css) {
-		UIStates.getInstance().getRoot().getScene().getStylesheets().add(UIUtils.class.getResource("/view/css/" + css).toExternalForm());
+		UIStates.getInstance().getRoot().getScene().getStylesheets()
+				.add(UIUtils.class.getResource("/view/css/" + css).toExternalForm());
 	}
-	
+
 	public static void setPaddedText(Text text, Text paddingText, int initialPadding, int value) {
-		
+
 		String oldValueString = text.getText();
 		int oldValueDigits = oldValueString.length();
-		
+
 		String newValueString = Integer.toString(value);
 		int newValueDigits = newValueString.length();
-		
-		if(newValueDigits != oldValueDigits) {
+
+		if (newValueDigits != oldValueDigits) {
 			String zeroes = "";
-			
+
 			int zeroesAmount = (initialPadding + 1) - newValueDigits;
-			for(int i = 0; i < zeroesAmount; i++)
+			for (int i = 0; i < zeroesAmount; i++)
 				zeroes += "0";
-			
+
 			paddingText.setText(zeroes);
 		}
-	
+
 		text.setText(newValueString);
 	}
-	
+
 	public static void showAnimatedText(Text text, String message, double duration) {
 		final String initialMessage = message;
-		
-		if(!text.isVisible())
+
+		if (!text.isVisible())
 			text.setVisible(true);
-		
+
 		text.setScaleX(1);
 		text.setScaleY(1);
 		text.setOpacity(1);
-		
+
 		text.setText(message);
-		
+
 		Timeline animationText = new Timeline(
 				new KeyFrame(Duration.millis(duration), new KeyValue(text.opacityProperty(), 0)));
 		animationText.play();
@@ -222,8 +209,8 @@ public class UIUtils {
 			@Override
 			public void handle(ActionEvent event) {
 				animationText.stop();
-				
-				if(initialMessage != text.getText())
+
+				if (initialMessage != text.getText())
 					return;
 
 				text.setScaleX(1);
@@ -234,7 +221,7 @@ public class UIUtils {
 		}));
 		hideText.play();
 	}
-	
+
 	public static void showRipple(double x, double y, Paint color) {
 		Circle ripple_1 = new Circle(x, y, 0, null);
 		Circle ripple_2 = new Circle(x, y, 0, null);
@@ -270,22 +257,22 @@ public class UIUtils {
 		removeRipple.play();
 	}
 
-    public static void makeDraggable(Node node) {
-        final Delta dragDelta = new Delta();
+	public static void makeDraggable(Node node) {
+		final Delta dragDelta = new Delta();
 
-        node.setOnMousePressed(me -> {
-            dragDelta.x = me.getX();
-            dragDelta.y = me.getY();
-        });
-        
-        node.setOnMouseDragged(me -> {
-            node.setLayoutX(node.getLayoutX() + me.getX() - dragDelta.x);
-            node.setLayoutY(node.getLayoutY() + me.getY() - dragDelta.y);
-        });
-    }
-    
-    private static class Delta {
-        public double x;
-        public double y;
-    }
+		node.setOnMousePressed(me -> {
+			dragDelta.x = me.getX();
+			dragDelta.y = me.getY();
+		});
+
+		node.setOnMouseDragged(me -> {
+			node.setLayoutX(node.getLayoutX() + me.getX() - dragDelta.x);
+			node.setLayoutY(node.getLayoutY() + me.getY() - dragDelta.y);
+		});
+	}
+
+	private static class Delta {
+		public double x;
+		public double y;
+	}
 }

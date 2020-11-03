@@ -36,308 +36,308 @@ import utils.UIUtils;
 import utils.EnumUtils.Types;
 
 public class OptionsController implements Controller {
-	
+
 	private static final double BLUR_AMOUNT = 10;
 	private static final Effect blurEffect = new BoxBlur(BLUR_AMOUNT, BLUR_AMOUNT, 5);
-	
+
 	private static final double NOTE_SPEED_INCREMENT = 100;
 	private static final double NOTE_SPEED_INCREASE = 500;
-	
+
 	private static final double NOTE_SIZE_INCREMENT = GameUtils.DEFAULT_NOTE_HEIGHT / 100;
 	private static final double NOTE_SIZE_INCREASE = NOTE_SIZE_INCREMENT * 10;
-	
+
 	private OptionsWrapper optionsWrapper = new OptionsWrapper();
-	
+
 	private Timeline noteAnimation;
-	
+
 	private Map<Button, Pair<String, KeyCode>> shortcuts = new HashMap<>();
-	
+
 	@FXML
-    private Pane backgroundPane;
+	private Pane backgroundPane;
 
-    @FXML
-    private Button backButton;
+	@FXML
+	private Button backButton;
 
-    @FXML
-    private GridPane shortcutsGridPane;
+	@FXML
+	private GridPane shortcutsGridPane;
 
-    @FXML
-    private Text noteSpeedText;
+	@FXML
+	private Text noteSpeedText;
 
-    @FXML
-    private Text noteSizeText;
+	@FXML
+	private Text noteSizeText;
 
-    @FXML
-    private AnchorPane gamePreviewPane;
+	@FXML
+	private AnchorPane gamePreviewPane;
 
-    @FXML
-    void noteSpeedIncrementMouseReleased(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
-			return;
-    	
-    	double newNoteSpeed = optionsWrapper.getNoteSpeed();
-    			
-    	newNoteSpeed -= NOTE_SPEED_INCREMENT;
-    	
-    	if(newNoteSpeed < GameUtils.MIN_NOTE_SPEED)
-    		newNoteSpeed = GameUtils.MIN_NOTE_SPEED;
-    	  	
-    	animateNewNote(optionsWrapper.getNoteHeight(), newNoteSpeed);
-    	noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - newNoteSpeed)));
-    	
-    	optionsWrapper.setNoteSpeed(newNoteSpeed);
-    }
-
-    @FXML
-    void noteSpeedDecrementMouseReleased(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
-			return;
-		
-    	double newNoteSpeed = optionsWrapper.getNoteSpeed();
-		
-    	newNoteSpeed += NOTE_SPEED_INCREMENT;
-    	
-    	if(newNoteSpeed > GameUtils.MAX_NOTE_SPEED)
-    		newNoteSpeed = GameUtils.MAX_NOTE_SPEED;
-    	
-    	animateNewNote(optionsWrapper.getNoteHeight(), newNoteSpeed);
-    	noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - newNoteSpeed)));
-    	
-    	optionsWrapper.setNoteSpeed(newNoteSpeed);
-    }
-    
-    @FXML
-    void noteSpeedIncreaseMouseReleased(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
+	@FXML
+	void noteSpeedIncrementMouseReleased(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
 
-    	double newNoteSpeed = optionsWrapper.getNoteSpeed();
-    	
-    	newNoteSpeed -= NOTE_SPEED_INCREASE;
-    	
-    	if(newNoteSpeed < GameUtils.MIN_NOTE_SPEED)
-    		newNoteSpeed = GameUtils.MIN_NOTE_SPEED;
-    	
-    	animateNewNote(optionsWrapper.getNoteHeight(), newNoteSpeed);
-    	noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - newNoteSpeed)));
-    	
-    	optionsWrapper.setNoteSpeed(newNoteSpeed);
-    }
+		double newNoteSpeed = optionsWrapper.getNoteSpeed();
 
-    @FXML
-    void noteSpeedDecreaseMouseReleased(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
-			return;
-    	
-    	double newNoteSpeed = optionsWrapper.getNoteSpeed();
-        
-    	newNoteSpeed += NOTE_SPEED_INCREASE;
-    	
-    	if(newNoteSpeed > GameUtils.MAX_NOTE_SPEED)
-    		newNoteSpeed = GameUtils.MAX_NOTE_SPEED;
-    	
-    	animateNewNote(optionsWrapper.getNoteHeight(), newNoteSpeed);
-    	noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - newNoteSpeed)));
-    	
-    	optionsWrapper.setNoteSpeed(newNoteSpeed);
-    }
-    
-    @FXML
-    void noteSizeIncrementMouseReleased(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
-			return;
-    	
-    	double newNoteHeight = optionsWrapper.getNoteHeight();
-    	
-    	newNoteHeight += NOTE_SIZE_INCREMENT;
-    	
-    	if(newNoteHeight > GameUtils.MAX_NOTE_HEIGHT)
-    		newNoteHeight = GameUtils.MAX_NOTE_HEIGHT;
-		
-    	animateNewNote(newNoteHeight, optionsWrapper.getNoteSpeed());
-    	noteSizeText.setText(Integer.toString(getFormattedNoteSize(newNoteHeight)));
-    	
-    	optionsWrapper.setNoteHeight(newNoteHeight);
-    }
+		newNoteSpeed -= NOTE_SPEED_INCREMENT;
 
-    @FXML
-    void noteSizeDecrementMouseReleased(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
-			return;
-		
-    	double newNoteHeight = optionsWrapper.getNoteHeight();
-    	
-    	newNoteHeight -= NOTE_SIZE_INCREMENT;
-    	
-    	if(newNoteHeight < GameUtils.MIN_NOTE_HEIGHT)
-    		newNoteHeight = GameUtils.MIN_NOTE_HEIGHT;
-    	
-    	animateNewNote(newNoteHeight, optionsWrapper.getNoteSpeed());
-    	noteSizeText.setText(Integer.toString(getFormattedNoteSize(newNoteHeight)));
-    	
-    	optionsWrapper.setNoteHeight(newNoteHeight);
-    }
-    
-    @FXML
-    void noteSizeIncreaseMouseReleased(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
-			return;
-		
-    	double newNoteHeight = optionsWrapper.getNoteHeight();
-    	
-    	newNoteHeight += NOTE_SIZE_INCREASE;
-    	
-    	if(newNoteHeight > GameUtils.MAX_NOTE_HEIGHT)
-    		newNoteHeight = GameUtils.MAX_NOTE_HEIGHT;
-    	
-    	animateNewNote(newNoteHeight, optionsWrapper.getNoteSpeed());
-    	noteSizeText.setText(Integer.toString(getFormattedNoteSize(newNoteHeight)));
-    	
-    	optionsWrapper.setNoteHeight(newNoteHeight);
-    }
+		if (newNoteSpeed < GameUtils.MIN_NOTE_SPEED)
+			newNoteSpeed = GameUtils.MIN_NOTE_SPEED;
 
-    @FXML
-    void noteSizeDecreaseMouseReleased(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
+		animateNewNote(optionsWrapper.getNoteHeight(), newNoteSpeed);
+		noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - newNoteSpeed)));
+
+		optionsWrapper.setNoteSpeed(newNoteSpeed);
+	}
+
+	@FXML
+	void noteSpeedDecrementMouseReleased(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
-    	double newNoteHeight = optionsWrapper.getNoteHeight();
-    	
-    	newNoteHeight -= NOTE_SIZE_INCREASE;
-    	
-    	if(newNoteHeight < GameUtils.MIN_NOTE_HEIGHT)
-    		newNoteHeight = GameUtils.MIN_NOTE_HEIGHT;
-		
-    	animateNewNote(newNoteHeight, optionsWrapper.getNoteSpeed());
-    	noteSizeText.setText(Integer.toString(getFormattedNoteSize(newNoteHeight)));
-    	
-    	optionsWrapper.setNoteHeight(newNoteHeight);
-    }
-    
-    @FXML
-    void defaultMouseReleased(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
+
+		double newNoteSpeed = optionsWrapper.getNoteSpeed();
+
+		newNoteSpeed += NOTE_SPEED_INCREMENT;
+
+		if (newNoteSpeed > GameUtils.MAX_NOTE_SPEED)
+			newNoteSpeed = GameUtils.MAX_NOTE_SPEED;
+
+		animateNewNote(optionsWrapper.getNoteHeight(), newNoteSpeed);
+		noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - newNoteSpeed)));
+
+		optionsWrapper.setNoteSpeed(newNoteSpeed);
+	}
+
+	@FXML
+	void noteSpeedIncreaseMouseReleased(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
-    	optionsWrapper = new OptionsWrapper(true);
-    	
-    	animateNewNote(optionsWrapper.getNoteHeight(), optionsWrapper.getNoteSpeed());
-    	
-    	noteSizeText.setText(Integer.toString(getFormattedNoteSize(optionsWrapper.getNoteHeight())));
+
+		double newNoteSpeed = optionsWrapper.getNoteSpeed();
+
+		newNoteSpeed -= NOTE_SPEED_INCREASE;
+
+		if (newNoteSpeed < GameUtils.MIN_NOTE_SPEED)
+			newNoteSpeed = GameUtils.MIN_NOTE_SPEED;
+
+		animateNewNote(optionsWrapper.getNoteHeight(), newNoteSpeed);
+		noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - newNoteSpeed)));
+
+		optionsWrapper.setNoteSpeed(newNoteSpeed);
+	}
+
+	@FXML
+	void noteSpeedDecreaseMouseReleased(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
+			return;
+
+		double newNoteSpeed = optionsWrapper.getNoteSpeed();
+
+		newNoteSpeed += NOTE_SPEED_INCREASE;
+
+		if (newNoteSpeed > GameUtils.MAX_NOTE_SPEED)
+			newNoteSpeed = GameUtils.MAX_NOTE_SPEED;
+
+		animateNewNote(optionsWrapper.getNoteHeight(), newNoteSpeed);
+		noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - newNoteSpeed)));
+
+		optionsWrapper.setNoteSpeed(newNoteSpeed);
+	}
+
+	@FXML
+	void noteSizeIncrementMouseReleased(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
+			return;
+
+		double newNoteHeight = optionsWrapper.getNoteHeight();
+
+		newNoteHeight += NOTE_SIZE_INCREMENT;
+
+		if (newNoteHeight > GameUtils.MAX_NOTE_HEIGHT)
+			newNoteHeight = GameUtils.MAX_NOTE_HEIGHT;
+
+		animateNewNote(newNoteHeight, optionsWrapper.getNoteSpeed());
+		noteSizeText.setText(Integer.toString(getFormattedNoteSize(newNoteHeight)));
+
+		optionsWrapper.setNoteHeight(newNoteHeight);
+	}
+
+	@FXML
+	void noteSizeDecrementMouseReleased(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
+			return;
+
+		double newNoteHeight = optionsWrapper.getNoteHeight();
+
+		newNoteHeight -= NOTE_SIZE_INCREMENT;
+
+		if (newNoteHeight < GameUtils.MIN_NOTE_HEIGHT)
+			newNoteHeight = GameUtils.MIN_NOTE_HEIGHT;
+
+		animateNewNote(newNoteHeight, optionsWrapper.getNoteSpeed());
+		noteSizeText.setText(Integer.toString(getFormattedNoteSize(newNoteHeight)));
+
+		optionsWrapper.setNoteHeight(newNoteHeight);
+	}
+
+	@FXML
+	void noteSizeIncreaseMouseReleased(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
+			return;
+
+		double newNoteHeight = optionsWrapper.getNoteHeight();
+
+		newNoteHeight += NOTE_SIZE_INCREASE;
+
+		if (newNoteHeight > GameUtils.MAX_NOTE_HEIGHT)
+			newNoteHeight = GameUtils.MAX_NOTE_HEIGHT;
+
+		animateNewNote(newNoteHeight, optionsWrapper.getNoteSpeed());
+		noteSizeText.setText(Integer.toString(getFormattedNoteSize(newNoteHeight)));
+
+		optionsWrapper.setNoteHeight(newNoteHeight);
+	}
+
+	@FXML
+	void noteSizeDecreaseMouseReleased(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
+			return;
+
+		double newNoteHeight = optionsWrapper.getNoteHeight();
+
+		newNoteHeight -= NOTE_SIZE_INCREASE;
+
+		if (newNoteHeight < GameUtils.MIN_NOTE_HEIGHT)
+			newNoteHeight = GameUtils.MIN_NOTE_HEIGHT;
+
+		animateNewNote(newNoteHeight, optionsWrapper.getNoteSpeed());
+		noteSizeText.setText(Integer.toString(getFormattedNoteSize(newNoteHeight)));
+
+		optionsWrapper.setNoteHeight(newNoteHeight);
+	}
+
+	@FXML
+	void defaultMouseReleased(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
+			return;
+
+		optionsWrapper = new OptionsWrapper(true);
+
+		animateNewNote(optionsWrapper.getNoteHeight(), optionsWrapper.getNoteSpeed());
+
+		noteSizeText.setText(Integer.toString(getFormattedNoteSize(optionsWrapper.getNoteHeight())));
 		noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(optionsWrapper.getNoteSpeed())));
-		
+
 		Map<String, KeyCode> defaultShortcuts = optionsWrapper.getShortcuts();
-		for(Map.Entry<Button, Pair<String, KeyCode>> entry : shortcuts.entrySet()) {
+		for (Map.Entry<Button, Pair<String, KeyCode>> entry : shortcuts.entrySet()) {
 			Button shortcutButton = entry.getKey();
 			Pair<String, KeyCode> shortcutInformation = entry.getValue();
-			
+
 			KeyCode defaultShortcutKeyCode = defaultShortcuts.get(shortcutInformation.getL());
-			
+
 			shortcutButton.setText(defaultShortcutKeyCode == null ? "<not set>" : defaultShortcutKeyCode.getName());
 			shortcutInformation.setR(defaultShortcutKeyCode);
 		}
-		
-		UIUtils.showInformation("Default preferences were recovered.");
-    }
 
-    @FXML
-    void saveMouseReleased(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
+		UIUtils.showInformation("Default preferences were recovered.");
+	}
+
+	@FXML
+	void saveMouseReleased(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
-    	GameStates.getInstance().setUserOptions(optionsWrapper);
-    	
-    	UIUtils.playEnterSound();
-    	try {
+
+		GameStates.getInstance().setUserOptions(optionsWrapper);
+
+		UIUtils.playEnterSound();
+		try {
 			GameUtils.saveUserSettings(GameStates.getInstance().getUserOptions());
-			
+
 			UIUtils.showInformation("Your preferences were updated.");
 		} catch (IOException e) {
 			UIUtils.showError(e.getMessage());
 		}
-    }
+	}
 
-    @FXML
-    void backMouseReleased(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
+	@FXML
+	void backMouseReleased(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
-    	UIUtils.playBackSound();
+
+		UIUtils.playBackSound();
 		UIUtils.changeView("MenuScreen.fxml");
-    }
-    
-    @FXML
-    void keyReleased(KeyEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
+	}
+
+	@FXML
+	void keyReleased(KeyEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-    	
-    	event.consume();
-		
-    	KeyCode code = event.getCode();
+
+		event.consume();
+
+		KeyCode code = event.getCode();
 		KeyCode saveCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Confirm");
 		KeyCode backCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Back");
-		
-		if(saveCode != null && code == saveCode)
+
+		if (saveCode != null && code == saveCode)
 			saveMouseReleased(null);
-		else if(backCode != null && code == backCode)
+		else if (backCode != null && code == backCode)
 			backMouseReleased(null);
-    }
-    
-    void shortcutMouseExited(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
+	}
+
+	void shortcutMouseExited(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-		
-    	Button shortcutButton = (Button) event.getSource();
-    	shortcutButton.setStyle("-fx-background-color: transparent;");
-    }
-    
-    void shortcutMouseEntered(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
+
+		Button shortcutButton = (Button) event.getSource();
+		shortcutButton.setStyle("-fx-background-color: transparent;");
+	}
+
+	void shortcutMouseEntered(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-    	
-    	Button shortcutButton = (Button) event.getSource();
+
+		Button shortcutButton = (Button) event.getSource();
 		shortcutButton.setStyle("-fx-background-color: rgba(255, 71, 131, 0.15);");
-    }
-    
-    void shortcutMouseReleased(MouseEvent event) {
-    	if(UIStates.getInstance().getExtraPanes() > 0)
+	}
+
+	void shortcutMouseReleased(MouseEvent event) {
+		if (UIStates.getInstance().getExtraPanes() > 0)
 			return;
-    	
-    	Button shortcutButton = (Button) event.getSource();
-    	shortcutButton.setStyle("-fx-background-color: transparent;");
-    	
-    	InputController inputController = (InputController) UIUtils.addView("Input.fxml");
-    	
-    	inputController.setOptionsInputButton(shortcutButton);
-    	inputController.setInputMessage(shortcuts.get(shortcutButton).getR());
-    }
-    
-    void setShortchutInput(Button inputButton, KeyCode shortcut) {
-    	for(Map.Entry<Button, Pair<String, KeyCode>> entry : shortcuts.entrySet()) {
-    		Button shortcutButton = entry.getKey();
-    		Pair<String, KeyCode> shortcutInformation = entry.getValue();
-    		
-    		if(shortcutInformation.getR() != shortcut)
-    			continue;
-    		
-    		shortcutButton.setText("<not set>");
-    		
-    		shortcutInformation.setR(null);
-    		optionsWrapper.getShortcuts().put(shortcutInformation.getL(), null);
-        }
-    	
-    	inputButton.setText(shortcut.getName());
-    	
-    	Pair<String, KeyCode> shortcutInformation = shortcuts.get(inputButton);
-    	
-    	shortcutInformation.setR(shortcut);
-    	optionsWrapper.getShortcuts().put(shortcutInformation.getL(), shortcut);
-    }
-    
-    void simulateAnimateNote(Note note, double noteSpeed) {
-    	if(noteAnimation != null)
-    		noteAnimation.stop();
-    	
+
+		Button shortcutButton = (Button) event.getSource();
+		shortcutButton.setStyle("-fx-background-color: transparent;");
+
+		InputController inputController = (InputController) UIUtils.addView("Input.fxml");
+
+		inputController.setOptionsInputButton(shortcutButton);
+		inputController.setInputMessage(shortcuts.get(shortcutButton).getR());
+	}
+
+	void setShortchutInput(Button inputButton, KeyCode shortcut) {
+		for (Map.Entry<Button, Pair<String, KeyCode>> entry : shortcuts.entrySet()) {
+			Button shortcutButton = entry.getKey();
+			Pair<String, KeyCode> shortcutInformation = entry.getValue();
+
+			if (shortcutInformation.getR() != shortcut)
+				continue;
+
+			shortcutButton.setText("<not set>");
+
+			shortcutInformation.setR(null);
+			optionsWrapper.getShortcuts().put(shortcutInformation.getL(), null);
+		}
+
+		inputButton.setText(shortcut.getName());
+
+		Pair<String, KeyCode> shortcutInformation = shortcuts.get(inputButton);
+
+		shortcutInformation.setR(shortcut);
+		optionsWrapper.getShortcuts().put(shortcutInformation.getL(), shortcut);
+	}
+
+	void simulateAnimateNote(Note note, double noteSpeed) {
+		if (noteAnimation != null)
+			noteAnimation.stop();
+
 		final Duration duration = Duration.millis(noteSpeed);
 		Timeline animation = new Timeline(new KeyFrame(duration, new KeyValue(note.yProperty(), note.getEndY())));
 
@@ -352,70 +352,72 @@ public class OptionsController implements Controller {
 
 		animation.setCycleCount(Animation.INDEFINITE);
 		animation.play();
-		
+
 		noteAnimation = animation;
 	}
-    
-    private int getFormattedNoteSpeed(double noteSpeed) {
-    	return (int) Math.round(noteSpeed / 100);
-    }
 
-    private int getFormattedNoteSize(double noteSize) {
-    	return (int) Math.round((noteSize * 100) / GameUtils.DEFAULT_NOTE_HEIGHT);	
-    }
-    
-    private double getProportionalNoteWidth(double noteWidth) {
-    	return (noteWidth * gamePreviewPane.getWidth()) / 1080;
-    }
-    
-    private double getProportionalNoteHeight(double noteHeight) {
-    	return (noteHeight * gamePreviewPane.getHeight()) / 720;
-    }
-    
-    private void animateNewNote(double noteSize, double noteSpeed) {
-		Note note = new Note(1, Types.NORMAL, 83.75, getProportionalNoteWidth(GameUtils.NOTE_WIDTH), getProportionalNoteHeight(noteSize), 157.986, gamePreviewPane);
+	private int getFormattedNoteSpeed(double noteSpeed) {
+		return (int) Math.round(noteSpeed / 100);
+	}
+
+	private int getFormattedNoteSize(double noteSize) {
+		return (int) Math.round((noteSize * 100) / GameUtils.DEFAULT_NOTE_HEIGHT);
+	}
+
+	private double getProportionalNoteWidth(double noteWidth) {
+		return (noteWidth * gamePreviewPane.getWidth()) / 1080;
+	}
+
+	private double getProportionalNoteHeight(double noteHeight) {
+		return (noteHeight * gamePreviewPane.getHeight()) / 720;
+	}
+
+	private void animateNewNote(double noteSize, double noteSpeed) {
+		Note note = new Note(1, Types.NORMAL, 83.75, getProportionalNoteWidth(GameUtils.NOTE_WIDTH),
+				getProportionalNoteHeight(noteSize), 157.986, gamePreviewPane);
 		simulateAnimateNote(note, noteSpeed);
-    }
-    
+	}
+
 	@Override
-	public void init() {	    
-	    backgroundPane.setBackground(UIUtils.getRandomBackground());
-    	backgroundPane.setEffect(blurEffect);
-    	
-    	optionsWrapper.setShortcuts(GameStates.getInstance().getUserOptions().getShortcuts());
-    	optionsWrapper.setNoteSpeed(GameStates.getInstance().getUserOptions().getNoteSpeed());
-    	optionsWrapper.setNoteHeight(GameStates.getInstance().getUserOptions().getNoteHeight());
-    	
-    	animateNewNote(optionsWrapper.getNoteHeight(), optionsWrapper.getNoteSpeed());
-    	
-    	noteSizeText.setText(Integer.toString(getFormattedNoteSize(optionsWrapper.getNoteHeight())));
-		noteSpeedText.setText(Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - optionsWrapper.getNoteSpeed())));
-		
+	public void init() {
+		backgroundPane.setBackground(UIUtils.getRandomBackground());
+		backgroundPane.setEffect(blurEffect);
+
+		optionsWrapper.setShortcuts(GameStates.getInstance().getUserOptions().getShortcuts());
+		optionsWrapper.setNoteSpeed(GameStates.getInstance().getUserOptions().getNoteSpeed());
+		optionsWrapper.setNoteHeight(GameStates.getInstance().getUserOptions().getNoteHeight());
+
+		animateNewNote(optionsWrapper.getNoteHeight(), optionsWrapper.getNoteSpeed());
+
+		noteSizeText.setText(Integer.toString(getFormattedNoteSize(optionsWrapper.getNoteHeight())));
+		noteSpeedText.setText(
+				Integer.toString(getFormattedNoteSpeed(GameUtils.MAX_NOTE_SPEED - optionsWrapper.getNoteSpeed())));
+
 		List<Node> children = shortcutsGridPane.getChildrenUnmodifiable();
-		for(Node child : children) {
+		for (Node child : children) {
 			Button shortcutButton = new Button();
 			shortcutButton.setStyle("-fx-background-color: transparent;");
 			shortcutButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-			
+
 			Integer rowIndex = GridPane.getRowIndex(child);
-			if(rowIndex == null || !(child instanceof Label))
+			if (rowIndex == null || !(child instanceof Label))
 				continue;
-			
+
 			shortcutsGridPane.add(shortcutButton, 1, rowIndex.intValue());
-			
+
 			GridPane.setFillWidth(shortcutButton, true);
 			GridPane.setFillHeight(shortcutButton, true);
-			
+
 			Label shortcutDescriptionLabel = (Label) child;
 			String identification = shortcutDescriptionLabel.getText();
-			
+
 			KeyCode shortcut = optionsWrapper.getShortcuts().get(identification);
-			
+
 			shortcutButton.setText(shortcut == null ? "<not set>" : shortcut.getName());
 			shortcutButton.setOnMouseExited(e -> shortcutMouseExited(e));
 			shortcutButton.setOnMouseEntered(e -> shortcutMouseEntered(e));
 			shortcutButton.setOnMouseReleased(e -> shortcutMouseReleased(e));
-			
+
 			shortcuts.put(shortcutButton, new Pair<>(identification, shortcut));
 		}
 	}

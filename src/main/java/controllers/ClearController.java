@@ -21,95 +21,95 @@ import utils.EnumUtils.Scores;
 import utils.GameUtils;
 
 public class ClearController implements Controller {
-	
+
 	final private double PANE_WIDTH = 390;
 	final private double PANE_HEIGHT = 400;
-	
+
 	private int scorePaddingInitialAmount;
 	private int hitCountPaddingInitialAmount;
-	
-	@FXML
-    private AnchorPane successPane;
-	
-	@FXML
-    private ImageView gradeImageView;
-	
-	@FXML
-    private Text scorePaddingText;
 
-    @FXML
-    private Text scoreText;
-    
-    @FXML
-    private Text highscorePaddingText;
-    
-    @FXML
-    private Text highscoreText;
-    
-    @FXML
-    private Text perfectPaddingText;
-    
-    @FXML
-    private Text perfectText;
-    
-    @FXML
-    private Text greatPaddingText;
-    
-    @FXML
-    private Text greatText;
-    
-    @FXML
-    private Text goodPaddingText;
-    
-    @FXML
-    private Text goodText;
-    
-    @FXML
-    private Text badPaddingText;
-	
-    @FXML
-    private Text badText;
-	
 	@FXML
-    private Text missPaddingText;
-	
+	private AnchorPane successPane;
+
 	@FXML
-    private Text missText;
+	private ImageView gradeImageView;
 
-    @FXML
-    private Text maxComboPaddingText;
-    
-    @FXML
-    private Text maxComboText;
+	@FXML
+	private Text scorePaddingText;
 
-    @FXML
-    void okMouseReleased(MouseEvent event) {
-    	UIStates.getInstance().decrementExtraPanes();
-		
-    	UIUtils.playEnterSound();
-    	UIUtils.changeView("MenuScreen.fxml");
-    }
-    
-    @FXML
-    void keyReleased(KeyEvent event) {
-    	KeyCode code = event.getCode();
+	@FXML
+	private Text scoreText;
+
+	@FXML
+	private Text highscorePaddingText;
+
+	@FXML
+	private Text highscoreText;
+
+	@FXML
+	private Text perfectPaddingText;
+
+	@FXML
+	private Text perfectText;
+
+	@FXML
+	private Text greatPaddingText;
+
+	@FXML
+	private Text greatText;
+
+	@FXML
+	private Text goodPaddingText;
+
+	@FXML
+	private Text goodText;
+
+	@FXML
+	private Text badPaddingText;
+
+	@FXML
+	private Text badText;
+
+	@FXML
+	private Text missPaddingText;
+
+	@FXML
+	private Text missText;
+
+	@FXML
+	private Text maxComboPaddingText;
+
+	@FXML
+	private Text maxComboText;
+
+	@FXML
+	void okMouseReleased(MouseEvent event) {
+		UIStates.getInstance().decrementExtraPanes();
+
+		UIUtils.playEnterSound();
+		UIUtils.changeView("MenuScreen.fxml");
+	}
+
+	@FXML
+	void keyReleased(KeyEvent event) {
+		KeyCode code = event.getCode();
 		KeyCode okCode = GameStates.getInstance().getUserOptions().getShortcuts().get("Confirm");
-		
-		if(okCode != null && code == okCode)
+
+		if (okCode != null && code == okCode)
 			okMouseReleased(null);
-    }
+	}
 
 	public void fillResults(Grades grade, int score, int maxCombo, Map<Scores, Integer> hitGradeCountMap) {
 		int mode = GameStates.getInstance().getGameMode();
 		Music music = GameStates.getInstance().getGameMusic();
-		
+
 		int highscore = music.getHighscore(mode);
-		if(score > highscore) {
+		if (score > highscore) {
 			highscore = score;
-			
+
 			GameUtils.playHighscoreSound();
 			music.setHighscore(mode, highscore);
-			
+
 			Thread thread = new Thread() {
 				@Override
 				public void run() {
@@ -121,12 +121,12 @@ public class ClearController implements Controller {
 					}
 				}
 			};
-			
+
 			thread.start();
 		}
-		
+
 		Image gradeImage = null;
-		switch(grade) {
+		switch (grade) {
 		case C:
 			gradeImage = UIStates.getInstance().getGradeC();
 			break;
@@ -143,31 +143,35 @@ public class ClearController implements Controller {
 			gradeImage = UIStates.getInstance().getGradeSS();
 			break;
 		}
-		
+
 		gradeImageView.setImage(gradeImage);
-		
+
 		UIUtils.setPaddedText(scoreText, scorePaddingText, scorePaddingInitialAmount, score);
 		UIUtils.setPaddedText(highscoreText, highscorePaddingText, scorePaddingInitialAmount, highscore);
-		
-		UIUtils.setPaddedText(perfectText, perfectPaddingText, hitCountPaddingInitialAmount, hitGradeCountMap.get(Scores.PERFECT));
-		UIUtils.setPaddedText(greatText, greatPaddingText, hitCountPaddingInitialAmount, hitGradeCountMap.get(Scores.GREAT));
-		UIUtils.setPaddedText(goodText, goodPaddingText, hitCountPaddingInitialAmount, hitGradeCountMap.get(Scores.GOOD));
+
+		UIUtils.setPaddedText(perfectText, perfectPaddingText, hitCountPaddingInitialAmount,
+				hitGradeCountMap.get(Scores.PERFECT));
+		UIUtils.setPaddedText(greatText, greatPaddingText, hitCountPaddingInitialAmount,
+				hitGradeCountMap.get(Scores.GREAT));
+		UIUtils.setPaddedText(goodText, goodPaddingText, hitCountPaddingInitialAmount,
+				hitGradeCountMap.get(Scores.GOOD));
 		UIUtils.setPaddedText(badText, badPaddingText, hitCountPaddingInitialAmount, hitGradeCountMap.get(Scores.BAD));
-		UIUtils.setPaddedText(missText, missPaddingText, hitCountPaddingInitialAmount, hitGradeCountMap.get(Scores.MISS));
-		
+		UIUtils.setPaddedText(missText, missPaddingText, hitCountPaddingInitialAmount,
+				hitGradeCountMap.get(Scores.MISS));
+
 		UIUtils.setPaddedText(maxComboText, maxComboPaddingText, hitCountPaddingInitialAmount, maxCombo);
 	}
-	
+
 	@Override
 	public void init() {
 		UIStates.getInstance().incrementExtraPanes();
-		
+
 		successPane.setLayoutX((UIStates.getInstance().getRoot().getWidth() / 2) - (PANE_WIDTH / 2));
 		successPane.setLayoutY((UIStates.getInstance().getRoot().getHeight() / 2) - (PANE_HEIGHT / 2));
-		
+
 		scorePaddingInitialAmount = scorePaddingText.getText().length();
 		hitCountPaddingInitialAmount = maxComboPaddingText.getText().length();
-		
+
 		UIUtils.makeDraggable(successPane);
 		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(e -> keyReleased(e));
 	}
