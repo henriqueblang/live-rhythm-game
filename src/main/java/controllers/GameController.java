@@ -614,7 +614,9 @@ public class GameController implements Controller {
         for(Map.Entry<Note, SequentialTransition> entry : noteAnimations.entrySet())
         	entry.getValue().stop();
     	
-        GameUtils.registerNewAccuracy((double) totalHits / removedNotes);
+        if(removedNotes > 0)
+        	GameUtils.registerNewAccuracy((double) totalHits / removedNotes);
+        
     	GameUtils.showResultView(clear, scoreGrade, score, maxCombo, hitGradeCountMap);
     }
 
