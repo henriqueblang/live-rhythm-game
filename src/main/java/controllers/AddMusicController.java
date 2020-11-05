@@ -174,8 +174,7 @@ public class AddMusicController implements Controller {
 		if (!previewIcon.isVisible())
 			previewIcon.setVisible(true);
 
-		// TODO check if method AudioUtils::getAudioDuration is usable here
-		int duration = (int) (audioClip.getFrameLength() / audioFPS);
+		int duration = (int) AudioUtils.getAudioDuration(audioClip);
 		if (slider != null) {
 			slider.adjustHighValue(duration);
 
