@@ -19,7 +19,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 import org.apache.commons.io.FilenameUtils;
 
-import dao.MusicDAO;
+import dao.DAOFactory;
+import dao.impl.MusicDAO;
 import entity.Music;
 import entity.collection.Beatmap;
 import entity.collection.Pair;
@@ -106,13 +107,15 @@ public class AudioUtils {
 					audioRawStream.reset();
 					thumbnailStream.reset();
 					
-					MusicDAO dao = new MusicDAO();
+					MusicDAO dao = DAOFactory.createMusicDAO();
 					int musicId = dao.insertMusic(cleanTitle, previewStart, previewEnd, audioRawStream, thumbnailStream);
 					
 					for(int mode = 0; mode < beatmaps.size(); mode++) {
 						dao.insertBeatmap(musicId, mode, beatmaps.get(mode));
 						dao.insertHighscore(musicId, mode);
 					}
+					
+					dao.closeConnection();
 					
 					music.setId(musicId);
 				} catch (SQLException | IOException e) {

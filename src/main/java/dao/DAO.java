@@ -27,18 +27,32 @@ public abstract class DAO {
 			+ "?useTimezone=true&serverTimezone=UTC&autoReconnect=true&useSSL=false";
 	private String user = "root";
 	private String password = "admin";
+	
+	public DAO() {
+		connectToDatabase();
+	}
 
-	public boolean connectToDatabase() {
-		boolean connected = false;
-
+	public void connectToDatabase() {
 		try {
 			con = DriverManager.getConnection(url, user, password);
-			
-			connected = true;
 		} catch (SQLException e) {
 			UIUtils.showError(e.getMessage());
 		}
-
-		return connected;
+	}
+	
+	public void closeConnection() {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			UIUtils.showError(e.getMessage());
+		}
+	}
+	
+	@Override
+	protected void finalize() throws Throwable {
+		if(con == null)
+			return;
+		
+		con.close();
 	}
 }

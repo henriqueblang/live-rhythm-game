@@ -6,7 +6,8 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
-import dao.MusicDAO;
+import dao.DAOFactory;
+import dao.impl.MusicDAO;
 import entity.Music;
 import entity.ui.Marquee;
 import entity.ui.MusicButton;
@@ -216,11 +217,15 @@ public class SelectMusicController implements Controller {
 		Thread processing = new Thread() {
 			@Override
 			public void run() {
-				MusicDAO dao = new MusicDAO();
+				MusicDAO dao = DAOFactory.createMusicDAO();
+				
 				try {
 					dao.updateFavorite(music.getId(), music.isFavorite());
 				} catch (SQLException e) {
 					e.printStackTrace();
+				}
+				finally {
+					dao.closeConnection();
 				}
 			}
 		};
@@ -254,11 +259,15 @@ public class SelectMusicController implements Controller {
 		Thread processing = new Thread() {
 			@Override
 			public void run() {
-				MusicDAO dao = new MusicDAO();
+				MusicDAO dao = DAOFactory.createMusicDAO();
+				
 				try {
 					dao.deleteMusic(music.getId());
 				} catch (SQLException e) {
 					e.printStackTrace();
+				}
+				finally {
+					dao.closeConnection();
 				}
 			}
 		};

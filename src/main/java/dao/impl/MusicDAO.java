@@ -1,4 +1,4 @@
-package dao;
+package dao.impl;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -16,6 +16,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import dao.DAO;
 import entity.Music;
 import entity.collection.Beatmap;
 import entity.collection.Pair;
@@ -26,13 +27,14 @@ import utils.EnumUtils.Types;
 public class MusicDAO extends DAO {
 
 	final private String[] tableModeSuffixes = { "easy", "normal", "hard" };
+	
+	public MusicDAO() {
+		super();
+	}
 
 	public int insertMusic(String title, int previewStart, int previewEnd, InputStream audioStream,
 			InputStream thumbnailStream) throws SQLException {
 		int musicId = -1;
-
-		if (!connectToDatabase())
-			return musicId;
 
 		String query = "INSERT INTO music(title, favorite, preview_start, preview_end, audio, thumbnail) VALUES (?, ?, ?, ?, ?, ?);";
 
@@ -58,15 +60,11 @@ public class MusicDAO extends DAO {
 		}
 
 		pst.close();
-		con.close();
 
 		return musicId;
 	}
 
 	public void insertHighscore(int musicId, int mode) throws SQLException {
-		if (!connectToDatabase())
-			return;
-
 		String query = "INSERT INTO highscore_" + tableModeSuffixes[mode] + "(id_music, score) VALUES (?, ?);";
 
 		pst = con.prepareStatement(query);
@@ -77,13 +75,9 @@ public class MusicDAO extends DAO {
 		pst.execute();
 
 		pst.close();
-		con.close();
 	}
 
 	public void updateFavorite(int musicId, boolean favorite) throws SQLException {
-		if (!connectToDatabase())
-			return;
-
 		String query = "UPDATE music SET favorite = ? WHERE id = " + musicId + ";";
 
 		pst = con.prepareStatement(query);
@@ -93,26 +87,18 @@ public class MusicDAO extends DAO {
 		pst.execute();
 
 		pst.close();
-		con.close();
 	}
 
 	public void updateHighscore(int musicId, int mode, int score) throws SQLException {
-		if (!connectToDatabase())
-			return;
-
 		String query = "UPDATE highscore_" + tableModeSuffixes[mode] + " SET score = " + score + " WHERE id_music = " + musicId + ";";
 
 		pst = con.prepareStatement(query);
 		pst.executeUpdate();
 
 		pst.close();
-		con.close();
 	}
 
 	public void insertBeatmap(int musicId, int mode, Beatmap beatmap) throws SQLException {
-		if (!connectToDatabase())
-			return;
-
 		List<List<Pair<Integer, Types>>> beatmapData = beatmap.getData();
 
 		String query = "INSERT INTO beatmap_" + tableModeSuffixes[mode]
@@ -144,29 +130,21 @@ public class MusicDAO extends DAO {
 		con.setAutoCommit(true);
 
 		pst.close();
-		con.close();
 	}
 
 	public void deleteMusic(int musicId) throws SQLException {
-		if (!connectToDatabase())
-			return;
-
 		String query = "DELETE FROM music WHERE id = " + musicId + ";";
 
 		pst = con.prepareStatement(query);
 		pst.execute();
 
 		pst.close();
-		con.close();
 	}
 
 	public List<Music> loadMusicLibrary()
 			throws SQLException, IOException, LineUnavailableException, UnsupportedAudioFileException {
 		List<Music> library = new ArrayList<>();
-
-		if (!connectToDatabase())
-			return library;
-
+		
 		String query = "SELECT * FROM music;";
 
 		st = con.createStatement();
@@ -240,8 +218,6 @@ public class MusicDAO extends DAO {
 			}
 			
 		}
-
-		con.close();
 
 		return library;
 	}

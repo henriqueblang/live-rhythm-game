@@ -7,8 +7,9 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 
-import dao.AccuracyDAO;
-import dao.MusicDAO;
+import dao.DAOFactory;
+import dao.impl.AccuracyDAO;
+import dao.impl.MusicDAO;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -127,8 +128,14 @@ public class LoadingScreenController implements Controller {
 						
 				informationText.setText("music library");
 			
-				GameStates.getInstance().setLibrary((new MusicDAO()).loadMusicLibrary());
-				GameStates.getInstance().setAccuracy((new AccuracyDAO()).loadAccuracyList());
+				MusicDAO musicDao = DAOFactory.createMusicDAO();
+				AccuracyDAO accuracyDao = DAOFactory.createAccuracyDAO();
+				
+				GameStates.getInstance().setLibrary(musicDao.loadMusicLibrary());
+				GameStates.getInstance().setAccuracy(accuracyDao.loadAccuracyList());
+				
+				musicDao.closeConnection();
+				accuracyDao.closeConnection();
 				
 				return null;
 			}

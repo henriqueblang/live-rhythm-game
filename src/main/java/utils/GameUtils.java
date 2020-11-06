@@ -15,7 +15,8 @@ import javax.sound.sampled.FloatControl;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import dao.AccuracyDAO;
+import dao.DAOFactory;
+import dao.impl.AccuracyDAO;
 import entity.Music;
 import entity.wrapper.OptionsWrapper;
 import javafx.animation.KeyFrame;
@@ -141,11 +142,15 @@ public class GameUtils {
 		Thread thread = new Thread() {
 			@Override
 			public void run() {
-				AccuracyDAO dao = new AccuracyDAO();
+				AccuracyDAO dao = DAOFactory.createAccuracyDAO();
+				
 				try {
 					dao.insertAccuracy(accuracy, clearOldestEntry);
 				} catch (SQLException e) {
 					e.printStackTrace();
+				}
+				finally {
+					dao.closeConnection();
 				}
 			}
 		};

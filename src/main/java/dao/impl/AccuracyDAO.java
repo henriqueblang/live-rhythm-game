@@ -1,20 +1,23 @@
-package dao;
+package dao.impl;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import dao.DAO;
 import utils.GameUtils;
 
 public class AccuracyDAO extends DAO {
+
+	public AccuracyDAO() {
+		super();
+	}
+	
 	public void insertAccuracy(double accuracy) throws SQLException {
 		insertAccuracy(accuracy, false);
 	}
 
 	public void insertAccuracy(double accuracy, boolean clearOldestEntry) throws SQLException {
-		if (!connectToDatabase())
-			return;
-
 		String deleteQuery = "DELETE FROM accuracy ORDER BY id LIMIT 1;";
 		String insertQuery = "INSERT INTO accuracy(value) VALUES (?);";
 
@@ -28,15 +31,10 @@ public class AccuracyDAO extends DAO {
 		pst.setDouble(1, accuracy);
 		pst.execute();
 		pst.close();
-
-		con.close();
 	}
 
 	public List<Double> loadAccuracyList() throws SQLException {
 		List<Double> accuracy = new ArrayList<>(GameUtils.ACCURACY_GAME_AMOUNT);
-		
-		if (!connectToDatabase())
-			return accuracy;
 
 		String query = "SELECT * FROM accuracy;";
 
@@ -49,7 +47,6 @@ public class AccuracyDAO extends DAO {
 
 		st.close();
 		rs.close();
-		con.close();
 
 		return accuracy;
 	}

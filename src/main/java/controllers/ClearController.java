@@ -3,7 +3,8 @@ package controllers;
 import java.sql.SQLException;
 import java.util.Map;
 
-import dao.MusicDAO;
+import dao.DAOFactory;
+import dao.impl.MusicDAO;
 import entity.Music;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -113,11 +114,15 @@ public class ClearController implements Controller {
 			Thread thread = new Thread() {
 				@Override
 				public void run() {
-					MusicDAO dao = new MusicDAO();
+					MusicDAO dao = DAOFactory.createMusicDAO();
+					
 					try {
 						dao.updateHighscore(music.getId(), mode, score);
 					} catch (SQLException e) {
 						e.printStackTrace();
+					}
+					finally {
+						dao.closeConnection();
 					}
 				}
 			};
