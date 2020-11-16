@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import states.GameStates;
 import states.UIStates;
+import utils.UIUtils;
 
 public class PauseController implements Controller {
 
@@ -54,6 +55,7 @@ public class PauseController implements Controller {
 		pausePane.setLayoutX((UIStates.getInstance().getRoot().getWidth() / 2) - (PANE_WIDTH / 2));
 		pausePane.setLayoutY((UIStates.getInstance().getRoot().getHeight() / 2) - (PANE_HEIGHT / 2));
 
+		UIUtils.makeDraggable(pausePane);
 		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(e -> keyReleased(e));
 	}
 }
