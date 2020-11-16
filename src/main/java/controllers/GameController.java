@@ -64,6 +64,7 @@ public class GameController implements Controller {
 	private int maxPossibleScore;
 	private int followedMultiplierHits;
 
+	private double baseHealthLoss;
 	private double missMultiplier;
 	private double scoreMultiplier;
 
@@ -327,7 +328,7 @@ public class GameController implements Controller {
 		UIStates.getInstance().getRoot().getChildren().remove(note);
 
 		if (gainScoreType == Scores.MISS || gainScoreType == Scores.BAD) {
-			double baseHealthLost = 0;
+			double baseHealthLost = baseHealthLoss;
 
 			scoreMultiplier = 1f;
 			followedMultiplierHits = 0;
@@ -337,11 +338,9 @@ public class GameController implements Controller {
 			switch (gainScoreType) {
 			case MISS:
 				missMultiplier += 0.10;
-				baseHealthLost = -0.05;
 				break;
 			case BAD:
-				missMultiplier += 0.050;
-				baseHealthLost = -0.025;
+				baseHealthLost /= 2;
 				break;
 			default:
 				break;
@@ -644,6 +643,8 @@ public class GameController implements Controller {
 		}
 		maxPossibleScore += (totalNotes - (15 * (totalNotes / 15))) * Scores.PERFECT.getValue()
 				* maxPossibleScoreMultiplier;
+		
+		baseHealthLoss = -(2.0 / totalNotes);
 
 		hitGradeCountMap.put(Scores.PERFECT, 0);
 		hitGradeCountMap.put(Scores.GREAT, 0);
