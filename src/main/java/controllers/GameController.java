@@ -438,8 +438,8 @@ public class GameController implements Controller {
 	private Scores getNodeHitScore(Note note) {
 		Scores score = null;
 
-		double distancePerGrade = GameStates.getInstance().getUserOptions().getNoteHeight() / 8;
-		double noteMiddle = note.getY() + (GameStates.getInstance().getUserOptions().getNoteHeight() / 2);
+		double distancePerGrade = note.getHeight() / 8;
+		double noteMiddle = note.getY() + (note.getHeight() / 2);
 
 		double hitDistance = Math.abs(note.getEndY() - noteMiddle);
 		if (hitDistance <= distancePerGrade)
