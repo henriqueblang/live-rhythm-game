@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -39,6 +40,8 @@ public class UIUtils {
 
 	private static final String[] BACKGROUNDS = { "bg_1.png", "bg_2.png", "bg_3.png", "bg_4.png", "bg_5.png",
 			"bg_6.png", "bg_7.png", "bg_8.png", "bg_9.png", "bg_10.png" };
+	
+	private static final String[] WAIFUS = { "waifu1.png", "waifu2.png"};
 
 	private static final String[] CHIBIS = { "chibi_1.png", "chibi_2.png", "chibi_3.png" };
 
@@ -255,6 +258,29 @@ public class UIUtils {
 			}
 		}));
 		removeRipple.play();
+	}
+	
+	public static void showWaifu(ImageView waifu) {
+		String randomWaifu = "/assets/waifus/" + WAIFUS[new Random().nextInt(WAIFUS.length)];
+		
+		Image waifuImage = new Image(randomWaifu, waifu.getFitWidth(), waifu.getFitHeight(), false, true);
+		waifu.setImage(waifuImage);
+		waifu.setVisible(true);
+		Timeline animationWaifu = new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(waifu.opacityProperty(),0), new KeyValue(waifu.layoutXProperty(), -130)),
+				new KeyFrame(Duration.seconds(0.3f), new KeyValue(waifu.opacityProperty(), 1), new KeyValue(waifu.layoutXProperty(), 0)),
+				new KeyFrame(Duration.seconds(4), new KeyValue(waifu.opacityProperty(), 1), new KeyValue(waifu.layoutXProperty(), 0)),
+				new KeyFrame(Duration.seconds(4.3f), new KeyValue(waifu.opacityProperty(), 0), new KeyValue(waifu.layoutXProperty(), -130)));
+		animationWaifu.play();
+		Timeline removeWaifu = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				animationWaifu.stop();
+			}
+		}));
+		
+		removeWaifu.play();
+
 	}
 
 	public static void makeDraggable(Node node) {

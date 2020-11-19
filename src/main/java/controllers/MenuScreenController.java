@@ -9,6 +9,7 @@ import entity.NotificationsObserver;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -105,6 +106,7 @@ public class MenuScreenController implements Controller {
 
 	@Override
 	public void init() {
+		
 		UIStates.getInstance().getRoot().setBackground(UIUtils.getRandomBackground());
 
 		UIUtils.playBackgroundMusic();
