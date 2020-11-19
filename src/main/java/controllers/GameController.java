@@ -24,6 +24,9 @@ import javafx.fxml.FXML;
 import javafx.scene.CacheHint;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.effect.Glow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -100,10 +103,37 @@ public class GameController implements Controller {
 
 	@FXML
 	private ProgressBar healthBar;
+	
+	@FXML
+	private ImageView waifu;
 
 	@FXML
 	private Rectangle scoreBar;
 
+	@FXML
+	private Rectangle hitBar1;
+	
+	@FXML
+	private Rectangle hitBar2;
+	
+	@FXML
+	private Rectangle hitBar3;
+	
+	@FXML
+	private Rectangle hitBar4;
+	
+	@FXML
+	private Rectangle highlightBar1;
+	
+	@FXML
+	private Rectangle highlightBar2;
+	
+	@FXML
+	private Rectangle highlightBar3;
+	
+	@FXML
+	private Rectangle highlightBar4;
+	
 	@FXML
 	private Label comboCountLabel;
 
@@ -161,18 +191,28 @@ public class GameController implements Controller {
 
 		Note note = null;
 
-		if ((track_1Code != null && code == track_1Code) || (flickTracks[0] && code == flick_1Code))
+		if ((track_1Code != null && code == track_1Code) || (flickTracks[0] && code == flick_1Code)) { 
 			note = hitTracks[0];
-		else if ((track_2Code != null && code == track_2Code) || (flickTracks[1] && code == flick_2Code))
+			hitBar1.setVisible(true);
+			highlightBar1.setVisible(true);
+		} else if ((track_2Code != null && code == track_2Code) || (flickTracks[1] && code == flick_2Code)) {
 			note = hitTracks[1];
-		else if ((track_3Code != null && code == track_3Code) || (flickTracks[2] && code == flick_3Code))
+			hitBar2.setVisible(true);
+			highlightBar2.setVisible(true);
+		} else if ((track_3Code != null && code == track_3Code) || (flickTracks[2] && code == flick_3Code)) {
 			note = hitTracks[2];
-		else if ((track_4Code != null && code == track_4Code) || (flickTracks[3] && code == flick_4Code))
+			hitBar3.setVisible(true);
+			highlightBar3.setVisible(true);
+		} else if ((track_4Code != null && code == track_4Code) || (flickTracks[3] && code == flick_4Code)) {
 			note = hitTracks[3];
-
+			hitBar4.setVisible(true);
+			highlightBar4.setVisible(true);
+		}
+		
 		if (note == null)
 			return;
 
+		
 		Types noteType = note.getType();
 		if (noteType == Types.LONG_MIDDLE) {
 			if (currentlyInUseKeys.get(codeOrdinal))
@@ -205,12 +245,12 @@ public class GameController implements Controller {
 	void keyReleased(KeyEvent event) {
 		if (!music.isPlaying())
 			return;
-
+		
 		event.consume();
 
 		KeyCode code = event.getCode();
 		int codeOrdinal = event.getCode().ordinal();
-
+		
 		currentlyInUseKeys.set(codeOrdinal, false);
 
 		Note note = null;
@@ -218,21 +258,29 @@ public class GameController implements Controller {
 		if (pauseCode != null && code == pauseCode)
 			pauseMouseReleased(null);
 		else if (track_1Code != null && code == track_1Code) {
+			hitBar1.setVisible(false);	
+			highlightBar1.setVisible(false);	
 			if (flickTracks[0])
 				flickTracks[0] = false;
 
 			note = hitTracks[0];
 		} else if (track_2Code != null && code == track_2Code) {
+			hitBar2.setVisible(false);	
+			highlightBar2.setVisible(false);	
 			if (flickTracks[1])
 				flickTracks[1] = false;
 
 			note = hitTracks[1];
 		} else if (track_3Code != null && code == track_3Code) {
+			hitBar3.setVisible(false);	
+			highlightBar3.setVisible(false);	
 			if (flickTracks[2])
 				flickTracks[2] = false;
 
 			note = hitTracks[2];
 		} else if (track_4Code != null && code == track_4Code) {
+			hitBar4.setVisible(false);	
+			highlightBar4.setVisible(false);	
 			if (flickTracks[3])
 				flickTracks[3] = false;
 
@@ -354,8 +402,10 @@ public class GameController implements Controller {
 			missMultiplier = 1;
 			followedMultiplierHits++;
 
-			if (followedMultiplierHits % 15 == 0)
+			if (followedMultiplierHits % 15 == 0) {
 				scoreMultiplier += 0.05f;
+				UIUtils.showWaifu(waifu);
+			}
 
 			updateCombo(followedMultiplierHits);
 			updateScoreBar(score, maxPossibleScore);
