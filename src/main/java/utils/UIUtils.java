@@ -264,14 +264,18 @@ public class UIUtils {
 		String randomWaifu = "/assets/waifus/" + WAIFUS[new Random().nextInt(WAIFUS.length)];
 		
 		Image waifuImage = new Image(randomWaifu, waifu.getFitWidth(), waifu.getFitHeight(), false, true);
+		
 		waifu.setImage(waifuImage);
 		waifu.setVisible(true);
+		
 		Timeline animationWaifu = new Timeline(
 				new KeyFrame(Duration.ZERO, new KeyValue(waifu.opacityProperty(),0), new KeyValue(waifu.layoutXProperty(), -130)),
 				new KeyFrame(Duration.seconds(0.3f), new KeyValue(waifu.opacityProperty(), 1), new KeyValue(waifu.layoutXProperty(), 0)),
 				new KeyFrame(Duration.seconds(4), new KeyValue(waifu.opacityProperty(), 1), new KeyValue(waifu.layoutXProperty(), 0)),
 				new KeyFrame(Duration.seconds(4.3f), new KeyValue(waifu.opacityProperty(), 0), new KeyValue(waifu.layoutXProperty(), -130)));
+		
 		animationWaifu.play();
+		
 		Timeline removeWaifu = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -280,7 +284,6 @@ public class UIUtils {
 		}));
 		
 		removeWaifu.play();
-
 	}
 
 	public static void makeDraggable(Node node) {

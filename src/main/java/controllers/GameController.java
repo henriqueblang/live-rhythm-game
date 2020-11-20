@@ -43,7 +43,7 @@ import utils.UIUtils;
 
 public class GameController implements Controller {
 
-	final private boolean AUTO_HIT = true;
+	final private boolean AUTO_HIT = false;
 	final private double AUTO_HIT_CHANCE = 100;
 	final double AUTO_HIT_DELAY = (GameStates.getInstance().getUserOptions().getNoteSpeed() * (650 - (GameUtils.DEFAULT_NOTE_HEIGHT / 2))) / (650 + (GameUtils.DEFAULT_NOTE_HEIGHT / 2));
 
@@ -186,25 +186,41 @@ public class GameController implements Controller {
 		KeyCode code = event.getCode();
 		int codeOrdinal = code.ordinal();
 
+		int track = -1;
 		Note note = null;
 
-		if ((track_1Code != null && code == track_1Code) || (flickTracks[0] && code == flick_1Code)) { 
-			note = hitTracks[0];
-			hitBar1.setVisible(true);
+		if ((track_1Code != null && code == track_1Code) || (flickTracks[0] && code == flick_1Code))
+			track = 0;
+		else if ((track_2Code != null && code == track_2Code) || (flickTracks[1] && code == flick_2Code))
+			track = 1;
+		else if ((track_3Code != null && code == track_3Code) || (flickTracks[2] && code == flick_3Code))
+			track = 2;
+		else if ((track_4Code != null && code == track_4Code) || (flickTracks[3] && code == flick_4Code))
+			track = 3;
+		
+		if(track == -1)
+			return;
+		
+		switch(track) {
+		case 0:
+			hitBar1.setVisible(true);	
 			highlightBar1.setVisible(true);
-		} else if ((track_2Code != null && code == track_2Code) || (flickTracks[1] && code == flick_2Code)) {
-			note = hitTracks[1];
-			hitBar2.setVisible(true);
+			break;
+		case 1:
+			hitBar2.setVisible(true);	
 			highlightBar2.setVisible(true);
-		} else if ((track_3Code != null && code == track_3Code) || (flickTracks[2] && code == flick_3Code)) {
-			note = hitTracks[2];
-			hitBar3.setVisible(true);
+			break;
+		case 2:
+			hitBar3.setVisible(true);	
 			highlightBar3.setVisible(true);
-		} else if ((track_4Code != null && code == track_4Code) || (flickTracks[3] && code == flick_4Code)) {
-			note = hitTracks[3];
-			hitBar4.setVisible(true);
+			break;
+		case 3:
+			hitBar4.setVisible(true);	
 			highlightBar4.setVisible(true);
+			break;
 		}
+		
+		note = hitTracks[track];
 		
 		if (note == null)
 			return;
@@ -249,39 +265,46 @@ public class GameController implements Controller {
 		
 		currentlyInUseKeys.set(codeOrdinal, false);
 
+		int track = -1;
 		Note note = null;
 
 		if (pauseCode != null && code == pauseCode)
 			pauseMouseReleased(null);
-		else if (track_1Code != null && code == track_1Code) {
+		else if (track_1Code != null && code == track_1Code)
+			track = 0;
+		else if (track_2Code != null && code == track_2Code)
+			track = 1;
+		else if (track_3Code != null && code == track_3Code)
+			track = 2;
+		else if (track_4Code != null && code == track_4Code)
+			track = 3;	
+		
+		if(track == -1)
+			return;
+		
+		switch(track) {
+		case 0:
 			hitBar1.setVisible(false);	
-			highlightBar1.setVisible(false);	
-			if (flickTracks[0])
-				flickTracks[0] = false;
-
-			note = hitTracks[0];
-		} else if (track_2Code != null && code == track_2Code) {
+			highlightBar1.setVisible(false);
+			break;
+		case 1:
 			hitBar2.setVisible(false);	
-			highlightBar2.setVisible(false);	
-			if (flickTracks[1])
-				flickTracks[1] = false;
-
-			note = hitTracks[1];
-		} else if (track_3Code != null && code == track_3Code) {
+			highlightBar2.setVisible(false);
+			break;
+		case 2:
 			hitBar3.setVisible(false);	
-			highlightBar3.setVisible(false);	
-			if (flickTracks[2])
-				flickTracks[2] = false;
-
-			note = hitTracks[2];
-		} else if (track_4Code != null && code == track_4Code) {
+			highlightBar3.setVisible(false);
+			break;
+		case 3:
 			hitBar4.setVisible(false);	
-			highlightBar4.setVisible(false);	
-			if (flickTracks[3])
-				flickTracks[3] = false;
-
-			note = hitTracks[3];
+			highlightBar4.setVisible(false);
+			break;
 		}
+		
+		if (flickTracks[track])
+			flickTracks[track] = false;
+
+		note = hitTracks[track];
 
 		if (note == null || note.getType() != Types.LONG_END)
 			return;

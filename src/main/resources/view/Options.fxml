@@ -76,62 +76,6 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Label layoutX="311.0" layoutY="221.0" text="Note size" textFill="#000000">
-               <font>
-                  <Font name="Century Gothic" size="25.0" />
-               </font>
-            </Label>
-            <Line endX="200.0" endY="50.0" layoutX="267.0" layoutY="203.0" startX="30.0" startY="50.0" stroke="#fe3d70" />
-            <TextFlow layoutX="361.0" layoutY="269.0" prefHeight="32.0" prefWidth="62.0" textAlignment="CENTER">
-               <children>
-                  <Text fx:id="noteSizeText" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
-                     <font>
-                        <Font name="Century Gothic" size="25.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="\%">
-                     <font>
-                        <Font name="Century Gothic" size="25.0" />
-                     </font>
-                  </Text>
-               </children>
-            </TextFlow>
-            <Button layoutX="421.0" layoutY="272.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#noteSizeIncrementMouseReleased" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@/assets/ui/plus.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button layoutX="329.0" layoutY="272.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#noteSizeDecrementMouseReleased" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@/assets/ui/minus.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button layoutX="299.0" layoutY="272.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#noteSizeDecreaseMouseReleased" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@/assets/ui/arrow_left.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button layoutX="451.0" layoutY="272.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#noteSizeIncreaseMouseReleased" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: transparent;">
-               <graphic>
-                  <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@/assets/ui/arrow_right.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
             <Label layoutX="40.0" layoutY="309.0" text="Shortcuts" textFill="#000000">
                <font>
                   <Font name="Century Gothic" size="25.0" />
