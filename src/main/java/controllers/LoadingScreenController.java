@@ -114,17 +114,11 @@ public class LoadingScreenController implements Controller {
 				GameStates.getInstance().setUserOptions(GameUtils.loadUserSettings());
 				
 				double userNoteSpeed= GameStates.getInstance().getUserOptions().getNoteSpeed();
-				double userNoteHeight = GameStates.getInstance().getUserOptions().getNoteHeight();
 				
 				if(userNoteSpeed < GameUtils.MIN_NOTE_SPEED)
 					GameStates.getInstance().getUserOptions().setNoteSpeed(GameUtils.MIN_NOTE_SPEED);
 				else if(userNoteSpeed > GameUtils.MAX_NOTE_SPEED)
 					GameStates.getInstance().getUserOptions().setNoteSpeed(GameUtils.MAX_NOTE_SPEED);
-				
-				if(userNoteHeight < GameUtils.MIN_NOTE_HEIGHT)
-					GameStates.getInstance().getUserOptions().setNoteHeight(GameUtils.MIN_NOTE_HEIGHT);
-				else if(userNoteHeight > GameUtils.MAX_NOTE_HEIGHT)
-					GameStates.getInstance().getUserOptions().setNoteHeight(GameUtils.MAX_NOTE_HEIGHT);
 						
 				informationText.setText("music library");
 			

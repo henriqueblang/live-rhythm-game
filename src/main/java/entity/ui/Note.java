@@ -3,7 +3,6 @@ package entity.ui;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import states.GameStates;
 import states.UIStates;
 import utils.EnumUtils.Types;
 import utils.GameUtils;
@@ -11,13 +10,15 @@ import utils.GameUtils;
 public class Note extends Rectangle {
 	private int track;
 	private double endY;
-	
+
 	private Types type;
-	
+
 	public Note(int track, Types type) {
-		this(track, type, (1080 - (GameUtils.NOTE_WIDTH * GameUtils.TRACK_AMOUNT)) / 2, GameUtils.NOTE_WIDTH, GameStates.getInstance().getUserOptions().getNoteHeight(), 650, UIStates.getInstance().getRoot());
+		this(track, type, (1080 - (GameUtils.NOTE_WIDTH * GameUtils.TRACK_AMOUNT)) / 2, GameUtils.NOTE_WIDTH,
+				GameUtils.DEFAULT_NOTE_HEIGHT, 650 + (GameUtils.DEFAULT_NOTE_HEIGHT / 2),
+				UIStates.getInstance().getRoot());
 	}
-	
+
 	public Note(int track, Types type, double firstTrackStartX, double width, double height, double endY, Pane root) {
 		this.setWidth(width);
 		this.setHeight(height);
@@ -57,11 +58,11 @@ public class Note extends Rectangle {
 	public int getTrack() {
 		return track;
 	}
-	
+
 	public double getEndY() {
 		return endY;
 	}
-	
+
 	public Types getType() {
 		return type;
 	}

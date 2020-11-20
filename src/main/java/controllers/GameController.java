@@ -24,8 +24,6 @@ import javafx.fxml.FXML;
 import javafx.scene.CacheHint;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.effect.Glow;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -47,8 +45,7 @@ public class GameController implements Controller {
 
 	final private boolean AUTO_HIT = true;
 	final private double AUTO_HIT_CHANCE = 100;
-	final double AUTO_HIT_DELAY = ((650 - (GameStates.getInstance().getUserOptions().getNoteHeight() / 2))
-			* GameStates.getInstance().getUserOptions().getNoteSpeed()) / 650;
+	final double AUTO_HIT_DELAY = (GameStates.getInstance().getUserOptions().getNoteSpeed() * (650 - (GameUtils.DEFAULT_NOTE_HEIGHT / 2))) / (650 + (GameUtils.DEFAULT_NOTE_HEIGHT / 2));
 
 	private double scoreBarTotalWidth;
 	private int paddingInitialAmount;
@@ -212,7 +209,6 @@ public class GameController implements Controller {
 		if (note == null)
 			return;
 
-		
 		Types noteType = note.getType();
 		if (noteType == Types.LONG_MIDDLE) {
 			if (currentlyInUseKeys.get(codeOrdinal))
@@ -338,7 +334,7 @@ public class GameController implements Controller {
 	private void animateNote(Note note) {
 		SequentialTransition animation = new SequentialTransition();
 
-		double upToPixel = note.getEndY() - GameStates.getInstance().getUserOptions().getNoteHeight();
+		double upToPixel = note.getEndY() - (GameUtils.DEFAULT_NOTE_HEIGHT * 2);
 		double upToTime = (upToPixel * GameStates.getInstance().getUserOptions().getNoteSpeed()) / note.getEndY();
 
 		final Duration SEC_1 = Duration.millis(upToTime);
@@ -488,10 +484,10 @@ public class GameController implements Controller {
 	private Scores getNodeHitScore(Note note) {
 		Scores score = null;
 
-		double distancePerGrade = note.getHeight() / 8;
+		final double distancePerGrade = GameUtils.DEFAULT_NOTE_HEIGHT / 4;
 		double noteMiddle = note.getY() + (note.getHeight() / 2);
 
-		double hitDistance = Math.abs(note.getEndY() - noteMiddle);
+		double hitDistance = Math.abs((note.getEndY() - (GameUtils.DEFAULT_NOTE_HEIGHT / 2)) - noteMiddle);
 		if (hitDistance <= distancePerGrade)
 			score = Scores.PERFECT;
 		else if (hitDistance <= distancePerGrade * 2)
@@ -614,7 +610,7 @@ public class GameController implements Controller {
 					autoHit.play();
 				}
 			} else {
-				double delay = ((650 - (GameStates.getInstance().getUserOptions().getNoteHeight() / 2))
+				double delay = ((650 - (GameUtils.DEFAULT_NOTE_HEIGHT / 2))
 						* GameStates.getInstance().getUserOptions().getNoteSpeed()) / 650;
 
 				noteCreationTimeline = new Timeline(new KeyFrame(Duration.ZERO, e -> makeNotes()),

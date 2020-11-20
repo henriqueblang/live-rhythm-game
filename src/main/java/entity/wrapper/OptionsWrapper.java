@@ -8,7 +8,6 @@ import utils.GameUtils;
 
 public class OptionsWrapper {
 	private double noteSpeed;
-	private double noteHeight;
 	
 	private Map<String, KeyCode> shortcuts;
 	
@@ -34,16 +33,14 @@ public class OptionsWrapper {
 			
 			this.shortcuts = shortcuts;
 			this.noteSpeed = (GameUtils.MIN_NOTE_SPEED + GameUtils.MAX_NOTE_SPEED) / 2; 
-			this.noteHeight = GameUtils.DEFAULT_NOTE_HEIGHT;
 		}
 	}
 
-	public OptionsWrapper(double noteSpeed, double noteHeight, Map<String, KeyCode> shortcuts) {
+	public OptionsWrapper(double noteSpeed, Map<String, KeyCode> shortcuts) {
 		super();
 		
 		this.shortcuts = shortcuts;
 		this.noteSpeed = noteSpeed;
-		this.noteHeight = noteHeight;
 	}
 
 	public double getNoteSpeed() {
@@ -52,14 +49,6 @@ public class OptionsWrapper {
 
 	public void setNoteSpeed(double noteSpeed) {
 		this.noteSpeed = noteSpeed;
-	}
-
-	public double getNoteHeight() {
-		return noteHeight;
-	}
-
-	public void setNoteHeight(double noteHeight) {
-		this.noteHeight = noteHeight;
 	}
 
 	public Map<String, KeyCode> getShortcuts() {

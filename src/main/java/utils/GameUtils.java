@@ -37,11 +37,7 @@ public class GameUtils {
 	public final static double MIN_NOTE_SPEED = 100;
 	public final static double MAX_NOTE_SPEED = 2500;
 
-	public final static double DEFAULT_NOTE_HEIGHT = 40;
-	// 1% de DEFAULT_NOTE_HEIGHT
-	public final static double MIN_NOTE_HEIGHT = DEFAULT_NOTE_HEIGHT / 100;
-	// 200% de DEFAULT_NOTE_HEIGHT
-	public final static double MAX_NOTE_HEIGHT = (DEFAULT_NOTE_HEIGHT * 200) / 100;
+	public final static double DEFAULT_NOTE_HEIGHT = 30;
 
 	private final static String OPTIONS_FILE_NAME = "settings.json";
 

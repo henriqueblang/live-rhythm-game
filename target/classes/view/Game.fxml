@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" prefHeight="720.0" prefWidth="1080.0" style="-fx-base: rgb(0,0,0);" stylesheets="@css/note.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onKeyReleased="#keyReleased" prefHeight="720.0" prefWidth="1080.0" style="-fx-base: rgb(0,0,0);" stylesheets="@/view/css/note.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GameController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="735.0" layoutX="-3.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="1091.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="79.0" layoutX="-4.0" layoutY="656.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1091.0">
