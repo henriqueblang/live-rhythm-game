@@ -46,7 +46,7 @@ public class GameController implements Controller {
 	final private boolean AUTO_HIT = false;
 	final private double AUTO_HIT_CHANCE = 100;
 	final double AUTO_HIT_DELAY = (GameStates.getInstance().getUserOptions().getNoteSpeed() * (650 - (GameUtils.DEFAULT_NOTE_HEIGHT / 2))) / (650 + (GameUtils.DEFAULT_NOTE_HEIGHT / 2));
-
+	
 	private double scoreBarTotalWidth;
 	private int paddingInitialAmount;
 
@@ -500,6 +500,10 @@ public class GameController implements Controller {
 				return;
 
 			noteAnimation.stop();
+			
+			if(hitTracks[note.getTrack()] == note)
+				removeNote(note);
+			
 			noteAnimations.remove(note);
 		}
 	}
