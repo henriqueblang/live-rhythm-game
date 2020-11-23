@@ -258,7 +258,7 @@ public class OptionsController implements Controller {
 		optionsWrapper.getShortcuts().put(shortcutInformation.getL(), shortcut);
 	}
 
-	void simulateAnimateNote(Note note, double noteSpeed) {
+	void simulateNoteAnimation(Note note, double noteSpeed) {
 		if (noteAnimation != null)
 			noteAnimation.stop();
 
@@ -293,9 +293,9 @@ public class OptionsController implements Controller {
 	}
 
 	private void animateNewNote(double noteSize, double noteSpeed) {
-		Note note = new Note(1, Types.NORMAL, 83.75, getProportionalNoteWidth(GameUtils.NOTE_WIDTH),
-				getProportionalNoteHeight(noteSize), 157.986, gamePreviewPane);
-		simulateAnimateNote(note, noteSpeed);
+		Note note = new Note(1, Types.NORMAL, 81, getProportionalNoteWidth(GameUtils.NOTE_WIDTH),
+				getProportionalNoteHeight(noteSize), 133, gamePreviewPane);
+		simulateNoteAnimation(note, noteSpeed);
 	}
 
 	@Override

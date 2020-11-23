@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -15,14 +17,73 @@
       <Pane fx:id="backgroundPane" prefHeight="720.0" prefWidth="1080.0" />
       <AnchorPane layoutX="293.5" layoutY="54.5" prefHeight="611.0" prefWidth="493.0" style="-fx-background-color: rgba(255, 255, 255, 0.75);">
          <children>
-            <AnchorPane fx:id="gamePreviewPane" layoutX="79.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="175.0" prefWidth="335.0" style="-fx-background-color: black;">
+            <AnchorPane fx:id="gamePreviewPane" layoutX="70.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="328.0">
                <children>
-                  <Line endX="335.0" fill="WHITE" layoutY="157.986" stroke="#bec8cd2e" strokeWidth="3.0" />
-                  <Line endX="83.75" endY="157.986" opacity="0.3" startX="83.75" stroke="WHITE" strokeWidth="2.0" />
-                  <Line endX="125.625" endY="157.986" opacity="0.3" startX="125.625" stroke="WHITE" />
-                  <Line endX="167.5" endY="157.986" opacity="0.3" startX="167.5" stroke="WHITE" />
-                  <Line endX="209.375" endY="157.986" opacity="0.3" startX="209.375" stroke="WHITE" />
-                  <Line endX="251.25" endY="157.986" opacity="0.3" startX="251.25" stroke="WHITE" strokeWidth="2.0" />
+                  <Group layoutX="-378.0" layoutY="-291.0" scaleX="0.3" scaleY="0.2">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="735.0" layoutX="-3.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="1091.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="79.0" layoutX="-4.0" layoutY="656.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1091.0">
+                           <fill>
+                              <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="0.004761904761904773" startX="1.0" startY="1.0">
+                                 <stops>
+                                    <Stop color="#2847e04d" />
+                                    <Stop color="#63ddff00" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="735.0" layoutX="190.0" layoutY="-10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="81.0">
+                           <fill>
+                              <LinearGradient endX="0.01904761904761905" endY="1.0" startX="1.0" startY="1.0">
+                                 <stops>
+                                    <Stop color="#dddcdc" />
+                                    <Stop color="#570ced33" offset="0.007662835249042145" />
+                                    <Stop color="#63ddff00" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="720.0" layoutX="269.0" stroke="BLACK" strokeType="INSIDE" width="543.0" />
+                        <Line endX="675.0" endY="720.0" opacity="0.3" startX="675.0" stroke="WHITE" strokeWidth="2.0" />
+                        <Line endX="540.0" endY="720.0" opacity="0.3" startX="540.0" stroke="WHITE" strokeWidth="2.0" />
+                        <Line endX="270.0" endY="720.0" opacity="0.3" startX="270.0" stroke="WHITE" strokeWidth="2.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="79.0" layoutX="270.0" layoutY="578.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="540.0">
+                           <fill>
+                              <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="0.004761904761904773" startX="1.0" startY="1.0">
+                                 <stops>
+                                    <Stop color="#2846e15e" />
+                                    <Stop color="#0e42eb00" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <Line endX="810.0" fill="WHITE" layoutY="650.0" startX="270.0" stroke="WHITE" strokeWidth="2.0" />
+                        <Line endX="810.0" endY="720.0" opacity="0.3" startX="810.0" stroke="WHITE" strokeWidth="2.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" height="735.0" layoutX="812.0" layoutY="-10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="81.0">
+                           <fill>
+                              <LinearGradient endX="1.0" endY="1.0" startY="1.0">
+                                 <stops>
+                                    <Stop color="#dddcdc" />
+                                    <Stop color="#570ced33" offset="0.011494252873563218" />
+                                    <Stop color="#7719eb00" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </fill>
+                        </Rectangle>
+                        <Group>
+                           <children>
+                              <Rectangle fx:id="mark1" arcHeight="5.0" arcWidth="5.0" fill="#2846e1" height="30.0" layoutX="270.0" layoutY="635.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
+                              <Rectangle fx:id="mark2" arcHeight="5.0" arcWidth="5.0" fill="#2846e1" height="30.0" layoutX="405.0" layoutY="635.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
+                              <Rectangle fx:id="mark4" arcHeight="5.0" arcWidth="5.0" fill="#2846e1" height="30.0" layoutX="675.0" layoutY="635.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
+                              <Rectangle fx:id="mark3" arcHeight="5.0" arcWidth="5.0" fill="#2846e1" height="30.0" layoutX="540.0" layoutY="635.0" stroke="BLACK" strokeType="INSIDE" width="135.0" />
+                           </children>
+                           <effect>
+                              <Glow level="0.8" />
+                           </effect>
+                        </Group>
+                        <Line endX="405.0" endY="720.0" opacity="0.3" startX="405.0" stroke="WHITE" strokeWidth="2.0" />
+                     </children>
+                  </Group>
                </children>
             </AnchorPane>
             <Label layoutX="40.0" layoutY="221.0" text="Note speed" textFill="#000000">

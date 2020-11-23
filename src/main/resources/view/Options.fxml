@@ -17,9 +17,9 @@
       <Pane fx:id="backgroundPane" prefHeight="720.0" prefWidth="1080.0" />
       <AnchorPane layoutX="293.5" layoutY="54.5" prefHeight="611.0" prefWidth="493.0" style="-fx-background-color: rgba(255, 255, 255, 0.75);">
          <children>
-            <AnchorPane fx:id="gamePreviewPane" layoutX="93.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="173.0" prefWidth="267.0">
+            <AnchorPane fx:id="gamePreviewPane" layoutX="70.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="328.0">
                <children>
-                  <Group layoutX="-385.0" layoutY="-266.0" scaleX="0.3" scaleY="0.2">
+                  <Group layoutX="-378.0" layoutY="-291.0" scaleX="0.3" scaleY="0.2">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" height="735.0" layoutX="-3.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="1091.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" height="79.0" layoutX="-4.0" layoutY="656.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1091.0">
@@ -28,36 +28,6 @@
                                  <stops>
                                     <Stop color="#2847e04d" />
                                     <Stop color="#63ddff00" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </fill>
-                        </Rectangle>
-                        <Rectangle fx:id="highlightBar3" arcHeight="5.0" arcWidth="5.0" height="639.0" layoutX="540.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="135.0">
-                           <fill>
-                              <LinearGradient endX="0.7380952380952381" endY="0.21428571428571427" startX="0.2142857142857143" startY="1.0">
-                                 <stops>
-                                    <Stop color="#37c26899" />
-                                    <Stop color="TRANSPARENT" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </fill>
-                        </Rectangle>
-                        <Rectangle fx:id="highlightBar4" arcHeight="5.0" arcWidth="5.0" height="639.0" layoutX="675.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="135.0">
-                           <fill>
-                              <LinearGradient endX="0.7380952380952381" endY="0.21428571428571427" startX="0.2142857142857143" startY="1.0">
-                                 <stops>
-                                    <Stop color="#48b6ff99" />
-                                    <Stop color="TRANSPARENT" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </fill>
-                        </Rectangle>
-                        <Rectangle fx:id="highlightBar1" arcHeight="5.0" arcWidth="5.0" height="639.0" layoutX="270.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="135.0">
-                           <fill>
-                              <LinearGradient endX="0.7380952380952381" endY="0.21428571428571427" startX="0.2142857142857143" startY="1.0">
-                                 <stops>
-                                    <Stop color="#48b6ff99" />
-                                    <Stop color="TRANSPARENT" offset="1.0" />
                                  </stops>
                               </LinearGradient>
                            </fill>
@@ -74,68 +44,11 @@
                            </fill>
                         </Rectangle>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" height="720.0" layoutX="269.0" stroke="BLACK" strokeType="INSIDE" width="543.0" />
-                        <Rectangle fx:id="highlightBar2" arcHeight="5.0" arcWidth="5.0" height="639.0" layoutX="405.0" layoutY="-2.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="135.0">
-                           <fill>
-                              <LinearGradient endX="0.7380952380952381" endY="0.21428571428571427" startX="0.2142857142857143" startY="1.0">
-                                 <stops>
-                                    <Stop color="#37c26899" />
-                                    <Stop color="TRANSPARENT" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </fill>
-                        </Rectangle>
-                        <Line endX="675.0" endY="720.0" opacity="0.3" startX="675.0" stroke="WHITE" strokeWidth="2.0" />
-                        <Line endX="540.0" endY="720.0" opacity="0.3" startX="540.0" stroke="WHITE" strokeWidth="2.0" />
-                        <Group>
-                           <children>
-                              <Rectangle fx:id="hitBar3" arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="544.0" layoutY="667.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="130.0">
-                                 <fill>
-                                    <LinearGradient endX="1.0" endY="0.03333333333333334" startX="1.0" startY="1.0">
-                                       <stops>
-                                          <Stop color="#1a5e36" />
-                                          <Stop color="#44c36e" offset="1.0" />
-                                       </stops>
-                                    </LinearGradient>
-                                 </fill>
-                              </Rectangle>
-                              <Rectangle fx:id="hitBar4" arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="678.0" layoutY="667.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="130.0">
-                                 <fill>
-                                    <LinearGradient endX="1.0" endY="0.03333333333333334" startX="1.0" startY="1.0">
-                                       <stops>
-                                          <Stop color="#184768" />
-                                          <Stop color="#40afff" offset="1.0" />
-                                       </stops>
-                                    </LinearGradient>
-                                 </fill>
-                              </Rectangle>
-                              <Rectangle fx:id="hitBar1" arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="272.0" layoutY="667.0" stroke="#02030a" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="131.0">
-                                 <fill>
-                                    <LinearGradient endX="1.0" endY="0.03333333333333334" startX="1.0" startY="1.0">
-                                       <stops>
-                                          <Stop color="#184768" />
-                                          <Stop color="#40afff" offset="1.0" />
-                                       </stops>
-                                    </LinearGradient>
-                                 </fill>
-                              </Rectangle>
-                              <Rectangle fx:id="hitBar2" arcHeight="5.0" arcWidth="5.0" height="50.0" layoutX="407.0" layoutY="667.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="131.0">
-                                 <fill>
-                                    <LinearGradient endX="1.0" endY="0.03333333333333334" startX="1.0" startY="1.0">
-                                       <stops>
-                                          <Stop color="#1a5e36" />
-                                          <Stop color="#44c36e" offset="1.0" />
-                                       </stops>
-                                    </LinearGradient>
-                                 </fill>
-                              </Rectangle>
-                           </children>
-                        </Group>
                         <Line endX="270.0" endY="720.0" opacity="0.3" startX="270.0" stroke="WHITE" strokeWidth="2.0" />
-                        <Label fx:id="comboCountLabel" alignment="CENTER" layoutX="910.0" layoutY="290.0" prefHeight="45.0" prefWidth="90.0" text="0" textAlignment="CENTER" visible="false">
-                           <font>
-                              <Font size="50.0" />
-                           </font>
-                        </Label>
+                        <Line endX="405.0" endY="720.0" opacity="0.3" startX="405.0" stroke="WHITE" strokeWidth="2.0" />
+                        <Line endX="540.0" endY="720.0" opacity="0.3" startX="540.0" stroke="WHITE" strokeWidth="2.0" />
+                        <Line endX="675.0" endY="720.0" opacity="0.3" startX="675.0" stroke="WHITE" strokeWidth="2.0" />
+                        <Line endX="810.0" endY="720.0" opacity="0.3" startX="810.0" stroke="WHITE" strokeWidth="2.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" height="79.0" layoutX="270.0" layoutY="578.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="540.0">
                            <fill>
                               <LinearGradient cycleMethod="REFLECT" endX="1.0" endY="0.004761904761904773" startX="1.0" startY="1.0">
@@ -147,7 +60,6 @@
                            </fill>
                         </Rectangle>
                         <Line endX="810.0" fill="WHITE" layoutY="650.0" startX="270.0" stroke="WHITE" strokeWidth="2.0" />
-                        <Line endX="810.0" endY="720.0" opacity="0.3" startX="810.0" stroke="WHITE" strokeWidth="2.0" />
                         <Rectangle arcHeight="5.0" arcWidth="5.0" height="735.0" layoutX="812.0" layoutY="-10.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="81.0">
                            <fill>
                               <LinearGradient endX="1.0" endY="1.0" startY="1.0">
@@ -170,7 +82,6 @@
                               <Glow level="0.8" />
                            </effect>
                         </Group>
-                        <Line endX="405.0" endY="720.0" opacity="0.3" startX="405.0" stroke="WHITE" strokeWidth="2.0" />
                      </children>
                   </Group>
                </children>
