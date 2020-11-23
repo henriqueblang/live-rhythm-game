@@ -85,7 +85,7 @@ Agora, no menu principal, será apresentado 4 botões, além de dados sobre suas
 ## Como jogar
 Caso esteja começando nos jogos de ritmo, a premissa é bem simples: clique na tecla correspondente à faixa em que a nota está chegando. Explicando um pouco mais sobre cada elemento do jogo:
 
-![Add](/docs/img/game1.PNG "Game")
+![Game](/docs/img/game.PNG "Game")
 
 1. **Pontuação:** Será mostrada sua pontuação total até agora, acertar as notas fará com que sua pontuação aumente!
 2. **Nota:** É o elemento que deve ter sua total atenção, a hora correta de pressionar o botão da faixa é no momento em que a nota se encontra na linha de julgamento.
