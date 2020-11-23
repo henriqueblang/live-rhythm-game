@@ -17,7 +17,7 @@
       <Pane fx:id="backgroundPane" prefHeight="720.0" prefWidth="1080.0" />
       <AnchorPane layoutX="293.5" layoutY="54.5" prefHeight="611.0" prefWidth="493.0" style="-fx-background-color: rgba(255, 255, 255, 0.75);">
          <children>
-            <AnchorPane fx:id="gamePreviewPane" layoutX="70.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="328.0">
+            <AnchorPane fx:id="gamePreviewPane" layoutX="87.0" layoutY="37.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="328.0">
                <children>
                   <Group layoutX="-378.0" layoutY="-291.0" scaleX="0.3" scaleY="0.2">
                      <children>
@@ -86,13 +86,13 @@
                   </Group>
                </children>
             </AnchorPane>
-            <Label layoutX="40.0" layoutY="221.0" text="Note speed" textFill="#000000">
+            <Label layoutX="180.0" layoutY="208.0" text="Note speed" textFill="#000000">
                <font>
                   <Font name="Century Gothic" size="25.0" />
                </font>
             </Label>
-            <Line endX="200.0" endY="50.0" layoutX="-4.0" layoutY="203.0" startX="30.0" startY="50.0" stroke="#fe3d70" />
-            <TextFlow layoutX="90.0" layoutY="269.0" prefHeight="32.0" prefWidth="56.0" textAlignment="CENTER">
+            <Line endX="200.0" endY="50.0" layoutX="136.0" layoutY="190.0" startX="30.0" startY="50.0" stroke="#fe3d70" />
+            <TextFlow layoutX="222.0" layoutY="255.0" prefHeight="32.0" prefWidth="56.0" textAlignment="CENTER">
                <children>
                   <Text fx:id="noteSpeedText" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                      <font>
@@ -101,7 +101,7 @@
                   </Text>
                </children>
             </TextFlow>
-            <Button layoutX="146.0" layoutY="272.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#noteSpeedIncrementMouseReleased" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: transparent;">
+            <Button layoutX="278.0" layoutY="258.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#noteSpeedIncrementMouseReleased" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -110,7 +110,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="58.0" layoutY="272.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#noteSpeedDecrementMouseReleased" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: transparent;">
+            <Button layoutX="190.0" layoutY="258.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#noteSpeedDecrementMouseReleased" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -119,7 +119,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="28.0" layoutY="272.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#noteSpeedDecreaseMouseReleased" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: transparent;">
+            <Button layoutX="160.0" layoutY="258.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#noteSpeedDecreaseMouseReleased" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -128,7 +128,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="176.0" layoutY="272.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#noteSpeedIncreaseMouseReleased" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: transparent;">
+            <Button layoutX="308.0" layoutY="258.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onMouseReleased="#noteSpeedIncreaseMouseReleased" prefHeight="27.0" prefWidth="32.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="27.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -137,13 +137,13 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Label layoutX="40.0" layoutY="309.0" text="Shortcuts" textFill="#000000">
+            <Label layoutX="197.0" layoutY="297.0" text="Shortcuts" textFill="#000000">
                <font>
                   <Font name="Century Gothic" size="25.0" />
                </font>
             </Label>
-            <Line endX="200.0" endY="50.0" layoutX="-4.0" layoutY="291.0" startX="30.0" startY="50.0" stroke="#fe3d70" />
-            <GridPane fx:id="shortcutsGridPane" gridLinesVisible="true" layoutX="28.0" layoutY="353.0" prefHeight="191.0" prefWidth="437.0">
+            <Line endX="200.0" endY="50.0" layoutX="136.0" layoutY="278.0" startX="30.0" startY="50.0" stroke="#fe3d70" />
+            <GridPane fx:id="shortcutsGridPane" gridLinesVisible="true" layoutX="28.0" layoutY="345.0" prefHeight="199.0" prefWidth="437.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
