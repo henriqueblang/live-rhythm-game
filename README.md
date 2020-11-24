@@ -1,10 +1,9 @@
-# live-rhythm-game
+# live!
 [![Build Status](https://travis-ci.org/henriqueblang/live-rhythm-game.svg?branch=main)](https://travis-ci.org/henriqueblang/live-rhythm-game)
 ![Bower](https://img.shields.io/bower/l/mi?color=blue)
 
 live! é um jogo de ritmo com beatmaps automaticamente gerados.
 
---- 
 ## Descrição
 O projeto foi desenvolvido para a disciplina de Engenharia de Software, fazendo uso de conceitos como POO, Design Pattern e Test Driven Development. As seguintes ferramentas/linguagens foram utilizadas:
 * [Java](https://www.java.com/en/)
@@ -16,7 +15,6 @@ O live! é do gênero de [rhythm games](https://www.google.com/search?client=ope
 
 O objetivo principal, numa sessão de jogo, é acertar as notas geradas ao ritmo da música sem perder todos seus pontos de energia. Acertos consecutivos garantem pontuação extra, estimulando o jogador a buscar pela pontuação perfeita para cada música.  
 
----
 ## Funcionalidades 
 
 O live! apresenta funcionalidades como jogar beatmaps, listar a biblioteca de músicas, alternar dificuldades, customizar opções, efeitos incríveis, e muito mais!
@@ -27,7 +25,6 @@ Algumas funcionalidades chave existentes no jogo são:
 * Geração automática de beatmap
 * Ajustes de jogabilidade e atalhos
 
----
 ## Bibliotecas 
 
 As bibliotecas utilizadas no projeto são:
@@ -45,7 +42,6 @@ As bibliotecas utilizadas no projeto são:
 * [mp3spi](https://mvnrepository.com/artifact/com.googlecode.soundlibs/mp3spi)
 * [mysql-connector-java](https://mvnrepository.com/artifact/mysql/mysql-connector-java)
 
---- 
 ## Ferramentas
 
 As seguintes ferramentas são utilizadas para a construção do projeto:
@@ -53,7 +49,6 @@ As seguintes ferramentas são utilizadas para a construção do projeto:
 * [JUnit](https://junit.org/junit5/)
 * [Mockito](https://site.mockito.org)
 
----
 ## Como usar
 
 Para que seja possível executar o jogo é necessário estar com um MySQL server no host em que o .jar está sendo executado. A configuração do MySQL deve ser:
@@ -77,7 +72,6 @@ No menu principal, são apresentados quatro botões no centro e três dados no c
 
 * **Quit:** o botão mais triste do jogo (ᗒᗣᗕ)՞, é nele que você encerra sua carreira, esperamos que momentaneamente, no live!
 
----
 ## Como jogar
 A premissa é simples e intuitiva: clique na tecla correspondente à faixa em que a nota está chegando. Quanto mais próximo do _timing_ correto, melhor sua pontuação.
 
@@ -90,20 +84,17 @@ A premissa é simples e intuitiva: clique na tecla correspondente à faixa em qu
 5. **Área de julgamento:** área na qual você deve deve aguardar a nota chegar antes de pressionar o botão correspondente. 
 6. **Combo:** quantidade de notas que foram acertadas em sequência. Atinja 15 de combo e tenha uma surpresa. (`･ω･´)
 
---- 
 ## Requisitos 
 * Maven
 * Java 
 * MySQL
 
---- 
 ### Clone
 
 Clone esse repositório em sua máquina:
 
 `git clone https://github.com/henriqueblang/live-rhythm-game.git` 
 
----
 ### Comandos
 
 Para gerar o jar executável:
