@@ -93,7 +93,7 @@ No menu principal, são apresentados quatro botões no centro e três dados no c
 
 ### Requisitos 
 * Maven
-* Java 
+* Java 8
 * MySQL
 
 ### Clone
