@@ -100,7 +100,9 @@ No menu principal, são apresentados quatro botões no centro e três dados no c
 
 Clone esse repositório em sua máquina:
 
-`git clone https://github.com/henriqueblang/live-rhythm-game.git` 
+```
+git clone https://github.com/henriqueblang/live-rhythm-game.git
+``` 
 
 ### Comandos
 
