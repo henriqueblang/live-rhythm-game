@@ -49,6 +49,19 @@ As seguintes ferramentas são utilizadas para a construção do projeto:
 * [JUnit](https://junit.org/junit5/)
 * [Mockito](https://site.mockito.org)
 
+## Como jogar
+
+A premissa é simples e intuitiva: clique na tecla correspondente à faixa em que a nota está chegando. Quanto mais próximo do _timing_ correto, melhor sua pontuação.
+
+![Game](/docs/img/game.PNG "Game")
+
+1. **Pontuação:** será mostrada sua pontuação total até agora, acertar as notas fará com que sua pontuação aumente!
+2. **Nota:** é o elemento que deve ter sua total atenção, a hora correta de pressionar o botão da faixa é no momento em que a nota se encontra na área de julgamento.
+3. **Energy Points:** seus pontos de energia. Caso cheguem a 0, você perde e retorna ao menu principal. 
+4. **Pontuação da nota:** toda nota, ao ser acertada, garante uma pontuação baseada na proximidade da nota e da área de julgamento. Quanto menor a distância, maior a pontuação. Do melhor *score* para pior: **Perfect**, **Great**, **Good**, **Bad**, e, caso não acerte a nota, **Miss**. 
+5. **Área de julgamento:** área na qual você deve deve aguardar a nota chegar antes de pressionar o botão correspondente. 
+6. **Combo:** quantidade de notas que foram acertadas em sequência. Atinja 15 de combo e tenha uma surpresa. (`･ω･´)
+
 ## Como usar
 
 Para que seja possível executar o jogo é necessário estar com um MySQL server no host em que o .jar está sendo executado. A configuração do MySQL deve ser:
@@ -62,29 +75,23 @@ Com o servidor online, basta abrir o executável e aproveitar o live!
 
 No menu principal, são apresentados quatro botões no centro e três dados no canto superior esquerdo da tela.
 
-![Play](/docs/img/menu.PNG "Play Button")
+![Menu](/docs/img/menu.PNG "Menu")
 
-* **Play:** sua biblioteca será listada, e ao selecionar uma música seu preview tocará, assim como a pontuação será exibida para cada dificuldade. Ao clicar em *Confirm* uma sessão de jogo começará! ![Play](/docs/img/play.PNG "Play Button")
+* **Play:** sua biblioteca será listada, e ao selecionar uma música seu preview tocará, assim como a pontuação será exibida para cada dificuldade. Ao clicar em Confirm uma sessão de jogo começará!
 
-* **Options:** nas opções, será possível modificar seus atalhos do teclado e a velocidade na qual as notas descerão nas faixas. ![Options](/docs/img/options.PNG "Options Button")
+![Play](/docs/img/play.PNG "Play Button")
 
-* **Add**: novas músicas podem ser adicionadas a sua biblioteca. Além disso, visando uma melhor experiência e orientação na listagem da biblioteca, é possível selecionar uma *thumbnail* e qual segmento da música será tocado ao selecioná-la.  ![Add](/docs/img/add.PNG "Add Button")
+* **Options:** nas opções, será possível modificar seus atalhos do teclado e a velocidade na qual as notas descerão nas faixas. 
+
+![Options](/docs/img/options.PNG "Options Button")
+
+* **Add**: novas músicas podem ser adicionadas a sua biblioteca. Além disso, visando uma melhor experiência e orientação na listagem da biblioteca, é possível selecionar uma *thumbnail* e qual segmento da música será tocado ao selecioná-la.  
+
+![Add](/docs/img/add.PNG "Add Button")
 
 * **Quit:** o botão mais triste do jogo (ᗒᗣᗕ)՞, é nele que você encerra sua carreira, esperamos que momentaneamente, no live!
 
-## Como jogar
-A premissa é simples e intuitiva: clique na tecla correspondente à faixa em que a nota está chegando. Quanto mais próximo do _timing_ correto, melhor sua pontuação.
-
-![Game](/docs/img/game.PNG "Game")
-
-1. **Pontuação:** será mostrada sua pontuação total até agora, acertar as notas fará com que sua pontuação aumente!
-2. **Nota:** é o elemento que deve ter sua total atenção, a hora correta de pressionar o botão da faixa é no momento em que a nota se encontra na área de julgamento.
-3. **Energy Points:** seus pontos de energia. Caso cheguem a 0, você perde e retorna ao menu principal. 
-4. **Pontuação da nota:** toda nota, ao ser acertada, garante uma pontuação baseada na proximidade da nota e da área de julgamento. Quanto menor a distância, maior a pontuação. Do melhor *score* para pior: **Perfect**, **Great**, **Good**, **Bad**, e, caso não acerte a nota, **Miss**. 
-5. **Área de julgamento:** área na qual você deve deve aguardar a nota chegar antes de pressionar o botão correspondente. 
-6. **Combo:** quantidade de notas que foram acertadas em sequência. Atinja 15 de combo e tenha uma surpresa. (`･ω･´)
-
-## Requisitos 
+### Requisitos 
 * Maven
 * Java 
 * MySQL
