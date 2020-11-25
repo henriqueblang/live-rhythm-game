@@ -4,6 +4,15 @@
 
 live! é um jogo de ritmo com beatmaps automaticamente gerados.
 
+## Sumário
+* [Descrição](#Descrição)
+* [Funcionalidades](#Funcionalidades)
+* [Bibliotecas](#Bibliotecas)
+* [Ferramentas](#Ferramentas)
+* [Como jogar](#Como-jogar)
+* [Como usar](#Como-usar)
+
+
 ## Descrição
 O projeto foi desenvolvido para a disciplina de Engenharia de Software, fazendo uso de conceitos como POO, Design Pattern e Test Driven Development. As seguintes ferramentas/linguagens foram utilizadas:
 * [Java](https://www.java.com/en/)
