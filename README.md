@@ -11,6 +11,9 @@ live! é um jogo de ritmo com beatmaps automaticamente gerados.
 * [Ferramentas](#Ferramentas)
 * [Como jogar](#Como-jogar)
 * [Como usar](#Como-usar)
+  * [Requisitos](#Requisitos)
+  * [Clone](#Clone)
+  * [Comandos](#Comandos)
 
 
 ## Descrição
