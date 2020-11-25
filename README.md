@@ -85,7 +85,7 @@ No menu principal, são apresentados quatro botões no centro e três dados no c
 
 ![Options](/docs/img/options.PNG "Options Button")
 
-* **Add**: novas músicas podem ser adicionadas a sua biblioteca. Além disso, visando uma melhor experiência e orientação na listagem da biblioteca, é possível selecionar uma *thumbnail* e qual segmento da música será tocado ao selecioná-la.  
+* **Add**: novas músicas podem ser adicionadas à sua biblioteca. Além disso, visando uma melhor orientação na listagem da biblioteca, é possível selecionar uma *thumbnail* e qual segmento da música será tocado ao selecioná-la.  
 
 ![Add](/docs/img/add.PNG "Add Button")
 
