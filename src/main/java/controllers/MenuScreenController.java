@@ -51,7 +51,7 @@ public class MenuScreenController implements Controller {
 
 	@FXML
 	void playMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		notification.clear();
@@ -65,7 +65,7 @@ public class MenuScreenController implements Controller {
 
 	@FXML
 	void addMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		notification.clear();
@@ -77,7 +77,7 @@ public class MenuScreenController implements Controller {
 
 	@FXML
 	void optionsMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		notification.clear();
@@ -88,7 +88,7 @@ public class MenuScreenController implements Controller {
 
 	@FXML
 	void quitMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		Platform.exit();

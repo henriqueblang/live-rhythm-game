@@ -157,7 +157,7 @@ public class GameController implements Controller {
 
 	@FXML
 	void pauseMouseReleased(MouseEvent event) {
-		if (!music.isPlaying() || UIStates.getInstance().getExtraPanes() > 0)
+		if (!music.isPlaying() || UIUtils.isUIBlocked())
 			return;
 
 		pauseTime = music.getAudio().getMicrosecondPosition();

@@ -116,7 +116,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void backMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 		else if (audioClip != null)
 			audioClip.close();
@@ -127,7 +127,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void musicMouseEntered(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		musicIcon.setVisible(true);
@@ -136,7 +136,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void musicMouseExited(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		musicIcon.setVisible(false);
@@ -145,7 +145,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void musicMouseReleased(MouseEvent event) throws UnsupportedAudioFileException {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		File selectedMusic = musicFileChooser.showOpenDialog(UIStates.getInstance().getPrimaryStage());
@@ -256,7 +256,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void thumbnailMouseEntered(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		thumbnailIcon.setVisible(true);
@@ -265,7 +265,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void thumbnailMouseExited(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		thumbnailIcon.setVisible(false);
@@ -274,7 +274,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void thumbnailMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		File selectedThumbnail = imageFileChooser.showOpenDialog(UIStates.getInstance().getPrimaryStage());
@@ -302,7 +302,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void previewMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		if (audioClip != null && audioClip.isRunning()) {
@@ -326,7 +326,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void okMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		if (audioStream == null) {
@@ -359,7 +359,7 @@ public class AddMusicController implements Controller {
 
 	@FXML
 	void keyReleased(KeyEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		event.consume();

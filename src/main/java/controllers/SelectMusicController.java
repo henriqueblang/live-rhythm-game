@@ -84,7 +84,7 @@ public class SelectMusicController implements Controller {
 	void modeMouseReleased(MouseEvent event) {
 		Button button = (Button) event.getSource();
 
-		if (button == selectedModeButton || UIStates.getInstance().getExtraPanes() > 0)
+		if (button == selectedModeButton || UIUtils.isUIBlocked())
 			return;
 
 		changeMode(button);
@@ -92,7 +92,7 @@ public class SelectMusicController implements Controller {
 
 	@FXML
 	void confirmMouseReleased(MouseEvent event) {
-		if (selectedMusicButton == null || UIStates.getInstance().getExtraPanes() > 0)
+		if (selectedMusicButton == null || UIUtils.isUIBlocked())
 			return;
 
 		Music music = selectedMusicButton.getMusic();
@@ -113,7 +113,7 @@ public class SelectMusicController implements Controller {
 
 	@FXML
 	void backMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		if (selectedMusicButton != null) {
@@ -128,7 +128,7 @@ public class SelectMusicController implements Controller {
 
 	@FXML
 	void keyReleased(KeyEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		event.consume();
@@ -184,7 +184,7 @@ public class SelectMusicController implements Controller {
 	}
 
 	private void favoriteMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		Button favoriteButton = (Button) event.getSource();
@@ -234,7 +234,7 @@ public class SelectMusicController implements Controller {
 	}
 
 	private void removeMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		Button removeButton = (Button) event.getSource();
@@ -294,7 +294,7 @@ public class SelectMusicController implements Controller {
 	}
 
 	private void changeMode(Button modeButton) {
-		if (selectedMusicButton == null || modeButton == null || UIStates.getInstance().getExtraPanes() > 0)
+		if (selectedMusicButton == null || modeButton == null || UIUtils.isUIBlocked())
 			return;
 
 		Music music = selectedMusicButton.getMusic();
@@ -334,7 +334,7 @@ public class SelectMusicController implements Controller {
 	}
 
 	private void selectMusic(MusicButton musicButton) {
-		if (musicButton == null || UIStates.getInstance().getExtraPanes() > 0)
+		if (musicButton == null || UIUtils.isUIBlocked())
 			return;
 
 		Music music = musicButton.getMusic();

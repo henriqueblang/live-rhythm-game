@@ -69,7 +69,7 @@ public class OptionsController implements Controller {
 
 	@FXML
 	void noteSpeedIncrementMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		double newNoteSpeed = optionsWrapper.getNoteSpeed();
@@ -87,7 +87,7 @@ public class OptionsController implements Controller {
 
 	@FXML
 	void noteSpeedDecrementMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		double newNoteSpeed = optionsWrapper.getNoteSpeed();
@@ -105,7 +105,7 @@ public class OptionsController implements Controller {
 
 	@FXML
 	void noteSpeedIncreaseMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		double newNoteSpeed = optionsWrapper.getNoteSpeed();
@@ -123,7 +123,7 @@ public class OptionsController implements Controller {
 
 	@FXML
 	void noteSpeedDecreaseMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		double newNoteSpeed = optionsWrapper.getNoteSpeed();
@@ -141,7 +141,7 @@ public class OptionsController implements Controller {
 
 	@FXML
 	void defaultMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		optionsWrapper = new OptionsWrapper(true);
@@ -166,7 +166,7 @@ public class OptionsController implements Controller {
 
 	@FXML
 	void saveMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		GameStates.getInstance().setUserOptions(optionsWrapper);
@@ -183,7 +183,7 @@ public class OptionsController implements Controller {
 
 	@FXML
 	void backMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		UIUtils.playBackSound();
@@ -192,7 +192,7 @@ public class OptionsController implements Controller {
 
 	@FXML
 	void keyReleased(KeyEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		event.consume();
@@ -208,7 +208,7 @@ public class OptionsController implements Controller {
 	}
 
 	void shortcutMouseExited(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		Button shortcutButton = (Button) event.getSource();
@@ -216,7 +216,7 @@ public class OptionsController implements Controller {
 	}
 
 	void shortcutMouseEntered(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		Button shortcutButton = (Button) event.getSource();
@@ -224,7 +224,7 @@ public class OptionsController implements Controller {
 	}
 
 	void shortcutMouseReleased(MouseEvent event) {
-		if (UIStates.getInstance().getExtraPanes() > 0)
+		if (UIUtils.isUIBlocked())
 			return;
 
 		Button shortcutButton = (Button) event.getSource();
