@@ -48,11 +48,4 @@ public abstract class DAO {
 		}
 	}
 	
-	@Override
-	protected void finalize() throws Throwable {
-		if(con == null)
-			return;
-		
-		con.close();
-	}
 }
