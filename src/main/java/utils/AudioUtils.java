@@ -36,6 +36,8 @@ public class AudioUtils {
 	private static final int THRESHOLD_WINDOW_SIZE = 10;
 	private static final float[] MULTIPLIERS = {2.5f, 2.0f, 1.5f};
 	
+	private AudioUtils() {}
+	
 	public static void playAudio(Clip audio) {
 		if(audio.isRunning())
 			audio.stop();

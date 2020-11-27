@@ -1,6 +1,9 @@
 package utils;
 
 public class EnumUtils {
+	
+	private EnumUtils() {}
+	
 	public static enum Grades {
 		C, B, A, S, SS
 	}

@@ -49,6 +49,8 @@ public class GameUtils {
 	private static Clip successSound;
 	private static Clip failSound;
 
+	private GameUtils() {}
+	 
 	public static OptionsWrapper getDefaultOptions() {
 		return new OptionsWrapper(true);
 	}

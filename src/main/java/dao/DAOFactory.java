@@ -5,6 +5,8 @@ import dao.impl.MusicDAO;
 
 public class DAOFactory {
 	
+	private DAOFactory() {}
+	
 	public static AccuracyDAO createAccuracyDAO() {
 		return new AccuracyDAO();
 	}

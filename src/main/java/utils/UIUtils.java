@@ -44,6 +44,8 @@ public class UIUtils {
 	private static final String[] WAIFUS = { "waifu1.png", "waifu2.png"};
 
 	private static final String[] CHIBIS = { "chibi_1.png", "chibi_2.png", "chibi_3.png" };
+	
+	private UIUtils() {}
 
 	public static Background getRandomBackground() {
 		String randomBackground = "/assets/backgrounds/" + BACKGROUNDS[new Random().nextInt(BACKGROUNDS.length)];
