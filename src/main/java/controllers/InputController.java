@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import states.UIStates;
+import utils.UIUtils;
 
 public class InputController implements Controller {
 
@@ -65,8 +66,7 @@ public class InputController implements Controller {
 	public void init() {
 		UIStates.getInstance().incrementExtraPanes();
 
-		inputPane.setLayoutX((UIStates.getInstance().getRoot().getWidth() / 2) - (PANE_WIDTH / 2));
-		inputPane.setLayoutY((UIStates.getInstance().getRoot().getHeight() / 2) - (PANE_HEIGHT / 2));
+		UIUtils.centerNode(inputPane, PANE_WIDTH, PANE_HEIGHT);
 
 		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(e -> keyReleased(e));
 	}

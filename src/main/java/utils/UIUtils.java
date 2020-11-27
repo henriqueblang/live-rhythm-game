@@ -138,6 +138,11 @@ public class UIUtils {
 	public static boolean isUIBlocked() {
 		return UIStates.getInstance().getExtraPanes() > 0;
 	}
+	
+	public static void centerNode(Node node, double width, double height) {
+		node.setLayoutX((UIStates.getInstance().getRoot().getWidth() / 2) - (width / 2));
+		node.setLayoutY((UIStates.getInstance().getRoot().getHeight() / 2) - (height / 2));
+	}
 
 	public static void showClear(Grades grade, int score, int maxCombo, Map<Scores, Integer> hitGradeCountMap) {
 		ClearController controller = (ClearController) UIUtils.addView("Clear.fxml");

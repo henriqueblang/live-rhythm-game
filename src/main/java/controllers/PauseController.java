@@ -52,10 +52,9 @@ public class PauseController implements Controller {
 	public void init() {
 		UIStates.getInstance().incrementExtraPanes();
 
-		pausePane.setLayoutX((UIStates.getInstance().getRoot().getWidth() / 2) - (PANE_WIDTH / 2));
-		pausePane.setLayoutY((UIStates.getInstance().getRoot().getHeight() / 2) - (PANE_HEIGHT / 2));
-
 		UIUtils.makeDraggable(pausePane);
+		UIUtils.centerNode(pausePane, PANE_WIDTH, PANE_HEIGHT);
+
 		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(e -> keyReleased(e));
 	}
 }

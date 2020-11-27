@@ -64,10 +64,9 @@ public class InformationController implements Controller {
 	public void init() {
 		UIStates.getInstance().incrementExtraPanes();
 
-		informationPane.setLayoutX((UIStates.getInstance().getRoot().getWidth() / 2) - (PANE_WIDTH / 2));
-		informationPane.setLayoutY((UIStates.getInstance().getRoot().getHeight() / 2) - (PANE_HEIGHT / 2));
-
 		UIUtils.makeDraggable(informationPane);
+		UIUtils.centerNode(informationPane, PANE_WIDTH, PANE_HEIGHT);
+		
 		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(e -> keyReleased(e));
 	}
 }

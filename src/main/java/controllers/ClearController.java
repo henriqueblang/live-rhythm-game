@@ -171,13 +171,12 @@ public class ClearController implements Controller {
 	public void init() {
 		UIStates.getInstance().incrementExtraPanes();
 
-		successPane.setLayoutX((UIStates.getInstance().getRoot().getWidth() / 2) - (PANE_WIDTH / 2));
-		successPane.setLayoutY((UIStates.getInstance().getRoot().getHeight() / 2) - (PANE_HEIGHT / 2));
-
 		scorePaddingInitialAmount = scorePaddingText.getText().length();
 		hitCountPaddingInitialAmount = maxComboPaddingText.getText().length();
 
 		UIUtils.makeDraggable(successPane);
+		UIUtils.centerNode(successPane, PANE_WIDTH, PANE_HEIGHT);
+
 		UIStates.getInstance().getRoot().getScene().setOnKeyReleased(e -> keyReleased(e));
 	}
 }

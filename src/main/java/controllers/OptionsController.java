@@ -30,7 +30,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import states.GameStates;
-import states.UIStates;
 import utils.GameUtils;
 import utils.UIUtils;
 import utils.EnumUtils.Types;
