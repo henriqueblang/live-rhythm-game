@@ -31,7 +31,8 @@ public class GameUtils {
 	public final static int ACCURACY_GAME_AMOUNT = 5;
 
 	public final static int TRACK_AMOUNT = 4;
-	public final static int GAME_START_COUNTDOWN = 5;
+	public final static int GAME_START_COUNTDOWN = 3;
+	
 	public final static double NOTE_WIDTH = 135;
 
 	public final static double MIN_NOTE_SPEED = 100;
