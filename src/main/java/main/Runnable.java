@@ -7,19 +7,12 @@ import utils.UIUtils;
 
 public class Runnable extends Application {
 	
-	private void initOverview() {
-		UIUtils.changeView("LoadingScreen.fxml");
-	}
-	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		UIStates.getInstance().setPrimaryStage(primaryStage);
 		UIStates.getInstance().getPrimaryStage().setTitle("live!");
 		
-		initOverview();
+		UIUtils.changeView("LoadingScreen.fxml");
 	}
 	
-	public static void main(String[] args) {
-		launch(args);
-	}
 }

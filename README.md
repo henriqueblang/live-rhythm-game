@@ -129,5 +129,5 @@ mvn clean package
 Navegue até a pasta ```target``` e execute o live! através do comando:
 
 ```
-java -jar live-rythm-game.jar
+java -jar live.jar
 ```

@@ -1,7 +1,5 @@
 package controllers;
 
-import java.io.File;
-
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineEvent;
@@ -81,7 +79,7 @@ public class LoadingScreenController implements Controller {
 	
 				informationText.setText("game images");
 				
-				UIStates.getInstance().setThumbnailDefaultFile(new File(getClass().getResource("/assets/ui/placeholder.png").toURI()));
+				UIStates.getInstance().setThumbnailDefaultStream(getClass().getResourceAsStream("/assets/ui/placeholder.png"));
 						
 				UIStates.getInstance().setPlayImage(new Image(getClass().getResource("/assets/ui/play_2.png").openStream()));
 				UIStates.getInstance().setStopImage(new Image(getClass().getResource("/assets/ui/stop.png").openStream()));

@@ -94,7 +94,7 @@
 				<artifactId>javafx-maven-plugin</artifactId>
 				<version>0.0.4</version>
 				<configuration>
-					<mainClass>main.Runnable</mainClass>
+					<mainClass>main.Launcher</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -106,7 +106,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>main.Runnable</mainClass>
+							<mainClass>main.Launcher</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -127,7 +127,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>main.Runnable</mainClass>
+							<mainClass>main.Launcher</mainClass>
 						</manifest>
 					</archive>
 					<finalName>live</finalName>

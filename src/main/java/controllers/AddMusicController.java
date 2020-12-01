@@ -6,7 +6,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
@@ -388,10 +387,7 @@ public class AddMusicController implements Controller {
 				"*.jpg");
 		imageFileChooser.getExtensionFilters().add(imgFilter);
 
-		try {
-			thumbnailStream = new FileInputStream(UIStates.getInstance().getThumbnailDefaultFile());
-		} catch (FileNotFoundException e) {
-			UIUtils.showError(e.getMessage());
-		}
+		thumbnailStream = UIStates.getInstance().getThumbnailDefaultFile();
+		
 	}
 }

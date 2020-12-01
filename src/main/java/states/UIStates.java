@@ -1,6 +1,6 @@
 package states;
 
-import java.io.File;
+import java.io.InputStream;
 
 import controllers.Controller;
 import entity.Notification;
@@ -19,7 +19,7 @@ public class UIStates {
 	private Pane root;
 	private Stage primaryStage;
 	
-	private File thumbnailDefaultFile;
+	private InputStream thumbnailDefaultStream;
 	
 	private Image playImage;
 	private Image stopImage;
@@ -96,12 +96,12 @@ public class UIStates {
 		this.primaryStage = primaryStage;
 	}
 
-	public File getThumbnailDefaultFile() {
-		return thumbnailDefaultFile;
+	public InputStream getThumbnailDefaultFile() {
+		return thumbnailDefaultStream;
 	}
 
-	public void setThumbnailDefaultFile(File thumbnailDefaultFile) {
-		this.thumbnailDefaultFile = thumbnailDefaultFile;
+	public void setThumbnailDefaultStream(InputStream thumbnailDefaultStream) {
+		this.thumbnailDefaultStream = thumbnailDefaultStream;
 	}
 
 	public Image getPlayImage() {
