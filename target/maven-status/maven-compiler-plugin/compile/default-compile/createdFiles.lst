@@ -51,6 +51,7 @@ utils\EnumUtils.class
 entity\collection\Beatmap.class
 controllers\OptionsController$1.class
 controllers\SelectMusicController$2.class
+main\Launcher.class
 utils\AudioUtils.class
 controllers\SelectMusicController.class
 entity\decoder\EndianDataInputStream.class
