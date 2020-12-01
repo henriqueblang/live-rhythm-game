@@ -1,13 +1,6 @@
 # live!
 [![Build Status](https://travis-ci.org/henriqueblang/live-rhythm-game.svg?branch=main)](https://travis-ci.org/henriqueblang/live-rhythm-game)
 ![Bower](https://img.shields.io/bower/l/mi?color=blue)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/henriqueblang/live-rhythm-game)
-![Lines of code](https://img.shields.io/tokei/lines/github/henriqueblang/live-rhythm-game)
-![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/henriqueblang/live-rhythm-game)
-![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/henriqueblang/live-rhythm-game)
-![Code Climate issues](https://img.shields.io/codeclimate/issues/henriqueblang/live-rhythm-game)
-![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/henriqueblang/live-rhythm-game)
-[![codecov](https://codecov.io/gh/henriqueblang/live-rhythm-game/branch/main/graph/badge.svg?token=ET8F3Q4P7E)](https://codecov.io/gh/henriqueblang/live-rhythm-game)
 
 live! é um jogo de ritmo com beatmaps automaticamente gerados.
 
