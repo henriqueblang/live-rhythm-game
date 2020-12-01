@@ -98,6 +98,8 @@ public class UIUtils {
 
 	public static void changeView(String viewPath) {
 		FXMLLoader fxmlLoader = new FXMLLoader();
+		
+		boolean shouldSetIcon = UIStates.getInstance().getRoot() == null;
 
 		try {
 			UIStates.getInstance()
@@ -108,6 +110,9 @@ public class UIUtils {
 
 		Scene scene = new Scene(UIStates.getInstance().getRoot());
 		UIStates.getInstance().getPrimaryStage().setScene(scene);
+		
+		if(shouldSetIcon)
+			UIStates.getInstance().getPrimaryStage().getIcons().add(new Image(UIUtils.class.getResourceAsStream("/assets/icon/live.png")));
 
 		if (!UIStates.getInstance().getPrimaryStage().isShowing()) {
 			UIStates.getInstance().getPrimaryStage().sizeToScene();
