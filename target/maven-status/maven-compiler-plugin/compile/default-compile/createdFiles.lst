@@ -2,6 +2,7 @@ controllers\SelectMusicController$1.class
 controllers\GameController.class
 entity\decoder\Decoder.class
 controllers\InformationController.class
+utils\UIUtils$3.class
 utils\EnumUtils$Scores.class
 controllers\PauseController.class
 controllers\OptionsController.class
@@ -9,15 +10,14 @@ utils\UIUtils$Delta.class
 entity\ui\Marquee$1.class
 controllers\ClearController$1.class
 utils\EnumUtils$Types.class
+dao\impl\AccuracyDAO.class
 controllers\GameController$3.class
 entity\NotificationsObserver.class
-dao\AccuracyDAO.class
 entity\ui\Marquee.class
 observer\Subject.class
 controllers\AddMusicController$1.class
 entity\Music.class
 utils\GameUtils.class
-controllers\GameController$1.class
 entity\ui\MusicButton.class
 controllers\InputController.class
 controllers\AddMusicController$2.class
@@ -34,7 +34,6 @@ entity\Notification.class
 dao\DAO.class
 entity\decoder\WaveDecoder.class
 utils\UIUtils.class
-dao\MusicDAO.class
 utils\EnumUtils$Grades.class
 entity\decoder\MP3AudioFileReader.class
 states\UIStates.class
@@ -46,6 +45,7 @@ entity\collection\Pair.class
 observer\Observer.class
 entity\transform\FFT.class
 entity\decoder\MP3Decoder.class
+dao\impl\MusicDAO.class
 utils\GameUtils$1.class
 utils\EnumUtils.class
 entity\collection\Beatmap.class
@@ -55,6 +55,7 @@ utils\AudioUtils.class
 controllers\SelectMusicController.class
 entity\decoder\EndianDataInputStream.class
 controllers\ClearController.class
+dao\DAOFactory.class
 controllers\Controller.class
 controllers\MenuScreenController.class
 entity\ui\Note.class

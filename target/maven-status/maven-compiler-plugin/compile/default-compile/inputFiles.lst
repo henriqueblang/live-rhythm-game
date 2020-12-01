@@ -1,13 +1,13 @@
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\controllers\Controller.java
-C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\dao\AccuracyDAO.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\controllers\OptionsController.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\entity\transform\FourierTransform.java
-C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\dao\MusicDAO.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\utils\UIUtils.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\controllers\SelectMusicController.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\entity\ui\MusicButton.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\controllers\GameController.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\entity\decoder\MP3Decoder.java
+C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\dao\impl\AccuracyDAO.java
+C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\dao\impl\MusicDAO.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\utils\AudioUtils.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\entity\LibraryObserver.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\entity\transform\FFT.java
@@ -36,5 +36,6 @@ C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\observer\Subject.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\entity\decoder\EndianDataInputStream.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\controllers\InformationController.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\controllers\ClearController.java
+C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\dao\DAOFactory.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\entity\ui\Marquee.java
 C:\Users\Henrique\Documents\live-rhythm-game\src\main\java\entity\wrapper\OptionsWrapper.java
