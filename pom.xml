@@ -130,7 +130,7 @@
 							<mainClass>main.Launcher</mainClass>
 						</manifest>
 					</archive>
-					<finalName>live</finalName>
+					<finalName>live!</finalName>
 					<appendAssemblyId>false</appendAssemblyId>
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
