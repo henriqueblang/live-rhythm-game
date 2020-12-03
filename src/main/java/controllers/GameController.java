@@ -1,12 +1,10 @@
 package controllers;
 
-import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Random;
 
 import animatefx.animation.Pulse;
 import entity.Music;
@@ -43,10 +41,6 @@ import utils.UIUtils;
 
 public class GameController implements Controller {
 
-	final private boolean AUTO_HIT = false;
-	final private double AUTO_HIT_CHANCE = 100;
-	final double AUTO_HIT_DELAY = (GameStates.getInstance().getUserOptions().getNoteSpeed() * (650 - (GameUtils.DEFAULT_NOTE_HEIGHT / 2))) / (650 + (GameUtils.DEFAULT_NOTE_HEIGHT / 2));
-	
 	private double scoreBarTotalWidth;
 	private int paddingInitialAmount;
 
@@ -95,8 +89,6 @@ public class GameController implements Controller {
 	private Timeline audioFinishTimeline;
 	private Timeline noteCreationTimeline;
 	private Map<Note, SequentialTransition> noteAnimations = new HashMap<>();
-
-	private List<Timeline> autoHitEvents = new ArrayList<>();
 
 	@FXML
 	private ProgressBar healthBar;
@@ -169,10 +161,6 @@ public class GameController implements Controller {
 
 		for (Map.Entry<Note, SequentialTransition> entry : noteAnimations.entrySet()) {
 			entry.getValue().pause();
-		}
-
-		for (Timeline autoHit : autoHitEvents) {
-			autoHit.pause();
 		}
 
 		UIUtils.addView("Pause.fxml");
@@ -329,28 +317,6 @@ public class GameController implements Controller {
 			note.setCacheHint(CacheHint.SPEED);
 
 			animateNote(note);
-
-			if (AUTO_HIT) {
-				Random random = new Random();
-
-				if ((random.nextInt((100 - 1) + 1) + 1) <= AUTO_HIT_CHANCE) {
-					Timeline autoHit = new Timeline(
-							new KeyFrame(Duration.millis(AUTO_HIT_DELAY), e -> hitNote(note, true)));
-					autoHit.statusProperty().addListener(new ChangeListener<Status>() {
-						@Override
-						public void changed(ObservableValue<? extends Status> observableValue, Status oldValue,
-								Status newValue) {
-							if (newValue == Status.STOPPED)
-								autoHitEvents.remove(autoHit);
-						}
-					});
-
-					autoHit.setCycleCount(1);
-					autoHit.play();
-
-					autoHitEvents.add(autoHit);
-				}
-			}
 		}
 	}
 
@@ -622,6 +588,7 @@ public class GameController implements Controller {
 
 			UIUtils.showAnimatedText(countdownText, text, 1000);
 		}), new KeyFrame(Duration.seconds(1)));
+		
 		startTimeline.setOnFinished(event -> {
 			if (pauseTime > 0) {
 				music.playAudioFromMicrosecondPosition(pauseTime);
@@ -632,10 +599,7 @@ public class GameController implements Controller {
 				for (Map.Entry<Note, SequentialTransition> entry : noteAnimations.entrySet()) {
 					entry.getValue().play();
 				}
-
-				for (Timeline autoHit : autoHitEvents) {
-					autoHit.play();
-				}
+				
 			} else {
 				double delay = ((650 - (GameUtils.DEFAULT_NOTE_HEIGHT / 2))
 						* GameStates.getInstance().getUserOptions().getNoteSpeed()) / 650;
@@ -656,6 +620,7 @@ public class GameController implements Controller {
 			}
 
 		});
+		
 		startTimeline.setCycleCount(startTime + 1);
 		startTimeline.play();
 	}
