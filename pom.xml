@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.henriqueblang</groupId>
 	<artifactId>live-rhythm-game</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>live!</name>
 	<description>Rhythm game with auto-generated beatmaps.</description>
 

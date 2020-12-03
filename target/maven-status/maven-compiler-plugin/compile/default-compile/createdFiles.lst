@@ -11,13 +11,13 @@ entity\ui\Marquee$1.class
 controllers\ClearController$1.class
 utils\EnumUtils$Types.class
 dao\impl\AccuracyDAO.class
-controllers\GameController$3.class
 entity\NotificationsObserver.class
 entity\ui\Marquee.class
 observer\Subject.class
 controllers\AddMusicController$1.class
 entity\Music.class
 utils\GameUtils.class
+controllers\GameController$1.class
 entity\ui\MusicButton.class
 controllers\InputController.class
 controllers\AddMusicController$2.class
