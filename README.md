@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="350px" src="/docs/img/live.png">
+</p>
+
 # live!
 [![Build Status](https://travis-ci.org/henriqueblang/live-rhythm-game.svg?branch=main)](https://travis-ci.org/henriqueblang/live-rhythm-game)
 ![Bower](https://img.shields.io/bower/l/mi?color=blue)
