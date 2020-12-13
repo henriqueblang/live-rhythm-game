@@ -43,8 +43,6 @@ public class UIUtils {
 	
 	private static final String[] WAIFUS = { "waifu1.png", "waifu2.png"};
 
-	private static final String[] CHIBIS = { "chibi_1.png", "chibi_2.png", "chibi_3.png" };
-	
 	private UIUtils() {}
 
 	public static Background getRandomBackground() {
@@ -58,10 +56,6 @@ public class UIUtils {
 				BackgroundSize.DEFAULT);
 
 		return new Background(background);
-	}
-
-	public static String getRandomChibi() {
-		return "/assets/chibis/" + CHIBIS[new Random().nextInt(CHIBIS.length)];
 	}
 
 	public static void setBackSound(Clip backSound) {
