@@ -1,4 +1,4 @@
-<p align="center">
+  <p align="center">
   <img width="350px" src="/docs/img/live.png">
 </p>
 
@@ -133,5 +133,5 @@ mvn clean package
 Navegue até a pasta ```target``` e execute o live! através do comando:
 
 ```
-java -jar live.jar
+java -jar live\!.jar
 ```
